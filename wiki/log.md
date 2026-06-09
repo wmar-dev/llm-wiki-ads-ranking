@@ -81,6 +81,10 @@ Fixed 2 L-001 orphans (deleted raw webpage copies wrongly placed in wiki/). Rema
 
 Full coverage from existing wiki pages on GSP auction theory (Edelman et al., AER 2007) and Google Ad Rank mechanics. No web enrichment needed. Created synthesis page (wiki/synthesis/why-ads-have-auctions.md) covering scarcity, perishing inventory, price discovery, and why fixed prices fail.
 
+## [2026-06-09] query | what is pinterest's foundation model | pages-read: 0 | sources-ingested: 2
+
+Total gap — no existing wiki pages on Pinterest. Enriched with 2 sources: PinFM paper (RecSys 2025, peer-reviewed) and Pinterest Engineering blog on request-level deduplication (industry report). Created 2 source summaries (wiki/sources/pinfm-foundation-model-pinterest.md, wiki/sources/pinterest-request-level-deduplication.md) and synthesis page (wiki/synthesis/pinterest-foundation-model.md). Key finding: PinFM is a 20B+ param transformer pretrained on user activity data; uses DCAT for 600% throughput; underpins Pinterest's broader foundation model ecosystem (PinRec, UniPinRec, TransActV2).
+
 ## [2026-06-09] query | what are two tower or factorized models | pages-read: 4 | sources-ingested: 2
 
 Partial gap — existing pages mentioned two-tower/multi-tower models in passing (TikTok, Reddit, Meta) but lacked a standalone architecture definition. Enriched with 2 web sources (EngineersOfAI tutorial, Google Cloud reference architecture). Created synthesis page (wiki/synthesis/two-tower-factorized-models.md). Key finding: two-tower models solve billion-scale retrieval via the architectural constraint of independent user/item towers enabling precomputed embeddings + ANN search; the "factorized" name derives from deep-learning generalization of matrix factorization.
@@ -92,3 +96,7 @@ Fetched from Meta Engineering blog (engineering.fb.com); saved to raw/web/meta-r
 ## [2026-06-09] query | how do you know your auction or ranking is optimal | pages-read: 5 | sources-ingested: 1
 
 Partial gap — existing pages covered theoretical auction optimality (GSP equilibrium, VCG comparison) and general A/B testing well, but lacked systematic treatment of empirical optimality verification (offline metrics like AucLoss, progressive validation, counterfactual evaluation, and automated optimization). Enriched with Meta REA blog post. Created synthesis page (wiki/synthesis/how-to-know-optimality.md) with a 6-layer hierarchy: theory → offline metrics → counterfactual eval → A/B testing → systematic optimization → business outcomes.
+
+## [2026-06-09] ingest | Monolith: Real Time Recommendation System With Collisionless Embedding Table
+
+Fetched from arXiv (2209.07663) via ar5iv HTML conversion; saved to raw/web/monolith-realtime-recommendation-system.md. Single-pass processing (2,441 words). Source type: peer_reviewed (ORSUM@ACM RecSys 2022). Created source summary (wiki/sources/), entity page for Monolith system (wiki/entities/), and two concept pages: online training for recommendation systems (wiki/concepts/) and collisionless embedding table (wiki/concepts/). Key findings: Cuckoo hash-based collisionless embedding improves AUC vs hash-trick approaches; minute-level parameter sync achieves 79.80 AUC (Criteo) vs 79.43 batch-only; 14–18% AUC improvement in production A/B test. No contradictions with existing pages that reference Monolith (TikTok blog post, TikTok synthesis).
