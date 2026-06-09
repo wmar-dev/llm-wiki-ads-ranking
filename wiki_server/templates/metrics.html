@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Metrics — LLM Wiki{% endblock %}
+{% block content %}
+<h1>Page Visit Metrics</h1>
+
+{% if report.pages %}
+  <h2>Most Visited</h2>
+  <table class="metrics-table">
+    <thead>
+      <tr><th>Page</th><th>Visits</th></tr>
+    </thead>
+    <tbody>
+    {% for page in report.pages %}
+      <tr>
+        <td>
+          {% if page.count > 0 %}
+            <a href="{{ page.path }}">{{ page.path }}</a>
+          {% else %}
+            <span class="zero-visits">{{ page.path }} ⚠ No visits</span>
+          {% endif %}
+        </td>
+        <td>{{ page.count }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  {% set zero = report.pages | selectattr("count", "eq", 0) | list %}
+  {% if zero %}
+  <h2>Zero-Visit Pages</h2>
+  <p>These pages have never been requested — candidate orphans:</p>
+  <ul>
+  {% for page in zero %}
+    <li class="zero-visits">{{ page.path }}</li>
+  {% endfor %}
+  </ul>
+  {% endif %}
+{% else %}
+  <p>No visit data recorded yet.</p>
+{% endif %}
+{% endblock %}

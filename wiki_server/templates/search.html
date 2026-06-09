@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Search — LLM Wiki{% endblock %}
+{% block content %}
+<h1>Search</h1>
+<form action="/search" method="get">
+  <input type="search" name="q" value="{{ query }}" placeholder="Search wiki…" style="width:60%;padding:0.4rem;font-size:1rem;">
+  <button type="submit" style="padding:0.4rem 1rem;font-size:1rem;">Search</button>
+</form>
+
+{% if query %}
+  {% if results %}
+    <p>{{ results | length }} result{{ 's' if results | length != 1 }} for <strong>{{ query }}</strong></p>
+    <ul class="search-results">
+    {% for r in results %}
+      <li>
+        <div class="title"><a href="{{ r.url }}">{{ r.title }}</a></div>
+        <div class="excerpt">{{ r.excerpt | safe }}</div>
+      </li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <p>No results found for <strong>{{ query }}</strong>.</p>
+  {% endif %}
+{% endif %}
+{% endblock %}

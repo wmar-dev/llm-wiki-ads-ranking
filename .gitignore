@@ -1,0 +1,24 @@
+# Generated artifacts
+search.db
+access.log
+access.log.*
+wiki/assets/*.svg
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+.pytest_cache/
+
+# macOS
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.tmp
