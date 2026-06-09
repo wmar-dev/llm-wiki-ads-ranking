@@ -1,5 +1,6 @@
 # Ingest Log
 
+- **2026-06-08** | `ingest` | `web` | [Contextual Relevance of Ads at Reddit](wiki/sources/contextual-relevance-of-ads-reddit.md) — [source](https://www.reddit.com/r/RedditEng/comments/1r0hyfu/contextual_relevance_of_ads_reddit/)
 - **2026-06-08** | `ingest` | `pdf` | [Overlapping Experiment Infrastructure: More, Better, Faster Experimentation](wiki/sources/overlapping-experiment-infrastructure.md) — [source](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/36500.pdf)
 
 ## [2026-06-08] query | what is a second price auction? | pages-read: 0 | sources-ingested: 0
@@ -31,6 +32,10 @@ Full coverage — read 3 existing pages (second-price-auction synthesis, GSP con
 ## [2026-06-08] query | how does meta ad ranking work | pages-read: 0 | sources-ingested: 3
 
 Total gap — no existing wiki pages on Meta ad ranking. Fetched 3 sources (Meta Engineering: ARM + GEM; Greg Halno comprehensive guide). Created 3 source summaries, 1 entity page (wiki/entities/meta-ads-ranking-system.md), 1 synthesis page (wiki/synthesis/meta-ad-ranking.md). Key finding: Meta's 2026 stack uses 5 interlocking systems (Andromeda, Lattice, GEM, UTIS, ARM) with a teacher-student distillation architecture and creative-first neural retrieval.
+
+## [2026-06-08] ingest | Contextual Relevance of Ads at Reddit
+
+Fetched from r/RedditEng via old.reddit.com (WebFetch on new.reddit.com blocked by verification). Single-pass processing (~2000 words). Source: Reddit Engineering blog by Daniel Peters, Aleksandr Plentsov, Anand Natu. Source type: other (company engineering blog). Created source summary (wiki/sources/contextual-relevance-of-ads-reddit.md), concept page (wiki/concepts/contextual-relevance-advertising.md), and updated existing entity (wiki/entities/reddit-ads-system.md) and synthesis (wiki/synthesis/reddit-ads.md). Key findings: LLM-as-judge with Gemini labels <post, ad> relevance; fine-tuned multi-tower embedding model achieves 3.2× PRAUC vs IAB taxonomy; relevance boost applied preferentially for search-referred high-intent traffic. No contradictions with existing pages.
 
 ## [2026-06-08] ingest | How Search Ads are Ranked and Priced on Google
 

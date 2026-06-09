@@ -5,6 +5,7 @@ sources:
   - "web/reddit-ads-how-it-works.md"
   - "web/reddit-max-campaigns.md"
   - "web/reddit-audience-targeting.md"
+  - "web/reddit-contextual-relevance-ads.md"
 status: "draft"
 created: "2026-06-08"
 last_updated: "2026-06-08"
@@ -12,7 +13,24 @@ last_updated: "2026-06-08"
 
 # Reddit Ads System
 
-Reddit's advertising platform operates a **second-price auction** with community-based targeting, running across 450M+ weekly active users. The system prioritizes engagement quality over raw volume, especially since the September 2025 algorithm overhaul.
+Reddit's advertising platform operates a **second-price auction** with community-based targeting, running across 450M+ weekly active users. The system prioritizes engagement quality over raw volume.
+
+## Ad Delivery Funnel
+
+Reddit's delivery pipeline consists of four sequential stages [[wiki/sources/contextual-relevance-of-ads-reddit.md]] *(company engineering blog)*:
+
+```mermaid
+flowchart LR
+    T[Targeting Layer] --> L[Light Rankers]
+    L --> H[Heavy Rankers]
+    H --> A[Auction]
+    A --> S[Ad Selected]
+```
+
+1. **Targeting Layer** — Advertiser criteria (community, interest, keyword, custom) filter eligible ads
+2. **Light Rankers** — Fast, lightweight models narrow the candidate list [[wiki/sources/contextual-relevance-of-ads-reddit.md]]
+3. **Heavy Rankers** — Deep neural networks predict calibrated probabilities for CTR / conversion rate
+4. **Auction** — Selects ad maximizing utility: P(outcome) × Value (e.g., pCTR × Bid)
 
 ## Auction Mechanics
 
@@ -28,6 +46,16 @@ Three core native targeting pillars, plus custom audiences:
 | Interest (cross-Reddit clusters) | Medium | Awareness |
 | Keyword (conversation content) | High | Conversion |
 | Custom (Pixel/CAPI/CRM) | Varies | Retargeting |
+
+## Contextual Relevance System
+
+Reddit developed a fine-tuned embedding model for post-ad contextual relevance, integrated across all funnel stages [[wiki/sources/contextual-relevance-of-ads-reddit.md]] *(company engineering blog)*:
+
+- **Ground truth**: LLM-as-judge (Gemini 2.5 Flash Lite) with few-shot prompting labels <post, ad> pairs as No/Low/Medium/High relevance
+- **Model**: Multi-tower architecture using Stella (stella_en_400M_v5) as text encoder, augmented with subreddit embeddings, LLM-generated landing page summaries, and product attributes
+- **Performance**: Fine-tuned embeddings achieved 3.2× PRAUC vs 1× for IAB category matching
+- **Integration**: Embeddings used in targeting, retrieval, and as features in light + heavy rankers
+- **Selective application**: Relevance boost applied preferentially for search-referred traffic (high-intent users benefit most)
 
 ## Bidding
 

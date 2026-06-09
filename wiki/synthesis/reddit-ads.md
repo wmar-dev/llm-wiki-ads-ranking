@@ -5,6 +5,7 @@ sources:
   - "web/reddit-ads-how-it-works.md"
   - "web/reddit-max-campaigns.md"
   - "web/reddit-audience-targeting.md"
+  - "web/reddit-contextual-relevance-ads.md"
 status: "current"
 created: "2026-06-08"
 last_updated: "2026-06-08"
@@ -33,6 +34,33 @@ Reddit uses a **second-price auction** — you set a maximum bid but pay just ab
 | **Ad quality** | Historical CTR and engagement performance |
 | **Relevance** | How well targeting matches the user |
 | **User experience** | Ads delivering value rank higher |
+
+## Delivery Funnel
+
+Reddit's ad delivery pipeline consists of four sequential stages [[wiki/sources/contextual-relevance-of-ads-reddit.md]] *(company engineering blog)*:
+
+```mermaid
+flowchart LR
+    TL[Targeting Layer] --> LR[Light Rankers]
+    LR --> HR[Heavy Rankers]
+    HR --> AU[Auction]
+    AU --> AS[Ad Selected]
+```
+
+1. **Targeting Layer** — Advertiser criteria (community, interest, keyword, custom) filter eligible ads
+2. **Light Rankers** — Fast, lightweight models narrow the candidate list for heavy scoring
+3. **Heavy Rankers** — Deep neural networks predict calibrated probabilities for CTR, conversion rate, and other outcomes
+4. **Auction** — Selects ad maximizing utility: P(outcome) × Value (e.g., pCTR × Bid)
+
+## Contextual Relevance
+
+Reddit developed a fine-tuned embedding system for matching ads to post-level content context [[wiki/sources/contextual-relevance-of-ads-reddit.md]] *(company engineering blog)*. The system uses:
+
+- **LLM-as-judge** (Gemini 2.5 Flash Lite) to label <post, ad> relevance for ground truth
+- **Multi-tower embedding model** (Stella encoder + subreddit features + landing page summaries) scoring relevance at inference
+- **Selective auction boosting** applied preferentially for search-referred traffic (high-intent users)
+
+Inference: Fine-tuned embeddings achieved 3.2× PRAUC vs IAB taxonomy matching alone, and are now integrated across targeting, retrieval, and all ranker stages.
 
 ## The 4-Step Delivery Pipeline
 
