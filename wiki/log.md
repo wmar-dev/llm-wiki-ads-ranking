@@ -101,6 +101,18 @@ Partial gap — existing pages covered theoretical auction optimality (GSP equil
 
 L-001: 2 banner-blindness source pages missing from index. L-009: 16 entity gaps (Andromeda, ARM, Bootstrap, FTRL-Proximal, GEM, Google, Lattice, MAX, Meta, Monolith, Reddit, Smart Bidding, TikTok, UTIS, VCG, rGSP). No stale or contested pages. No broken cross-refs or sources.
 
+## [2026-06-09] ingest | Digital Ad Formats: IAB Taxonomy and Format Types
+
+Fetched from Epom blog (epom.com); saved to raw/web/digital-ad-formats-epom.md. Created source summary (wiki/sources/digital-ad-formats-epom.md) and synthesis page (wiki/synthesis/types-of-ads.md) covering 9 ad formats with pricing, performance benchmarks, and platform mappings.
+
+## [2026-06-09] query | what types of ads are there | pages-read: 4 | sources-ingested: 1
+
+Partial gap — existing wiki had scattered ad-type information across platform-specific pages (search GSP, Meta feed ads, Reddit promoted posts, banner blindness) but no comprehensive taxonomy. Enriched with IAB taxonomy from Epom guide. Created synthesis page (wiki/synthesis/types-of-ads.md) with Mermaid format tree, comparison tables by format x pricing x performance, and platform mapping.
+
+## [2026-06-09] query | does google shopping ads have a vertical classification | pages-read: 0 | sources-ingested: 1
+
+Total gap — no existing wiki pages on Google Shopping or product taxonomy. Enriched with Google Merchant Center help page. Created source summary (wiki/sources/google-product-taxonomy.md) and synthesis page (wiki/synthesis/google-shopping-vertical-classification.md). Key finding: Google Shopping uses a ~6,000+ category hierarchical taxonomy with 20+ top-level verticals; auto-assignment from product signals, per-category bid management, and versioned taxonomy updates.
+
 ## [2026-06-09] ingest | Monolith: Real Time Recommendation System With Collisionless Embedding Table
 
 Fetched from arXiv (2209.07663) via ar5iv HTML conversion; saved to raw/web/monolith-realtime-recommendation-system.md. Single-pass processing (2,441 words). Source type: peer_reviewed (ORSUM@ACM RecSys 2022). Created source summary (wiki/sources/), entity page for Monolith system (wiki/entities/), and two concept pages: online training for recommendation systems (wiki/concepts/) and collisionless embedding table (wiki/concepts/). Key findings: Cuckoo hash-based collisionless embedding improves AUC vs hash-trick approaches; minute-level parameter sync achieves 79.80 AUC (Criteo) vs 79.43 batch-only; 14–18% AUC improvement in production A/B test. No contradictions with existing pages that reference Monolith (TikTok blog post, TikTok synthesis).

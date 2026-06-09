@@ -4,6 +4,10 @@
 
 - [Ad Blindness and Banner Blindness](wiki/synthesis/ad-blindness.md) — definition, mechanisms, triggers, mobile vs desktop, cognitive impact, and countermeasures for the phenomenon where users ignore perceived advertisements [status: current] [sources: 2]
 
+## Ad Format Taxonomy
+
+- [What Types of Ads Are There?](wiki/synthesis/types-of-ads.md) — comprehensive taxonomy of 9 ad formats: banner, interstitial, rich media, native, video, push, search, social, email; pricing models, platform mappings, and performance benchmarks [status: current] [sources: 5]
+
 ## Auction & Ranking Optimality
 
 - [How Do You Know Your Auction or Ranking Is Optimal?](wiki/synthesis/how-to-know-optimality.md) — theoretical, offline, counterfactual, online, and business-level criteria for assessing ranking/auction optimality [status: current] [sources: 5]
@@ -14,6 +18,10 @@
 - [How A/B Tests Work](wiki/synthesis/how-ab-tests-work.md) — comprehensive overview: randomization, hypothesis testing, OEC, sample sizing, A/A tests, CUPED, triggering, overlapping/layered experiments, and common pitfalls [status: current] [sources: 1]
 - [Methods for Computing Confidence Intervals in A/B Testing](wiki/synthesis/confidence-interval-methods.md) — decision framework for CI method selection: t-test/Wald, delta method, Fieller, bootstrap (BCa/percentile/t), outer CI for quantiles, hybrid method, Bayesian credible intervals, confidence sequences (mSPRT, AsympCS, design-based, SAVI), and CUPED [status: current] [sources: 1]
 - [The Jackknife Method](wiki/synthesis/jackknife-method.md) — leave-one-out resampling for bias and variance estimation; compares to bootstrap; relevance to A/B testing [status: current] [sources: 1]
+
+## Google Shopping Ads
+
+- [Does Google Shopping Ads Have a Vertical Classification?](wiki/synthesis/google-shopping-vertical-classification.md) — Google Product Taxonomy: ~6,000+ hierarchical categories, 20+ top-level verticals, auto-assignment from product signals, per-category bid management in Shopping campaigns [status: current] [sources: 1]
 
 ## Auction Mechanisms & Pricing
 
@@ -85,3 +93,5 @@
 - [Monolith: Real Time Recommendation System With Collisionless Embedding Table](wiki/sources/monolith-realtime-recommendation-system.md) — ByteDance's real-time recommendation system with Cuckoo hash collisionless embedding, online training, and parameter sync trade-offs (ORSUM@ACM RecSys 2022) [status: current] [sources: 1] [source_type: peer_reviewed] [processing_status: processed] [ingest_count: 1]
 - [PinFM: Foundation Model for User Activity Sequences at Pinterest](wiki/sources/pinfm-foundation-model-pinterest.md) — 20B+ param transformer pretrained user activity encoder; DCAT for 600% throughput; fine-tuned for per-surface ranking [status: current] [sources: 1] [source_type: peer_reviewed] [processing_status: processed] [ingest_count: 1]
 - [Scaling Recommendation Systems with Request-Level Deduplication at Pinterest](wiki/sources/pinterest-request-level-deduplication.md) — infrastructure for PinFM deployment: 10-50x storage compression, 4x training speedup, 7x serving throughput [status: draft] [sources: 1] [source_type: industry_report] [processing_status: processed] [ingest_count: 1]
+- [Digital Ad Formats: IAB Taxonomy and Format Types](wiki/sources/digital-ad-formats-epom.md) — 9 major ad formats: banner, interstitial, rich media, native, video, push, search, social, email; pricing benchmarks and performance metrics [status: current] [sources: 1] [source_type: blog_post]
+- [Google Product Taxonomy for Shopping Ads](wiki/sources/google-product-taxonomy.md) — hierarchical taxonomy for Shopping Ads: ~6,000+ categories, auto-assignment, manual override, bid management per category [status: current] [sources: 1] [source_type: official_documentation]

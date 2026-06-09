@@ -13,6 +13,27 @@ class SearchResult:
     score: float
 
 
+def suggest(prefix: str, limit: int = 8) -> list[dict]:
+    """Return page title suggestions matching the given prefix."""
+    if len(prefix.strip()) < 2:
+        return []
+    terms = prefix.strip().split()
+    fts_query = " AND ".join(f"{w}*" for w in terms)
+
+    with get_db() as conn:
+        rows = conn.execute(
+            "SELECT title, path FROM pages WHERE pages MATCH ? ORDER BY bm25(pages) LIMIT ?",
+            (fts_query, limit),
+        ).fetchall()
+
+    results = []
+    for row in rows:
+        page_path = row["path"]
+        url = "/wiki/" + str(Path(page_path).relative_to(config.WIKI_DIR).with_suffix(""))
+        results.append({"title": row["title"] or Path(page_path).stem, "url": url})
+    return results
+
+
 def search(query: str, limit: int = 10) -> list[SearchResult]:
     if not query.strip():
         return []

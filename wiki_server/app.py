@@ -6,7 +6,7 @@ import time
 from pathlib import Path
 
 import yaml
-from flask import Flask, abort, render_template, request, send_file
+from flask import Flask, abort, jsonify, render_template, request, send_file
 from markdown_it import MarkdownIt
 from mdit_py_plugins.dollarmath import dollarmath_plugin
 
@@ -143,6 +143,13 @@ def create_app() -> Flask:
         q = request.args.get("q", "").strip()
         results = bm25_search(q) if q else []
         return render_template("search.html", query=q, results=results)
+
+    @app.route("/search/suggest")
+    def suggest():
+        from wiki_server.search.query import suggest as suggest_titles
+        q = request.args.get("q", "").strip()
+        results = suggest_titles(q)
+        return jsonify(results)
 
     @app.route("/metrics")
     def metrics():
