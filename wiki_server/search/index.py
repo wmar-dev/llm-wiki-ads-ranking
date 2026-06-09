@@ -90,7 +90,7 @@ def rebuild_index() -> None:
         print(f"wiki/ directory not found: {wiki_dir}")
         return
 
-    pages = list(wiki_dir.glob("*.md"))
+    pages = sorted(wiki_dir.rglob("*.md"))
     for page in pages:
         index_page(str(page))
     print(f"Rebuilt index: {len(pages)} pages indexed.")
