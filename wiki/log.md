@@ -64,3 +64,7 @@ Total gap — no existing wiki pages on jackknife. Fetched 1 source (Wikipedia).
 ## [2026-06-08] ingest | How Search Ads are Ranked and Priced on Google
 
 Downloaded 31 MB PDF from DOJ website (justice.gov); extracted 4,765 words via pdftotext. Single-pass processing. Source: Google's internal briefing paper to UK CMA (2020), submitted as Exhibit UPX0010 in US v. Google. Source type: other (regulatory filing). Created source summary (wiki/sources/google-ad-rank-briefing.md) and concept page (wiki/concepts/google-ad-rank-ltv-scoring.md). Updated existing GSP concept page and second-price synthesis page with rGSP and reserve pricing details. Key findings: LTV score uses cost-side terms (pCQ, pLQ) not present in theoretical GSP models; rGSP launched globally Jan 2019; reserve pricing applies when no competitor clears quality threshold. No contradictions — existing theoretical pages describe the idealized model; this source reveals the production implementation.
+
+- **2026-06-09T06:51:34Z** | `webpage` | [Banner blindness - Wikipedia](raw/web/en-wikipedia-org-wiki-banner-blindness.html)
+- **2026-06-09T06:51:38Z** | `webpage` | [Banner Blindness Revisited: Users Dodge Ads on Mobile and Desktop - NN/G](raw/web/www-nngroup-com-articles-banner-blindness-old-and-new-findings.html)
+- **2026-06-09** | `query` | ad-blindness definition and mechanisms | pages-read: 2 | sources-ingested: 2

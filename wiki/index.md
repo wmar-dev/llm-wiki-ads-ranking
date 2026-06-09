@@ -1,5 +1,9 @@
 # Wiki Index
 
+## Ad Blindness & User Behavior
+
+- [Ad Blindness and Banner Blindness](wiki/synthesis/ad-blindness.md) — definition, mechanisms, triggers, mobile vs desktop, cognitive impact, and countermeasures for the phenomenon where users ignore perceived advertisements [status: current] [sources: 2]
+
 ## Experimentation & A/B Testing
 
 - [Overlapping Experiment Infrastructure: More, Better, Faster Experimentation](wiki/sources/overlapping-experiment-infrastructure.md) — Google's layered A/B testing system (KDD 2010); introduces domains/layers/launch layers and supporting tools for running thousands of simultaneous experiments
