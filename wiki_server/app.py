@@ -23,8 +23,9 @@ _WIKI_LINK_RE = re.compile(r"\[\[wiki/([^\]]+)\]\]")
 
 def _wiki_link(m: re.Match) -> str:
     page = m.group(1)
-    label = page.replace(".md", "").replace("/", " › ").replace("-", " ").title()
-    return f'<a href="/wiki/{page}">{label}</a>'
+    href = page[:-3] if page.endswith(".md") else page
+    label = href.replace("/", " › ").replace("-", " ").title()
+    return f'<a href="/wiki/{href}">{label}</a>'
 
 
 def render_page(md_path: Path) -> str:
@@ -72,8 +73,12 @@ def create_app() -> Flask:
         "sources": config.WIKI_DIR / "sources",
     }
 
-    @app.route("/wiki/<section>/")
-    def wiki_section(section):
+    @app.route("/wiki/synthesis/")
+    @app.route("/wiki/concepts/")
+    @app.route("/wiki/entities/")
+    @app.route("/wiki/sources/")
+    def wiki_section(section=None):
+        section = section or request.path.split("/")[-2]
         dir_path = _section_dirs.get(section)
         if not dir_path or not dir_path.exists():
             return render_template("page.html", content="<p>Section not found.</p>", title=section.title()), 404
@@ -87,7 +92,7 @@ def create_app() -> Flask:
         _log_access(f"/wiki/{section}/", 200)
         return render_template("page.html", content=html, title=f"{section.title()} — LLM Wiki")
 
-    @app.route("/wiki/<path:page>")
+    @app.route("/wiki/<path:page>", strict_slashes=False)
     def wiki_page(page):
         slug = page[:-3] if page.endswith(".md") else page
         md_path = config.WIKI_DIR / f"{slug}.md"
