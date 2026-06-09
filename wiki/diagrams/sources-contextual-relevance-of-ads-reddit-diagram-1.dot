@@ -1,0 +1,14 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    T [label="Targeting Layer", shape=box];
+    L [label="Light Rankers", shape=box];
+    T -> L;
+    H [label="Heavy Rankers", shape=box];
+    L -> H;
+    A [label="Auction", shape=box];
+    H -> A;
+    S [label="Ad Selected", shape=box];
+    A -> S;
+}

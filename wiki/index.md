@@ -55,6 +55,10 @@
 - [Contextual Relevance of Ads at Reddit](wiki/sources/contextual-relevance-of-ads-reddit.md) — Reddit Engineering blog: LLM-as-judge labeling, fine-tuned embedding model for post-level contextual relevance, auction utility boosting [status: draft] [sources: 1] [source_type: other]
 - [Contextual Relevance in Advertising](wiki/concepts/contextual-relevance-advertising.md) — matching ads to content context; embedding vs taxonomy vs LLM-as-judge; Reddit's multi-tower model [status: draft] [sources: 1]
 
+## Semantic ID & Generative Retrieval
+
+- [What Is a Semantic ID?](wiki/synthesis/semantic-id.md) — discrete codeword tuples derived from content embeddings; replaces ANN search with autoregressive decoding; used in TIGER (NeurIPS 2023), Taobao production; enables cold-start generalization and interpretable item hierarchies [status: current] [sources: 1]
+
 ## Recommendation Systems
 
 - [How the TikTok Recommendation Algorithm Works](wiki/synthesis/tiktok-recommendation-algorithm.md) — two-stage pipeline (candidate generation + ranking); unsupervised clustering + embeddings; implicit signal-driven feedback loop; exploration vs exploitation [status: current] [sources: 3]
@@ -95,3 +99,4 @@
 - [Scaling Recommendation Systems with Request-Level Deduplication at Pinterest](wiki/sources/pinterest-request-level-deduplication.md) — infrastructure for PinFM deployment: 10-50x storage compression, 4x training speedup, 7x serving throughput [status: draft] [sources: 1] [source_type: industry_report] [processing_status: processed] [ingest_count: 1]
 - [Digital Ad Formats: IAB Taxonomy and Format Types](wiki/sources/digital-ad-formats-epom.md) — 9 major ad formats: banner, interstitial, rich media, native, video, push, search, social, email; pricing benchmarks and performance metrics [status: current] [sources: 1] [source_type: blog_post]
 - [Google Product Taxonomy for Shopping Ads](wiki/sources/google-product-taxonomy.md) — hierarchical taxonomy for Shopping Ads: ~6,000+ categories, auto-assignment, manual override, bid management per category [status: current] [sources: 1] [source_type: official_documentation]
+- [TIGER: Transformer Index for Generative Recommenders](wiki/sources/tiger-transformer-index-generative-recommenders.md) — Rajput et al. (NeurIPS 2023); first Semantic ID proposal; RQ-VAE quantization + seq2seq decoding [status: current] [sources: 1] [source_type: peer_reviewed]

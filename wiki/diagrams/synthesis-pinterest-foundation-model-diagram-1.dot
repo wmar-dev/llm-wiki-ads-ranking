@@ -1,0 +1,20 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    U [label="User Activity Data\n16K tokens per request", shape=box];
+    PT [label="PinFM Pretraining\n20B+ param transformer", shape=box];
+    U -> PT;
+    FT1 [label="Fine-tune: Home Feed Ranker", shape=box];
+    PT -> FT1;
+    FT2 [label="Fine-tune: Search Ranker", shape=box];
+    PT -> FT2;
+    FT3 [label="Fine-tune: Related Pins", shape=box];
+    PT -> FT3;
+    S1 [label="Home Feed \n500M+ users", shape=box];
+    FT1 -> S1;
+    S2 [label="Search \n500M+ users", shape=box];
+    FT2 -> S2;
+    S3 [label="Related Pins \n500M+ users", shape=box];
+    FT3 -> S3;
+}

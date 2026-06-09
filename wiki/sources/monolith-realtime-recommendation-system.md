@@ -56,22 +56,7 @@ Monolith is a large-scale real-time recommendation system developed by ByteDance
 - Criteo AUC: 30min sync (79.80) > 1hr sync (79.78) > 5hr sync (79.66) > batch-only (~79.43).
 - Live A/B test on an ads model: online training improved AUC by 14–18% over batch training across 7 days.
 
-```mermaid
-flowchart LR
-    U[User] --> MS[Model Server]
-    MS --> OK[Kafka: User Actions]
-    FS[Feature Store] --> FK[Kafka: Features]
-    OK --> OJ[Online Joiner]
-    FK --> OJ
-    OJ --> TK[Kafka: Training Examples]
-    TK --> OT[Online Training Worker]
-    TK --> DD[Data Dump to HDFS]
-    DD --> BT[Batch Training Worker]
-    OT --> TPS[Training PS]
-    BT --> TPS
-    TPS --> SPS[Serving PS]
-    SPS --> MS
-```
+![sources-monolith-realtime-recommendation-system-diagram-1](/assets/sources-monolith-realtime-recommendation-system-diagram-1.svg)
 
 ## Entities and Concepts
 

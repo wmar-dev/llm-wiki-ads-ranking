@@ -18,16 +18,7 @@ The **Generalized Second-Price (GSP) auction** is the mechanism used by search e
 2. Slots are ranked by `bid × quality score` (Google) or equivalent relevance signal.
 3. The winner of slot *k* pays the **minimum price needed to hold that slot** — derived from the next-ranked competitor's adjusted bid divided by the winner's quality score.
 
-```mermaid
-sequenceDiagram
-    participant Adv as Advertiser
-    participant Eng as Search Engine
-    participant Ranker as Auction Engine
-
-    Adv->>Eng: Submit CPC bid
-    Eng->>Ranker: Rank by bid × quality score
-    Ranker->>Adv: Assign slot, charge next bidder's clearing price
-```
+![concepts-generalized-second-price-auction-diagram-1](/assets/concepts-generalized-second-price-auction-diagram-1.svg)
 
 ## Relationship to Vickrey (Second-Price) Auction
 

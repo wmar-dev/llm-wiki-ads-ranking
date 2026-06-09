@@ -14,24 +14,7 @@ last_updated: "2026-06-08"
 
 A confidence interval (CI) quantifies the uncertainty around a treatment effect estimate. Different metrics (means, ratios, quantiles) and different data structures (simple random, clustered, sequential) require different methods. The table below summarizes the main approaches and their use cases.
 
-```mermaid
-flowchart TD
-    Q[What is your metric?] --> M{Mean or ratio?}
-    M -->|Simple mean| T[t-test / Z-interval]
-    M -->|Ratio metric| D[Delta method or Fieller]
-    M -->|Quantile| O[Outer CI / Hybrid]
-    
-    T --> R{Data structure?}
-    D --> R
-    O --> R
-    
-    R -->|IID observations| B[Bootstrap cross-check]
-    R -->|Clustered / cookie-mod| D2[Delta method for clusters]
-    R -->|Sequential / peeking| CS[Confidence sequences]
-    
-    B --> C[Compare coverage rates]
-    CS --> S[AsympCS or mSPRT]
-```
+![synthesis-confidence-interval-methods-diagram-1](/assets/synthesis-confidence-interval-methods-diagram-1.svg)
 
 ## Frequentist Methods
 
@@ -149,23 +132,7 @@ CUPED (Controlled Experiments Using Pre-Experiment Data) uses pre-experiment dat
 
 ## Decision Framework
 
-```mermaid
-flowchart LR
-    A[Start] --> B{Data arriving sequentially?}
-    B -->|Yes| C[Use confidence sequences:<br>AsympCS or mSPRT]
-    B -->|No| D{Metric type?}
-    D -->|Simple mean| E[t-test / Wald CI<br>+ bootstrap cross-check]
-    D -->|Ratio| F[Delta method + bias correction<br>or Fieller for small n]
-    D -->|Quantile| G[Outer CI<br>or Hybrid method]
-    D -->|Percent change| H[Delta method<br>or Fieller]
-    
-    E --> I{Clustered data?}
-    F --> I
-    G --> I
-    
-    I -->|Yes| J[Aggregate to cluster level,<br>then apply same method]
-    I -->|No| K[Compute and report]
-```
+![synthesis-confidence-interval-methods-diagram-2](/assets/synthesis-confidence-interval-methods-diagram-2.svg)
 
 ## Implementation Notes
 

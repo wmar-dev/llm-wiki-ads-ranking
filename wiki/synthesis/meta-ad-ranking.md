@@ -16,16 +16,7 @@ Meta's ad ranking system decides which ad to show in every Facebook, Instagram, 
 
 ## The 4-Step Delivery Pipeline
 
-```mermaid
-flowchart LR
-    U[User opens app] --> R[Andromeda: Retrieval]
-    R --> LR[Light Ranking]
-    LR --> HR[Lattice: Heavy Ranking]
-    HR --> A[Auction]
-    A --> S[Served Ad]
-    S --> FB[Feedback → GEM retraining]
-    FB --> R
-```
+![synthesis-meta-ad-ranking-diagram-1](/assets/synthesis-meta-ad-ranking-diagram-1.svg)
 
 ### Step 1: Retrieval (Andromeda)
 

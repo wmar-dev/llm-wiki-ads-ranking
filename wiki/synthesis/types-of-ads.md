@@ -16,32 +16,7 @@ last_updated: "2026-06-09"
 
 Online advertising spans dozens of formats, but they can be grouped into two broad categories: **display** (visual ads on web pages and apps) and **non-display** (search, social, email). The Interactive Advertising Bureau (IAB) defines five standard display formats, with several non-display categories alongside [[wiki/sources/digital-ad-formats-epom.md]] *(blog post)*.
 
-```mermaid
-flowchart TD
-    DA[Digital Advertising]
-    DA --> DISP[Display Ads]
-    DA --> ND[Non-Display Ads]
-    
-    DISP --> B[Banner / Display]
-    DISP --> I[Interstitial]
-    DISP --> RM[Rich Media]
-    DISP --> N[Native]
-    DISP --> V[Video]
-    DISP --> PP[Push / Pop-Under]
-    
-    ND --> S[Search]
-    ND --> SOC[Social Media]
-    ND --> E[Email]
-    
-    B --> |CTR ~0.06%| B1[$2-10 CPM]
-    I --> |CTR 2-5%| I1[$5-15 CPM]
-    RM --> |Interaction >20%| RM1[$10-25+ CPM]
-    N --> |15-20% of budgets| N1[$5-15 CPM]
-    V --> |27x banner CTR| V1[$10-30+ CPM]
-    S --> |CTR 3-5%| S1[$1-10+ CPC]
-    SOC --> |CTR 1-2%| SOC1[$5-15 CPM]
-    E --> |CTR 2-5%| E1[$10-50 CPM]
-```
+![synthesis-types-of-ads-diagram-1](/assets/synthesis-types-of-ads-diagram-1.svg)
 
 ---
 

@@ -1,0 +1,18 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    Q [label="Query", shape=box];
+    L1 [label="Layer 1: Web Server", shape=box];
+    Q -> L1;
+    L2 [label="Layer 2: Organic Results", shape=box];
+    Q -> L2;
+    L3 [label="Layer 3: Ads Server", shape=box];
+    Q -> L3;
+    E1 [label="Exp A or default", shape=box];
+    L1 -> E1;
+    E2 [label="Exp B or default", shape=box];
+    L2 -> E2;
+    E3 [label="Exp C or default", shape=box];
+    L3 -> E3;
+}

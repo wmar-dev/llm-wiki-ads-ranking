@@ -1,0 +1,27 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    S [label="\"Full sample\nn observations\"", shape=box];
+    L1 [label="\"Remove obs 1\"", shape=box];
+    S -> L1;
+    L2 [label="\"Remove obs 2\"", shape=box];
+    S -> L2;
+    L3 [label="\"Remove ...\"", shape=box];
+    S -> L3;
+    Ln [label="\"Remove obs n\"", shape=box];
+    S -> Ln;
+    E1 [label="E1", shape=box];
+    Avg [label="\"Average → θ̂_jack\"", shape=box];
+    E1 -> Avg;
+    E2 [label="E2", shape=box];
+    E2 -> Avg;
+    E3 [label="E3", shape=box];
+    E3 -> Avg;
+    En [label="En", shape=box];
+    En -> Avg;
+    B [label="\"Bias estimate\n(n−1)(θ̂_jack − θ̂)\"", shape=box];
+    Avg -> B;
+    V [label="\"Variance estimate\n((n−1)/n)Σ(θ̂(i) − θ̂_jack)²\"", shape=box];
+    Avg -> V;
+}

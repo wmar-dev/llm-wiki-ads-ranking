@@ -31,13 +31,7 @@ This paper formally analyzes the **Generalized Second-Price (GSP) auction**, the
 
 ## Mechanism: How GSP Works
 
-```mermaid
-flowchart LR
-    B[Advertiser bids CPC] --> R[Rank by bid × quality score]
-    R --> S1[Slot 1 → pays next bidder's adjusted price]
-    R --> S2[Slot 2 → pays next bidder's adjusted price]
-    R --> S3[Slot 3 → pays next bidder's adjusted price]
-```
+![sources-edelman-ostrovsky-schwarz-gsp-auction-diagram-1](/assets/sources-edelman-ostrovsky-schwarz-gsp-auction-diagram-1.svg)
 
 Each winner pays the **minimum price needed to hold their slot** — the next competitor's adjusted bid divided by the winner's own quality score.
 

@@ -1,0 +1,30 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    U [label="User", shape=box];
+    MS [label="Model Server", shape=box];
+    U -> MS;
+    OK [label="Kafka: User Actions", shape=box];
+    MS -> OK;
+    FS [label="Feature Store", shape=box];
+    FK [label="Kafka: Features", shape=box];
+    FS -> FK;
+    OJ [label="Online Joiner", shape=box];
+    OK -> OJ;
+    FK -> OJ;
+    TK [label="Kafka: Training Examples", shape=box];
+    OJ -> TK;
+    OT [label="Online Training Worker", shape=box];
+    TK -> OT;
+    DD [label="Data Dump to HDFS", shape=box];
+    TK -> DD;
+    BT [label="Batch Training Worker", shape=box];
+    DD -> BT;
+    TPS [label="Training PS", shape=box];
+    OT -> TPS;
+    BT -> TPS;
+    SPS [label="Serving PS", shape=box];
+    TPS -> SPS;
+    SPS -> MS;
+}

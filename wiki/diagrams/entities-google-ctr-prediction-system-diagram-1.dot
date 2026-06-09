@@ -1,0 +1,22 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    Q [label="Search query", shape=box];
+    M [label="Ad matching", shape=box];
+    Q -> M;
+    F [label="Feature extraction:\nquery, ad creative, metadata", shape=box];
+    M -> F;
+    P [label="CTR prediction\nFTRL-Proximal logistic regression", shape=box];
+    F -> P;
+    A [label="Auction\nbid × pCTR ranking", shape=box];
+    P -> A;
+    D [label="Ad delivery", shape=box];
+    A -> D;
+    L [label="Click / no-click label", shape=box];
+    D -> L;
+    T [label="Training update\nper-coordinate FTRL", shape=box];
+    L -> T;
+    M2 [label="Model updated\n→ next query", shape=box];
+    T -> M2;
+}

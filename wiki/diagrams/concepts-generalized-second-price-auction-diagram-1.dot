@@ -1,0 +1,11 @@
+digraph G {
+    rankdir=LR;
+    node [shape=box, style=rounded];
+    edge [fontsize=10];
+    Adv [label="Advertiser"];
+    Eng [label="Search Engine"];
+    Ranker [label="Auction Engine"];
+    Adv -> Eng [label="Submit CPC bid"];
+    Eng -> Ranker [label="Rank by bid × quality score"];
+    Ranker -> Adv [label="Assign slot, charge next bidder's clearing price"];
+}

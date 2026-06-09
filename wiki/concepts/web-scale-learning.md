@@ -18,17 +18,7 @@ last_updated: "2026-06-08"
 
 The central claim is that **simple models trained on vast amounts of data outperform complex models trained on limited data**. As stated in the original article: *"Simple models and a lot of data trump more elaborate models based on less data."*
 
-```mermaid
-flowchart LR
-    subgraph Traditional
-        A[Small curated dataset] --> B[Complex model with careful features]
-    end
-    subgraph Web-Scale
-        C[Web-scale raw data] --> D[Simple model, many features]
-    end
-    B --> E{Performance}
-    D --> E
-```
+![concepts-web-scale-learning-diagram-1](/assets/concepts-web-scale-learning-diagram-1.svg)
 
 ## Key Principles
 
@@ -49,21 +39,7 @@ Web-scale learning principles directly shape production ads ranking systems:
 - **Data pipeline investment**: Industry wisdom holds that improving data quality and volume often yields larger gains than improving model architecture — consistent with the web-scale learning thesis.
 - **FTRL-Proximal at Google**: Google's production CTR prediction system uses simple logistic regression with per-coordinate learning rates and aggressive memory optimization — a direct instantiation of "simple models with many features" operating at billions of coefficients [[wiki/sources/ad-click-prediction-view-from-the-trenches.md]].
 
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant AS as Ad Server
-    participant Log as Click Logs
-    participant Trainer as Training Pipeline
-    participant Model as Ranking Model
-
-    U->>AS: Search / browse
-    AS->>U: Served ads with ranking
-    U->>Log: Click (or not)
-    Log->>Trainer: Billions of daily events
-    Trainer->>Model: Updated parameters
-    Model->>AS: Improved ranking next query
-```
+![concepts-web-scale-learning-diagram-2](/assets/concepts-web-scale-learning-diagram-2.svg)
 
 ## Threshold of Sufficient Data
 

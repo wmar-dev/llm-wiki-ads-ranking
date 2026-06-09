@@ -17,15 +17,7 @@ last_updated: "2026-06-09"
 
 Banner blindness is an instance of **selective attention**: people direct their focus only to stimuli related to their current goals. Because attention capacity is limited, users learn to skip elements that are typically irrelevant — ads chief among them [[wiki/sources/banner-blindness-revisited-users-dodge-ads-on-mobile-and-desktop-nng.md]].
 
-```mermaid
-flowchart LR
-  G[User goal] --> S[Scan page layout]
-  S --> R{Recognize element type?}
-  R -->|Content| A[Attend and process]
-  R -->|Ad-like| B[Ignore / skip]
-  B --> H[Hot-potato: avoid area on return visits]
-  A --> C[Complete task]
-```
+![synthesis-ad-blindness-diagram-1](/assets/synthesis-ad-blindness-diagram-1.svg)
 
 ## Triggers
 

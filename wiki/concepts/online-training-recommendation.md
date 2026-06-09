@@ -15,16 +15,7 @@ Online training refers to continuously updating a recommendation model on stream
 
 ## Key Components
 
-```mermaid
-flowchart LR
-    U[User Feedback] --> S[Streaming Engine]
-    S --> J[Feature Joiner]
-    J --> TE[Training Examples]
-    TE --> OT[Online Training]
-    OT --> PS[Parameter Sync]
-    PS --> MS[Model Serving]
-    MS --> U
-```
+![concepts-online-training-recommendation-diagram-1](/assets/concepts-online-training-recommendation-diagram-1.svg)
 
 ### Streaming Infrastructure
 - Message queues (e.g., Kafka) for user action logs and feature streams

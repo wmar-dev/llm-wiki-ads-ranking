@@ -19,13 +19,7 @@ Reddit's advertising platform operates a **second-price auction** with community
 
 Reddit's delivery pipeline consists of four sequential stages [[wiki/sources/contextual-relevance-of-ads-reddit.md]] *(company engineering blog)*:
 
-```mermaid
-flowchart LR
-    T[Targeting Layer] --> L[Light Rankers]
-    L --> H[Heavy Rankers]
-    H --> A[Auction]
-    A --> S[Ad Selected]
-```
+![entities-reddit-ads-system-diagram-1](/assets/entities-reddit-ads-system-diagram-1.svg)
 
 1. **Targeting Layer** — Advertiser criteria (community, interest, keyword, custom) filter eligible ads
 2. **Light Rankers** — Fast, lightweight models narrow the candidate list [[wiki/sources/contextual-relevance-of-ads-reddit.md]]

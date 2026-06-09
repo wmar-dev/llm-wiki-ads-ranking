@@ -1,0 +1,14 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    B [label="Advertiser bids CPC", shape=box];
+    R [label="Rank by bid × quality score", shape=box];
+    B -> R;
+    S1 [label="Slot 1 → pays next bidder's adjusted price", shape=box];
+    R -> S1;
+    S2 [label="Slot 2 → pays next bidder's adjusted price", shape=box];
+    R -> S2;
+    S3 [label="Slot 3 → pays next bidder's adjusted price", shape=box];
+    R -> S3;
+}

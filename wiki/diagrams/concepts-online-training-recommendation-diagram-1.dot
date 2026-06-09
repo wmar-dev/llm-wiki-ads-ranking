@@ -1,0 +1,19 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    U [label="User Feedback", shape=box];
+    S [label="Streaming Engine", shape=box];
+    U -> S;
+    J [label="Feature Joiner", shape=box];
+    S -> J;
+    TE [label="Training Examples", shape=box];
+    J -> TE;
+    OT [label="Online Training", shape=box];
+    TE -> OT;
+    PS [label="Parameter Sync", shape=box];
+    OT -> PS;
+    MS [label="Model Serving", shape=box];
+    PS -> MS;
+    MS -> U;
+}

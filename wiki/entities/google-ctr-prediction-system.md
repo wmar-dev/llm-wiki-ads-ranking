@@ -16,17 +16,7 @@ Google's production system for predicting ad click-through rates in sponsored se
 
 ### Online Learning Pipeline
 
-```mermaid
-flowchart LR
-    Q[Search query] --> M[Ad matching]
-    M --> F[Feature extraction:<br/>query, ad creative, metadata]
-    F --> P[CTR prediction<br/>FTRL-Proximal logistic regression]
-    P --> A[Auction<br/>bid × pCTR ranking]
-    A --> D[Ad delivery]
-    D --> L[Click / no-click label]
-    L --> T[Training update<br/>per-coordinate FTRL]
-    T --> M2[Model updated<br/>→ next query]
-```
+![entities-google-ctr-prediction-system-diagram-1](/assets/entities-google-ctr-prediction-system-diagram-1.svg)
 
 ### Key Components
 

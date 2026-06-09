@@ -1,0 +1,17 @@
+digraph G {
+    rankdir=LR;
+    node [shape=box, style=rounded];
+    edge [fontsize=10];
+    U [label="User"];
+    AS [label="Candidate Generator"];
+    Rank [label="Ranking Model"];
+    Feed [label="For You Feed"];
+    U -> AS [label="Open app / swipe"];
+    AS -> AS [label="Retrieve ~100 candidates from billions"];
+    AS -> Rank [label="Candidates + user features"];
+    Rank -> Rank [label="Predict like, share, completion, watch-time"];
+    Rank -> Feed [label="Sorted by composite score"];
+    Feed -> U [label="Top videos shown"];
+    U -> Feed [label="Implicit & explicit signals"];
+    Feed -> AS [label="Feedback updates user embedding"];
+}

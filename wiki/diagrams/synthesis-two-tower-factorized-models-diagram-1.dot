@@ -1,0 +1,31 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    subgraph cluster_training {
+        label="Training";
+        style="rounded";
+        UT [label="User Tower\nf_theta: user features → user embedding", shape=box];
+        IT [label="Item Tower\ng_phi: item features → item embedding", shape=box];
+        S [label="Dot Product Score\ns(u,i) = ⟨user_emb, item_emb⟩", shape=box];
+        L [label="In-Batch Softmax Loss\nwith bias correction", shape=box];
+        UT -> S;
+        IT -> S;
+        S -> L;
+    }
+    subgraph cluster_serving {
+        label="Serving";
+        style="rounded";
+        U [label="User Request", shape=box];
+        ITP [label="Precomputed Item Embeddings\n(nightly/hourly)", shape=box];
+        FA [label="FAISS ANN Index", shape=box];
+        UE [label="Compute User Embedding\n(1 forward pass, ~1-5ms)", shape=box];
+        ANN [label="ANN Search\n(~5-15ms)", shape=box];
+        C [label="Top-1000 Candidates → Ranking Model", shape=box];
+        U -> UE;
+        UE -> ANN;
+        ITP -> FA;
+        FA -> ANN;
+        ANN -> C;
+    }
+}

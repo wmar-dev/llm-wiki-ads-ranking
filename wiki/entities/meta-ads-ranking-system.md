@@ -16,25 +16,7 @@ Meta's ad ranking and delivery system, as of mid-2026, is a stack of five interl
 
 ## Five-System Architecture
 
-```mermaid
-flowchart TB
-    subgraph Teaching
-        GEM[GEM: Foundation Model Teacher]
-    end
-    subgraph Serving
-        AND[Andromeda: Retrieval Engine]
-        LAT[Lattice: Unified Ranking]
-        UTIS[UTIS: Interest Calibrator]
-        ARM[Adaptive Ranking Model: Infrastructure]
-    end
-    GEM -->|Knowledge Distillation| AND
-    GEM -->|Knowledge Distillation| LAT
-    GEM -->|Parameter Sharing| UTIS
-    ARM -->|Runtime| AND
-    ARM -->|Runtime| LAT
-    ARM -->|Runtime| UTIS
-    UTIS -->|Interest Signal| LAT
-```
+![entities-meta-ads-ranking-system-diagram-1](/assets/entities-meta-ads-ranking-system-diagram-1.svg)
 
 | System | Role | Deployed | Reported Impact |
 |---|---|---|---|

@@ -1,0 +1,16 @@
+digraph G {
+    rankdir=LR;
+    node [shape=box, style=rounded];
+    edge [fontsize=10];
+    U [label="User"];
+    AS [label="Ad Server"];
+    Log [label="Click Logs"];
+    Trainer [label="Training Pipeline"];
+    Model [label="Ranking Model"];
+    U -> AS [label="Search / browse"];
+    AS -> U [label="Served ads with ranking"];
+    U -> Log [label="Click (or not)"];
+    Log -> Trainer [label="Billions of daily events"];
+    Trainer -> Model [label="Updated parameters"];
+    Model -> AS [label="Improved ranking next query"];
+}

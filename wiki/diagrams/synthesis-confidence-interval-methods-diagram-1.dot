@@ -1,0 +1,28 @@
+digraph G {
+    rankdir=TB;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    Q [label="What is your metric?", shape=box];
+    M [label="Mean or ratio?", shape=diamond];
+    Q -> M;
+    T [label="t-test / Z-interval", shape=box];
+    M -> T [label="Simple mean"];
+    D [label="Delta method or Fieller", shape=box];
+    M -> D [label="Ratio metric"];
+    O [label="Outer CI / Hybrid", shape=box];
+    M -> O [label="Quantile"];
+    R [label="Data structure?", shape=diamond];
+    T -> R;
+    D -> R;
+    O -> R;
+    B [label="Bootstrap cross-check", shape=box];
+    R -> B [label="IID observations"];
+    D2 [label="Delta method for clusters", shape=box];
+    R -> D2 [label="Clustered / cookie-mod"];
+    CS [label="Confidence sequences", shape=box];
+    R -> CS [label="Sequential / peeking"];
+    C [label="Compare coverage rates", shape=box];
+    B -> C;
+    S [label="AsympCS or mSPRT", shape=box];
+    CS -> S;
+}

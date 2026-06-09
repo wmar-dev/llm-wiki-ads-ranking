@@ -27,13 +27,7 @@ Reddit's engineering team describes their multi-phase effort to improve contextu
 
 Reddit's ad delivery consists of four sequential stages:
 
-```mermaid
-flowchart LR
-    T[Targeting Layer] --> L[Light Rankers]
-    L --> H[Heavy Rankers]
-    H --> A[Auction]
-    A --> S[Ad Selected]
-```
+![sources-contextual-relevance-of-ads-reddit-diagram-1](/assets/sources-contextual-relevance-of-ads-reddit-diagram-1.svg)
 
 1. **Targeting Layer** — Advertiser criteria filters eligible ads
 2. **Light Rankers** — Narrow candidate list via fast, lightweight models

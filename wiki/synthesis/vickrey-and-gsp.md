@@ -15,15 +15,7 @@ last_updated: "2026-06-08"
 
 A **Vickrey auction** (also called a **second-price auction**) is a sealed-bid mechanism where the highest bidder wins but pays the second-highest bid. Formalized by economist William Vickrey in 1961 (Nobel Prize in Economics).
 
-```mermaid
-sequenceDiagram
-    participant A as Bidder A (value $10)
-    participant B as Bidder B (value $7)
-    participant Auc as Auctioneer
-    A->>Auc: Bid $10
-    B->>Auc: Bid $7
-    Auc->>A: You win. You pay $7 (second-highest bid).
-```
+![synthesis-vickrey-and-gsp-diagram-1](/assets/synthesis-vickrey-and-gsp-diagram-1.svg)
 
 **Key property — incentive compatibility**: truth-telling is a dominant strategy. Overbidding risks paying more than value; underbidding risks losing a profitable win. Your bid only determines *whether* you win, not *how much* you pay — the price is set by others.
 
@@ -31,13 +23,7 @@ sequenceDiagram
 
 GSP extends the Vickrey idea to **multiple ad slots**. It is the mechanism used by Google, Meta, and other ad platforms to allocate sponsored positions. [[wiki/sources/edelman-ostrovsky-schwarz-gsp-auction.md]]
 
-```mermaid
-flowchart LR
-    B[Bids submitted] --> R[Rank by bid × quality score]
-    R --> S1[Slot 1 → pays min to beat Slot 2]
-    R --> S2[Slot 2 → pays min to beat Slot 3]
-    R --> S3[Slot 3 → pays min to beat next or reserve]
-```
+![synthesis-vickrey-and-gsp-diagram-2](/assets/synthesis-vickrey-and-gsp-diagram-2.svg)
 
 Advertisers bid a **cost-per-click (CPC)**. Ads are ranked by `bid × quality score` (a relevance signal). Each winner pays the **minimum needed to hold their slot** — derived from the next competitor's adjusted bid.
 

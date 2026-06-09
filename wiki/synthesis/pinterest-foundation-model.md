@@ -17,16 +17,7 @@ Pinterest's primary foundation model is **PinFM** (RecSys 2025), a 20B+ paramete
 
 PinFM is a transformer model with **20B+ parameters** pretrained on years of user activity data across multiple Pinterest surfaces. It is not used directly for serving; instead, it is fine-tuned for downstream ranking models in each application. This creates a **teacher-student architecture** analogous to Meta's GEM, where the large pretrained model transfers knowledge to smaller per-surface models. [[wiki/sources/pinfm-foundation-model-pinterest.md]] *(peer_reviewed)*
 
-```mermaid
-flowchart LR
-    U[User Activity Data<br/>16K tokens per request] --> PT[PinFM Pretraining<br/>20B+ param transformer]
-    PT --> FT1[Fine-tune: Home Feed Ranker]
-    PT --> FT2[Fine-tune: Search Ranker]
-    PT --> FT3[Fine-tune: Related Pins]
-    FT1 --> S1[Home Feed <br/>500M+ users]
-    FT2 --> S2[Search <br/>500M+ users]
-    FT3 --> S3[Related Pins <br/>500M+ users]
-```
+![synthesis-pinterest-foundation-model-diagram-1](/assets/synthesis-pinterest-foundation-model-diagram-1.svg)
 
 ### The Scaling Problem
 

@@ -16,15 +16,7 @@ TikTok's recommendation algorithm powers the "For You" page (FYP) — the defaul
 
 ## Architecture Overview
 
-```mermaid
-flowchart LR
-    U[User opens app] --> CG[Candidate Generation]
-    CG --> R[Ranking]
-    R --> D[Diversity & Safety Filters]
-    D --> F[Served Feed]
-    F --> FB[User behavior → feedback loop]
-    FB --> U
-```
+![synthesis-tiktok-recommendation-algorithm-diagram-1](/assets/synthesis-tiktok-recommendation-algorithm-diagram-1.svg)
 
 Each user interaction (swipe, like, skip, watch duration) feeds back into the model, so recommendations update within a session — not just across sessions.
 
@@ -60,22 +52,7 @@ The ~100 candidates are scored by a large multi-task deep neural network that pr
 
 These predictions are combined into a single composite score. [[wiki/sources/tiktok-recommender-system.md]] confirms that **user interactions — especially watch time — are weighted most heavily**.
 
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant AS as Candidate Generator
-    participant Rank as Ranking Model
-    participant Feed as For You Feed
-
-    U->>AS: Open app / swipe
-    AS->>AS: Retrieve ~100 candidates from billions
-    AS->>Rank: Candidates + user features
-    Rank->>Rank: Predict like, share, completion, watch-time
-    Rank->>Feed: Sorted by composite score
-    Feed->>U: Top videos shown
-    U->>Feed: Implicit & explicit signals
-    Feed->>AS: Feedback updates user embedding
-```
+![synthesis-tiktok-recommendation-algorithm-diagram-2](/assets/synthesis-tiktok-recommendation-algorithm-diagram-2.svg)
 
 ## Feedback Loop: Continuous Learning
 

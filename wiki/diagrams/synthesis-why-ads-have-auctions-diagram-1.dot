@@ -1,0 +1,18 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    Q [label="User search query", shape=box];
+    S [label="Scarcity:\nN slots, M >> N advertisers", shape=box];
+    Q -> S;
+    A [label="Auction triggered:\ncollect bids + quality scores", shape=box];
+    S -> A;
+    R [label="Rank by bid × quality score", shape=box];
+    A -> R;
+    P [label="Price discovery:\neach winner pays next competitor's bid", shape=box];
+    R -> P;
+    D [label="Slots allocated + priced\nin ~100ms", shape=box];
+    P -> D;
+    C [label="Clearing:\nwinners serve ads;\nplatform collects revenue", shape=box];
+    D -> C;
+}

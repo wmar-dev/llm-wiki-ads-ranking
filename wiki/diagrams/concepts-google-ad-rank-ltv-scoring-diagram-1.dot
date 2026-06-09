@@ -1,0 +1,26 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    B [label="Max CPC bid", shape=box];
+    ECPM [label="eCPM = bid × pCTR", shape=box];
+    B -> ECPM;
+    PCTR [label="pCTR", shape=box];
+    PCTR -> ECPM;
+    LTV [label="LTV = eCPM - costs", shape=box];
+    ECPM -> LTV;
+    PCQ [label="pCQ", shape=box];
+    IMP [label="Impression cost", shape=box];
+    PCQ -> IMP;
+    IMP -> LTV;
+    PLQ [label="pLQ", shape=box];
+    CLK [label="Click cost", shape=box];
+    PLQ -> CLK;
+    CLK -> LTV;
+    POS [label="Positive?", shape=diamond];
+    LTV -> POS;
+    RANK [label="Eligible, ranked by LTV", shape=box];
+    POS -> RANK [label="Yes"];
+    EXCL [label="Ineligible", shape=box];
+    POS -> EXCL [label="No"];
+}

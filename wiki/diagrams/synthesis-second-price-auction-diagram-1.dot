@@ -1,0 +1,13 @@
+digraph G {
+    rankdir=LR;
+    node [shape=box, style=rounded];
+    edge [fontsize=10];
+    A [label="Bidder A (value $10)"];
+    B [label="Bidder B (value $7)"];
+    C [label="Bidder C (value $5)"];
+    Auc [label="Auctioneer"];
+    A -> Auc [label="Bid $10"];
+    B -> Auc [label="Bid $7"];
+    C -> Auc [label="Bid $5"];
+    Auc -> A [label="You win. You pay $7 (second-highest bid)."];
+}

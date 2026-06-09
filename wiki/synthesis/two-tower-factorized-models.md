@@ -19,32 +19,7 @@ Two-tower models impose a deliberate architectural constraint: **the user and it
 
 A NeuMF-style model that concatenates user and item features requires a full forward pass for every user-item pair. At 0.1ms per pair, scoring 100 million items takes nearly 3 hours per user. The two-tower constraint reduces this to under 15ms: one user tower forward pass (~1ms) plus ANN search (~5-10ms).
 
-```mermaid
-flowchart LR
-    subgraph Training
-        UT[User Tower<br/>f_theta: user features → user embedding]
-        IT[Item Tower<br/>g_phi: item features → item embedding]
-        S[Dot Product Score<br/>s(u,i) = ⟨user_emb, item_emb⟩]
-        L[In-Batch Softmax Loss<br/>with bias correction]
-        UT --> S
-        IT --> S
-        S --> L
-    end
-
-    subgraph Serving
-        U[User Request]
-        ITP[Precomputed Item Embeddings<br/>(nightly/hourly)]
-        FA[FAISS ANN Index]
-        UE[Compute User Embedding<br/>(1 forward pass, ~1-5ms)]
-        ANN[ANN Search<br/>(~5-15ms)]
-        C[Top-1000 Candidates → Ranking Model]
-        U --> UE
-        UE --> ANN
-        ITP --> FA
-        FA --> ANN
-        ANN --> C
-    end
-```
+![synthesis-two-tower-factorized-models-diagram-1](/assets/synthesis-two-tower-factorized-models-diagram-1.svg)
 
 ## Architecture
 

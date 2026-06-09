@@ -14,18 +14,7 @@ A **second price auction** (also called a **Vickrey auction**) is a sealed-bid a
 
 ## Mechanics
 
-```mermaid
-sequenceDiagram
-    participant A as Bidder A (value $10)
-    participant B as Bidder B (value $7)
-    participant C as Bidder C (value $5)
-    participant Auc as Auctioneer
-
-    A->>Auc: Bid $10
-    B->>Auc: Bid $7
-    C->>Auc: Bid $5
-    Auc->>A: You win. You pay $7 (second-highest bid).
-```
+![synthesis-second-price-auction-diagram-1](/assets/synthesis-second-price-auction-diagram-1.svg)
 
 1. Each bidder submits a sealed bid without seeing others' bids.
 2. The highest bidder wins the item.
@@ -47,13 +36,7 @@ This property is called **incentive compatibility** or **strategy-proofness**, a
 
 Search and display advertising platforms adapted this mechanism into the **Generalized Second Price (GSP) auction**, which handles multiple ad slots simultaneously:
 
-```mermaid
-flowchart LR
-    B[Bids submitted] --> R[Rank by bid × quality score]
-    R --> S1[Slot 1 winner pays price of next bidder]
-    R --> S2[Slot 2 winner pays price of next bidder]
-    R --> S3[Slot 3 winner pays price of next bidder]
-```
+![synthesis-second-price-auction-diagram-2](/assets/synthesis-second-price-auction-diagram-2.svg)
 
 - Advertisers bid a **cost-per-click (CPC)**.
 - Slots are ranked by `bid × Quality Score` (Google) or similar relevance signal.

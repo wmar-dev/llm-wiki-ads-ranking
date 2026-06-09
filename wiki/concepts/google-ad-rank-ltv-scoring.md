@@ -17,19 +17,7 @@ last_updated: "2026-06-08"
 
 Ads are scored by their estimated **Long-Term Value (LTV)** — the net benefit to Google (and ecosystem health) of showing the ad:
 
-```mermaid
-flowchart LR
-    B[Max CPC bid] --> ECPM[eCPM = bid × pCTR]
-    PCTR[pCTR] --> ECPM
-    ECPM --> LTV[LTV = eCPM - costs]
-    PCQ[pCQ] --> IMP[Impression cost]
-    IMP --> LTV
-    PLQ[pLQ] --> CLK[Click cost]
-    CLK --> LTV
-    LTV --> POS{Positive?}
-    POS -->|Yes| RANK[Eligible, ranked by LTV]
-    POS -->|No| EXCL[Ineligible]
-```
+![concepts-google-ad-rank-ltv-scoring-diagram-1](/assets/concepts-google-ad-rank-ltv-scoring-diagram-1.svg)
 
 ### Components
 

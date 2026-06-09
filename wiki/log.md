@@ -113,6 +113,14 @@ Partial gap — existing wiki had scattered ad-type information across platform-
 
 Total gap — no existing wiki pages on Google Shopping or product taxonomy. Enriched with Google Merchant Center help page. Created source summary (wiki/sources/google-product-taxonomy.md) and synthesis page (wiki/synthesis/google-shopping-vertical-classification.md). Key finding: Google Shopping uses a ~6,000+ category hierarchical taxonomy with 20+ top-level verticals; auto-assignment from product signals, per-category bid management, and versioned taxonomy updates.
 
+## [2026-06-09] answer | UTIS engagement, ARM expansion, GEM scaling, sequential testing, network interference | pages-updated: 2 | sources-ingested: 4
+
+Answered 5 open questions. See entry above.
+
+## [2026-06-09] query | what is semantic id | pages-read: 3 | sources-ingested: 1
+
+Partial gap — existing wiki had passing mentions of Meta's Entity IDs (visual clustering) but no coverage of Semantic IDs as a retrieval paradigm. Enriched with TIGER paper (NeurIPS 2023), FORGE benchmark (Taobao production), and GRID framework (Snap Research). Created source summary and synthesis page. Key finding: SIDs enable generative retrieval by quantizing content embeddings into discrete codeword tuples; similar items share overlapping tokens; used in production at Taobao (250M+ items); cold-start generalization is a key advantage over traditional dense retrieval.
+
 ## [2026-06-09] ingest | Monolith: Real Time Recommendation System With Collisionless Embedding Table
 
 Fetched from arXiv (2209.07663) via ar5iv HTML conversion; saved to raw/web/monolith-realtime-recommendation-system.md. Single-pass processing (2,441 words). Source type: peer_reviewed (ORSUM@ACM RecSys 2022). Created source summary (wiki/sources/), entity page for Monolith system (wiki/entities/), and two concept pages: online training for recommendation systems (wiki/concepts/) and collisionless embedding table (wiki/concepts/). Key findings: Cuckoo hash-based collisionless embedding improves AUC vs hash-trick approaches; minute-level parameter sync achieves 79.80 AUC (Criteo) vs 79.43 batch-only; 14–18% AUC improvement in production A/B test. No contradictions with existing pages that reference Monolith (TikTok blog post, TikTok synthesis).

@@ -1,0 +1,20 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    D [label="Design", shape=box];
+    R2 [label="Ramp-up", shape=box];
+    D -> R2;
+    M [label="Monitor", shape=box];
+    R2 -> M;
+    F [label="Full exposure", shape=box];
+    M -> F [label="OK"];
+    A [label="Auto-abort", shape=box];
+    M -> A [label="Bad"];
+    C2 [label="Collect data", shape=box];
+    F -> C2;
+    A2 [label="Analyze", shape=box];
+    C2 -> A2;
+    L [label="Launch or iterate", shape=box];
+    A2 -> L;
+}

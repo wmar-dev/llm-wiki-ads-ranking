@@ -18,14 +18,7 @@ Reddit's advertising system runs a real-time auction every time a user loads a p
 
 ## The Auction
 
-```mermaid
-flowchart LR
-    U[User loads page] --> E[Eligible ads identified]
-    E --> R[Rank: bid × quality × relevance]
-    R --> W[Winner selected]
-    W --> D[Ad displayed]
-    D --> B[Billed second-price]
-```
+![synthesis-reddit-ads-diagram-1](/assets/synthesis-reddit-ads-diagram-1.svg)
 
 Reddit uses a **second-price auction** — you set a maximum bid but pay just above the next-highest bidder. The winner is determined by a combination of factors, not just bid amount [[wiki/sources/reddit-ads-how-it-works.md]] *(blog post)*:
 
@@ -40,13 +33,7 @@ Reddit uses a **second-price auction** — you set a maximum bid but pay just ab
 
 Reddit's ad delivery pipeline consists of four sequential stages [[wiki/sources/contextual-relevance-of-ads-reddit.md]] *(company engineering blog)*:
 
-```mermaid
-flowchart LR
-    TL[Targeting Layer] --> LR[Light Rankers]
-    LR --> HR[Heavy Rankers]
-    HR --> AU[Auction]
-    AU --> AS[Ad Selected]
-```
+![synthesis-reddit-ads-diagram-2](/assets/synthesis-reddit-ads-diagram-2.svg)
 
 1. **Targeting Layer** — Advertiser criteria (community, interest, keyword, custom) filter eligible ads
 2. **Light Rankers** — Fast, lightweight models narrow the candidate list for heavy scoring

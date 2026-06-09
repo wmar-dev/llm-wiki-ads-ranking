@@ -1,0 +1,17 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    U [label="User opens app", shape=box];
+    CG [label="Candidate Generation", shape=box];
+    U -> CG;
+    R [label="Ranking", shape=box];
+    CG -> R;
+    D [label="Diversity & Safety Filters", shape=box];
+    R -> D;
+    F [label="Served Feed", shape=box];
+    D -> F;
+    FB [label="User behavior → feedback loop", shape=box];
+    F -> FB;
+    FB -> U;
+}

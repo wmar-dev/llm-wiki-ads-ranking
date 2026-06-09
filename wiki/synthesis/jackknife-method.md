@@ -14,19 +14,7 @@ The jackknife is a **resampling technique** in statistics used to estimate the b
 
 ## How It Works
 
-```mermaid
-flowchart LR
-  S["Full sample<br/>n observations"] --> L1["Remove obs 1"] --> E1["Estimate θ̂(1)"]
-  S --> L2["Remove obs 2"] --> E2["Estimate θ̂(2)"]
-  S --> L3["Remove ..."] --> E3["..."]
-  S --> Ln["Remove obs n"] --> En["Estimate θ̂(n)"]
-  E1 --> Avg["Average → θ̂_jack"]
-  E2 --> Avg
-  E3 --> Avg
-  En --> Avg
-  Avg --> B["Bias estimate<br/>(n−1)(θ̂_jack − θ̂)"]
-  Avg --> V["Variance estimate<br/>((n−1)/n)Σ(θ̂(i) − θ̂_jack)²"]
-```
+![synthesis-jackknife-method-diagram-1](/assets/synthesis-jackknife-method-diagram-1.svg)
 
 ## Key Uses
 

@@ -1,0 +1,25 @@
+digraph G {
+    rankdir=TB;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    subgraph cluster_teaching {
+        label="Teaching";
+        style="rounded";
+        GEM [label="GEM: Foundation Model Teacher", shape=box];
+    }
+    subgraph cluster_serving {
+        label="Serving";
+        style="rounded";
+        AND [label="Andromeda: Retrieval Engine", shape=box];
+        LAT [label="Lattice: Unified Ranking", shape=box];
+        UTIS [label="UTIS: Interest Calibrator", shape=box];
+        ARM [label="Adaptive Ranking Model: Infrastructure", shape=box];
+    }
+    GEM -> AND [label="Knowledge Distillation"];
+    GEM -> LAT [label="Knowledge Distillation"];
+    GEM -> UTIS [label="Parameter Sharing"];
+    ARM -> AND [label="Runtime"];
+    ARM -> LAT [label="Runtime"];
+    ARM -> UTIS [label="Runtime"];
+    UTIS -> LAT [label="Interest Signal"];
+}

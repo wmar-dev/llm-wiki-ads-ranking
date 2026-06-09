@@ -1,0 +1,18 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    A [label="Merchant Feed", shape=box];
+    B [label="Product Title / Description / GTIN / Price / Brand", shape=box];
+    A -> B;
+    C [label="Google Product Taxonomy", shape=diamond];
+    B -> C;
+    D [label="Category ID + Path", shape=box];
+    C -> D [label="Auto-assign"];
+    E [label="Shopping Campaign", shape=box];
+    D -> E;
+    F [label="Product Group Bidding", shape=box];
+    E -> F;
+    G [label="per-category bid management", shape=box];
+    F -> G;
+}

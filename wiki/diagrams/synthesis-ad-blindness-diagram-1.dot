@@ -1,0 +1,18 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    G [label="User goal", shape=box];
+    S [label="Scan page layout", shape=box];
+    G -> S;
+    R [label="Recognize element type?", shape=diamond];
+    S -> R;
+    A [label="Attend and process", shape=box];
+    R -> A [label="Content"];
+    B [label="Ignore / skip", shape=box];
+    R -> B [label="Ad-like"];
+    H [label="Hot-potato: avoid area on return visits", shape=box];
+    B -> H;
+    C [label="Complete task", shape=box];
+    A -> C;
+}

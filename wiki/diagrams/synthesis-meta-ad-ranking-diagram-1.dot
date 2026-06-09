@@ -1,0 +1,19 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    U [label="User opens app", shape=box];
+    R [label="Andromeda: Retrieval", shape=box];
+    U -> R;
+    LR [label="Light Ranking", shape=box];
+    R -> LR;
+    HR [label="Lattice: Heavy Ranking", shape=box];
+    LR -> HR;
+    A [label="Auction", shape=box];
+    HR -> A;
+    S [label="Served Ad", shape=box];
+    A -> S;
+    FB [label="Feedback → GEM retraining", shape=box];
+    S -> FB;
+    FB -> R;
+}

@@ -14,18 +14,7 @@ A/B testing (also called randomized controlled experiments, split tests, or onli
 
 ## Core Methodology
 
-```mermaid
-flowchart LR
-    P[Population] --> R[Random Assignment]
-    R --> A[Control A]
-    R --> B[Treatment B]
-    A --> M1[Measure OEC]
-    B --> M2[Measure OEC]
-    M1 --> C{Statistical Test}
-    M2 --> C
-    C -->|p < α| D[Effect detected]
-    C -->|p ≥ α| E[No significant effect]
-```
+![synthesis-how-ab-tests-work-diagram-1](/assets/synthesis-how-ab-tests-work-diagram-1.svg)
 
 ### Randomization
 
@@ -78,16 +67,7 @@ For ratio metrics (e.g., CTR = clicks / impressions), the **delta method** is us
 
 ## Execution
 
-```mermaid
-flowchart LR
-    D[Design] --> R2[Ramp-up]
-    R2 --> M[Monitor]
-    M -->|OK| F[Full exposure]
-    M -->|Bad| A[Auto-abort]
-    F --> C2[Collect data]
-    C2 --> A2[Analyze]
-    A2 --> L[Launch or iterate]
-```
+![synthesis-how-ab-tests-work-diagram-2](/assets/synthesis-how-ab-tests-work-diagram-2.svg)
 
 ### Ramp-up and Auto-abort
 
@@ -139,15 +119,7 @@ Only analyze users who were actually exposed to the treatment (the "triggered" s
 
 When thousands of experiments run simultaneously (as at Google, Microsoft, Meta, LinkedIn), a single experiment layer is insufficient. **Overlapping experiment infrastructure** [[wiki/sources/overlapping-experiment-infrastructure.md]] *(peer_reviewed)* solves this:
 
-```mermaid
-flowchart LR
-    Q[Query] --> L1[Layer 1: Web Server]
-    Q --> L2[Layer 2: Organic Results]
-    Q --> L3[Layer 3: Ads Server]
-    L1 --> E1[Exp A or default]
-    L2 --> E2[Exp B or default]
-    L3 --> E3[Exp C or default]
-```
+![synthesis-how-ab-tests-work-diagram-3](/assets/synthesis-how-ab-tests-work-diagram-3.svg)
 
 Key concepts:
 - **Domain**: a traffic segmentation

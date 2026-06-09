@@ -1,0 +1,23 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    P [label="Population", shape=box];
+    R [label="Random Assignment", shape=box];
+    P -> R;
+    A [label="Control A", shape=box];
+    R -> A;
+    B [label="Treatment B", shape=box];
+    R -> B;
+    M1 [label="Measure OEC", shape=box];
+    A -> M1;
+    M2 [label="Measure OEC", shape=box];
+    B -> M2;
+    C [label="Statistical Test", shape=diamond];
+    M1 -> C;
+    M2 -> C;
+    D [label="Effect detected", shape=box];
+    C -> D [label="p < α"];
+    E [label="No significant effect", shape=box];
+    C -> E [label="p ≥ α"];
+}

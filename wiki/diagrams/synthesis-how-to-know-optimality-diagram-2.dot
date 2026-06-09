@@ -1,0 +1,23 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    P [label="Current ranking system", shape=box];
+    A [label="A/B test: experiment layer", shape=box];
+    P -> A;
+    B [label="Control: existing model", shape=box];
+    A -> B;
+    C [label="Treatment: new model", shape=box];
+    A -> C;
+    M1 [label="Measure OEC", shape=box];
+    B -> M1;
+    M2 [label="Measure OEC", shape=box];
+    C -> M2;
+    D [label="Statistically significant?", shape=diamond];
+    M1 -> D;
+    M2 -> D;
+    L [label="Launch", shape=box];
+    D -> L [label="Yes, positive"];
+    I [label="Iterate or revert", shape=box];
+    D -> I [label="No or negative"];
+}

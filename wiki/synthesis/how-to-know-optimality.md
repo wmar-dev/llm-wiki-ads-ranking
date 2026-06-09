@@ -16,29 +16,7 @@ last_updated: "2026-06-09"
 
 Optimality in advertising auctions and ranking has no single answer — it is assessed at multiple layers, each with its own methods, metrics, and criteria. The full picture emerges only when **theoretical soundness, offline metrics, online experiments, and business outcomes** all align.
 
-```mermaid
-flowchart TD
-    T[Theoretical Optimality]
-    O[Offline Metrics]
-    C[Counterfactual Eval]
-    A[A/B Testing]
-    B[Business Outcomes]
-    T --> H{Hypothesis valid?}
-    H -->|Yes| O
-    H -->|No| R1[Redesign mechanism]
-    O --> M{Metrics improve?}
-    M -->|Yes| C
-    M -->|No| R2[Improve model]
-    C --> E{Offline lift matches online?}
-    E -->|Yes| A
-    E -->|No| R3[Fix bias correction]
-    A --> S{Significant lift?}
-    S -->|Yes| B
-    S -->|No| R4[Iterate hypothesis]
-    B --> D{Business impact?}
-    D -->|Yes| LAUNCH[Commit change]
-    D -->|No| R5[Re-evaluate OEC]
-```
+![synthesis-how-to-know-optimality-diagram-1](/assets/synthesis-how-to-know-optimality-diagram-1.svg)
 
 ---
 
@@ -88,18 +66,7 @@ Counterfactual methods validate that the "offline improvement" would actually ma
 
 The gold standard: run a controlled experiment on live traffic, randomize users to control (current system) vs. treatment (proposed change), and measure the **Overall Evaluation Criterion (OEC)** [[wiki/synthesis/how-ab-tests-work.md]].
 
-```mermaid
-flowchart LR
-    P[Current ranking system] --> A[A/B test: experiment layer]
-    A --> B[Control: existing model]
-    A --> C[Treatment: new model]
-    B --> M1[Measure OEC]
-    C --> M2[Measure OEC]
-    M1 --> D{Statistically significant?}
-    M2 --> D
-    D -->|Yes, positive| L[Launch]
-    D -->|No or negative| I[Iterate or revert]
-```
+![synthesis-how-to-know-optimality-diagram-2](/assets/synthesis-how-to-know-optimality-diagram-2.svg)
 
 Key practices for ranking experiments:
 - **Layered experiments**: Google runs thousands of simultaneous experiments by isolating ranking changes in separate experiment layers [[wiki/sources/overlapping-experiment-infrastructure.md]] *(peer_reviewed)*.

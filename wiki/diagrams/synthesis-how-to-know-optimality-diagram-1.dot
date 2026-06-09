@@ -1,0 +1,36 @@
+digraph G {
+    rankdir=TB;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    T [label="Theoretical Optimality", shape=box];
+    O [label="Offline Metrics", shape=box];
+    C [label="Counterfactual Eval", shape=box];
+    A [label="A/B Testing", shape=box];
+    B [label="Business Outcomes", shape=box];
+    H [label="Hypothesis valid?", shape=diamond];
+    T -> H;
+    H -> O [label="Yes"];
+    R1 [label="Redesign mechanism", shape=box];
+    H -> R1 [label="No"];
+    M [label="Metrics improve?", shape=diamond];
+    O -> M;
+    M -> C [label="Yes"];
+    R2 [label="Improve model", shape=box];
+    M -> R2 [label="No"];
+    E [label="Offline lift matches online?", shape=diamond];
+    C -> E;
+    E -> A [label="Yes"];
+    R3 [label="Fix bias correction", shape=box];
+    E -> R3 [label="No"];
+    S [label="Significant lift?", shape=diamond];
+    A -> S;
+    S -> B [label="Yes"];
+    R4 [label="Iterate hypothesis", shape=box];
+    S -> R4 [label="No"];
+    D [label="Business impact?", shape=diamond];
+    B -> D;
+    LAUNCH [label="Commit change", shape=box];
+    D -> LAUNCH [label="Yes"];
+    R5 [label="Re-evaluate OEC", shape=box];
+    D -> R5 [label="No"];
+}

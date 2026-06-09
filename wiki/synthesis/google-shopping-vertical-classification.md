@@ -9,15 +9,7 @@ sources: 1
 
 ## How It Works
 
-```mermaid
-graph LR
-    A[Merchant Feed] --> B[Product Title / Description / GTIN / Price / Brand]
-    B --> C{Google Product Taxonomy}
-    C -->|Auto-assign| D[Category ID + Path]
-    D --> E[Shopping Campaign]
-    E --> F[Product Group Bidding]
-    F --> G[per-category bid management]
-```
+![synthesis-google-shopping-vertical-classification-diagram-1](/assets/synthesis-google-shopping-vertical-classification-diagram-1.svg)
 
 Every product submitted to Google Merchant Center is **automatically** assigned a category from this taxonomy. The merchant can override with the `[google_product_category]` attribute (must be from the predefined list) or use a custom `[product_type]` attribute for their own categorization scheme.
 

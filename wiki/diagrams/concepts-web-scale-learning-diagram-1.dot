@@ -1,0 +1,22 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    subgraph cluster_traditional {
+        label="Traditional";
+        style="rounded";
+        A [label="Small curated dataset", shape=box];
+        B [label="Complex model with careful features", shape=box];
+        A -> B;
+    }
+    subgraph cluster_web_scale {
+        label="Web-Scale";
+        style="rounded";
+        C [label="Web-scale raw data", shape=box];
+        D [label="Simple model, many features", shape=box];
+        C -> D;
+    }
+    E [label="Performance", shape=diamond];
+    B -> E;
+    D -> E;
+}

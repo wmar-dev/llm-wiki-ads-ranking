@@ -1,0 +1,16 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    U [label="User loads page", shape=box];
+    E [label="Eligible ads identified", shape=box];
+    U -> E;
+    R [label="Rank: bid × quality × relevance", shape=box];
+    E -> R;
+    W [label="Winner selected", shape=box];
+    R -> W;
+    D [label="Ad displayed", shape=box];
+    W -> D;
+    B [label="Billed second-price", shape=box];
+    D -> B;
+}

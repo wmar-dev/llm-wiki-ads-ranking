@@ -39,15 +39,7 @@ The platform does not know what any advertiser is willing to pay for a given imp
 
 ## How GSP Auctions Solve the Problem
 
-```mermaid
-flowchart LR
-    Q[User search query] --> S[Scarcity:<br/>N slots, M >> N advertisers]
-    S --> A[Auction triggered:<br/>collect bids + quality scores]
-    A --> R[Rank by bid × quality score]
-    R --> P[Price discovery:<br/>each winner pays next competitor's bid]
-    P --> D[Slots allocated + priced<br/>in ~100ms]
-    D --> C[Clearing:<br/>winners serve ads;<br/>platform collects revenue]
-```
+![synthesis-why-ads-have-auctions-diagram-1](/assets/synthesis-why-ads-have-auctions-diagram-1.svg)
 
 ### Allocative efficiency
 

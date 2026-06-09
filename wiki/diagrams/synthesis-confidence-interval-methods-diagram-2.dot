@@ -1,0 +1,28 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11];
+    edge [fontsize=10, arrowhead=normal];
+    A [label="Start", shape=box];
+    B [label="Data arriving sequentially?", shape=diamond];
+    A -> B;
+    C [label="Use confidence sequences:<br>AsympCS or mSPRT", shape=box];
+    B -> C [label="Yes"];
+    D [label="Metric type?", shape=diamond];
+    B -> D [label="No"];
+    E [label="t-test / Wald CI<br>+ bootstrap cross-check", shape=box];
+    D -> E [label="Simple mean"];
+    F [label="Delta method + bias correction<br>or Fieller for small n", shape=box];
+    D -> F [label="Ratio"];
+    G [label="Outer CI<br>or Hybrid method", shape=box];
+    D -> G [label="Quantile"];
+    H [label="Delta method<br>or Fieller", shape=box];
+    D -> H [label="Percent change"];
+    I [label="Clustered data?", shape=diamond];
+    E -> I;
+    F -> I;
+    G -> I;
+    J [label="Aggregate to cluster level,<br>then apply same method", shape=box];
+    I -> J [label="Yes"];
+    K [label="Compute and report", shape=box];
+    I -> K [label="No"];
+}
