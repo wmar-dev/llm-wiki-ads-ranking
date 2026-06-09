@@ -20,6 +20,10 @@ Fixed L-003 (frontmatter standardized on overlapping-experiment-infrastructure.m
 
 Total gap — no existing wiki pages on TikTok. Fetched 3 sources (TikTok official docs, Kingy AI deep dive, DEV system design). Created 2 source summaries, 1 synthesis page (wiki/synthesis/tiktok-recommendation-algorithm.md). Key finding: unsupervised clustering + embeddings → two-stage candidate generation and ranking → real-time feedback loop.
 
+## [2026-06-08] query | how do reddit ads work | pages-read: 0 | sources-ingested: 3
+
+Total gap — no existing wiki pages on Reddit ads. Fetched 3 sources (Stackmatix practitioner guide, Reddit Inc Max Campaigns announcement, Reddit Business targeting guide). Created 3 source summaries, 1 entity page (wiki/entities/reddit-ads-system.md), 1 synthesis page (wiki/synthesis/reddit-ads.md). Key finding: Reddit uses a second-price auction with community-based targeting; AI-powered MAX Campaigns launched Jan 2026. Comparison table to Meta and Google added.
+
 ## [2026-06-08] query | what are vickrey and gsp | pages-read: 3 | sources-ingested: 0
 
 Full coverage — read 3 existing pages (second-price-auction synthesis, GSP concept, Edelman et al. source summary). Created synthesis page (wiki/synthesis/vickrey-and-gsp.md) consolidating Vickrey vs GSP differences, production vs theory differences (LTV scoring, reserve pricing, rGSP from Google Ad Rank briefing), and relevance to ads ranking.

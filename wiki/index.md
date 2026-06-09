@@ -24,6 +24,11 @@
 - [Meta Adaptive Ranking Model](wiki/sources/meta-adaptive-ranking-model.md) — Meta Engineering blog on ARM: request-centric computation, selective FP8 quantization, multi-card GPU sharding for O(1T) parameter models [status: current] [sources: 1] [source_type: other]
 - [Meta's Generative Ads Model (GEM)](wiki/sources/meta-gem-ads-foundation-model.md) — Meta Engineering blog on the GEM foundation model teacher with knowledge distillation to downstream models [status: current] [sources: 1] [source_type: other]
 - [The Meta Ads Algorithm in 2026](wiki/sources/meta-ads-algorithm-2026-guide.md) — practitioner analysis of 5-system stack, auction equation, targeting inversion, learning phase, and campaign structure [status: draft] [sources: 1] [source_type: blog_post]
+- [How Reddit Ads Work](wiki/synthesis/reddit-ads.md) — Reddit's second-price auction, community-based targeting, MAX AI campaigns, pricing, and delivery [status: current] [sources: 3]
+- [Reddit Ads System](wiki/entities/reddit-ads-system.md) — entity overview of Reddit's auction, targeting (community/interest/keyword), bidding, and campaign structure [status: draft] [sources: 3]
+- [How Reddit Advertising Works](wiki/sources/reddit-ads-how-it-works.md) — practitioner guide: auction mechanics, ranking factors, bidding strategies, learning phase [status: draft] [sources: 1] [source_type: blog_post]
+- [Reddit Max Campaigns](wiki/sources/reddit-max-campaigns.md) — official Reddit announcement: AI-powered fully automated campaigns with Community Intelligence [status: current] [sources: 1] [source_type: other]
+- [Reddit Audience Targeting](wiki/sources/reddit-audience-targeting.md) — official documentation: community, interest, and keyword targeting; custom audiences; funnel mapping [status: current] [sources: 1] [source_type: other]
 
 ## Recommendation Systems
 
@@ -42,3 +47,6 @@
 - [Meta Adaptive Ranking Model](wiki/sources/meta-adaptive-ranking-model.md) — Meta Engineering: request-centric ARM, selective FP8, multi-card GPU sharding for O(1T) parameter models [status: current] [sources: 1] [source_type: other] [processing_status: processed] [ingest_count: 1]
 - [Meta's Generative Ads Model (GEM)](wiki/sources/meta-gem-ads-foundation-model.md) — Meta Engineering: GEM foundation model teacher with knowledge distillation [status: current] [sources: 1] [source_type: other] [processing_status: processed] [ingest_count: 1]
 - [The Meta Ads Algorithm in 2026](wiki/sources/meta-ads-algorithm-2026-guide.md) — practitioner guide: 5-system stack, auction equation, targeting inversion [status: draft] [sources: 1] [source_type: blog_post] [processing_status: processed] [ingest_count: 1]
+- [How Reddit Advertising Works](wiki/sources/reddit-ads-how-it-works.md) — practitioner guide: auction mechanics, ranking factors, bidding strategies, learning phase [status: draft] [sources: 1] [source_type: blog_post] [processing_status: processed] [ingest_count: 1]
+- [Reddit Max Campaigns](wiki/sources/reddit-max-campaigns.md) — Reddit Inc: AI-powered fully automated MAX campaigns with Community Intelligence [status: current] [sources: 1] [source_type: other] [processing_status: processed] [ingest_count: 1]
+- [Reddit Audience Targeting](wiki/sources/reddit-audience-targeting.md) — Reddit Business: official targeting guide with Community, Interest, Keyword + custom audiences [status: current] [sources: 1] [source_type: other] [processing_status: processed] [ingest_count: 1]
