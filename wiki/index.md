@@ -13,6 +13,7 @@
 
 ## Auction Mechanisms & Pricing
 
+- [Why Ads Have Auctions](wiki/synthesis/why-ads-have-auctions.md) — economic rationale: scarcity, price discovery, allocative efficiency, perishing inventory; why fixed prices fail and GSP prevails [status: current] [sources: 2]
 - [What Is a Second Price Auction?](wiki/synthesis/second-price-auction.md) — Vickrey/GSP auction mechanics, incentive compatibility, revenue equivalence, and relevance to ads ranking systems [status: current] [sources: 1]
 - [Internet Advertising and the GSP Auction](wiki/sources/edelman-ostrovsky-schwarz-gsp-auction.md) — Edelman, Ostrovsky & Schwarz (AER 2007); proves GSP lacks dominant-strategy truthfulness but has a unique locally envy-free equilibrium with VCG-equivalent payoffs [status: current] [sources: 1] [source_type: peer_reviewed]
 - [Generalized Second-Price Auction (GSP)](wiki/concepts/generalized-second-price-auction.md) — multi-slot auction mechanism used in search advertising; bid × quality score ranking; locally envy-free equilibrium [status: current] [sources: 1]

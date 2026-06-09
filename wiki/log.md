@@ -76,3 +76,7 @@ Downloaded 1.2 MB PDF from Google Research; extracted 8,663 words via pdftotext.
 ## [2026-06-09] lint | 4 errors, 0 warnings, 13 info
 
 Fixed 2 L-001 orphans (deleted raw webpage copies wrongly placed in wiki/). Remaining: 0 errors, 11 L-009 entity gaps (info). Macro evaluation not triggered (ingest count 5; needs multiple of 10).
+
+## [2026-06-09] query | why ads have auctions | pages-read: 5 | sources-ingested: 0
+
+Full coverage from existing wiki pages on GSP auction theory (Edelman et al., AER 2007) and Google Ad Rank mechanics. No web enrichment needed. Created synthesis page (wiki/synthesis/why-ads-have-auctions.md) covering scarcity, perishing inventory, price discovery, and why fixed prices fail.
