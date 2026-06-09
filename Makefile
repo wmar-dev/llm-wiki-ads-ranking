@@ -1,4 +1,4 @@
-.PHONY: install serve dev test lint docker-build docker-up docker-down ingest index
+.PHONY: install serve dev test lint docker-build docker-up docker-down index
 
 install:
 	uv sync --all-extras && uv run playwright install chromium
@@ -23,9 +23,6 @@ docker-up:
 
 docker-down:
 	docker-compose down
-
-ingest:
-	uv run python -m wiki_server.ingest $(TYPE) $(TARGET)
 
 index:
 	uv run python -m wiki_server.search rebuild
