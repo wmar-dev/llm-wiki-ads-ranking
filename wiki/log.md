@@ -68,3 +68,7 @@ Downloaded 31 MB PDF from DOJ website (justice.gov); extracted 4,765 words via p
 - **2026-06-09T06:51:34Z** | `webpage` | [Banner blindness - Wikipedia](raw/web/en-wikipedia-org-wiki-banner-blindness.html)
 - **2026-06-09T06:51:38Z** | `webpage` | [Banner Blindness Revisited: Users Dodge Ads on Mobile and Desktop - NN/G](raw/web/www-nngroup-com-articles-banner-blindness-old-and-new-findings.html)
 - **2026-06-09** | `query` | ad-blindness definition and mechanisms | pages-read: 2 | sources-ingested: 2
+
+## [2026-06-08] ingest | Ad Click Prediction: a View from the Trenches (McMahan et al., KDD 2013)
+
+Downloaded 1.2 MB PDF from Google Research; extracted 8,663 words via pdftotext. Chunked into 3 segments (2,973 + 2,993 + 2,697 words). Source: peer-reviewed (KDD 2013, ACM). Created source summary, entity pages (Google CTR Prediction System, FTRL-Proximal Algorithm), and updated web-scale-learning concept. Key findings: FTRL-Proximal combines OGD accuracy with RDA sparsity; per-coordinate learning rates reduce AucLoss by 11.2%; q2.13 encoding saves 75% RAM with no accuracy loss; uncertainty score provides cheap prediction confidence. No contradictions with existing pages.

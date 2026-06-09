@@ -22,7 +22,8 @@
 ## Machine Learning at Scale
 
 - [The Unreasonable Effectiveness of Data](wiki/sources/unreasonable-effectiveness-of-data.md) — Halevy, Norvig & Pereira (IEEE Intelligent Systems 2009); argues simple models + lots of data outperform complex models + less data; foundational paper for web-scale learning [status: current] [sources: 1] [source_type: peer_reviewed] [processing_status: processed] [ingest_count: 1]
-- [Web-Scale Learning](wiki/concepts/web-scale-learning.md) — paradigm of training ML on naturally occurring large-scale data; threshold of sufficient data; memorization at scale [status: draft] [sources: 2]
+- [Web-Scale Learning](wiki/concepts/web-scale-learning.md) — paradigm of training ML on naturally occurring large-scale data; threshold of sufficient data; memorization at scale [status: draft] [sources: 3]
+- [Ad Click Prediction: a View from the Trenches](wiki/sources/ad-click-prediction-view-from-the-trenches.md) — McMahan et al. (KDD 2013); Google's CTR prediction system: FTRL-Proximal algorithm, per-coordinate learning rates, memory optimization at billion-coefficient scale [status: current] [sources: 1] [source_type: peer_reviewed] [processing_status: chunked] [ingest_count: 1]
 
 ## Ad Ranking & Delivery
 
@@ -33,6 +34,8 @@
 - [The Meta Ads Algorithm in 2026](wiki/sources/meta-ads-algorithm-2026-guide.md) — practitioner analysis of 5-system stack, auction equation, targeting inversion, learning phase, and campaign structure [status: draft] [sources: 1] [source_type: blog_post]
 - [How Reddit Ads Work](wiki/synthesis/reddit-ads.md) — Reddit's second-price auction, 4-stage delivery funnel, contextual relevance system, community-based targeting, MAX AI campaigns, pricing, and delivery [status: current] [sources: 4]
 - [Reddit Ads System](wiki/entities/reddit-ads-system.md) — entity overview of Reddit's auction, 4-stage delivery funnel, contextual relevance system, targeting, and bidding [status: draft] [sources: 4]
+- [Google CTR Prediction System](wiki/entities/google-ctr-prediction-system.md) — entity overview of Google's deployed CTR prediction system: FTRL-Proximal online learning, per-coordinate rates, memory optimization stack, progressive validation [status: draft] [sources: 1]
+- [FTRL-Proximal Algorithm](wiki/entities/ftrl-proximal-algorithm.md) — online learning algorithm combining OGD accuracy with RDA sparsity; per-coordinate learning rates; L1/L2 regularization [status: draft] [sources: 1]
 - [How Reddit Advertising Works](wiki/sources/reddit-ads-how-it-works.md) — practitioner guide: auction mechanics, ranking factors, bidding strategies, learning phase [status: draft] [sources: 1] [source_type: blog_post]
 - [Reddit Max Campaigns](wiki/sources/reddit-max-campaigns.md) — official Reddit announcement: AI-powered fully automated campaigns with Community Intelligence [status: current] [sources: 1] [source_type: other]
 - [Reddit Audience Targeting](wiki/sources/reddit-audience-targeting.md) — official documentation: community, interest, and keyword targeting; custom audiences; funnel mapping [status: current] [sources: 1] [source_type: other]
@@ -65,3 +68,4 @@
 - [Network Interference in A/B Testing](wiki/sources/network-interference-ab-testing.md) — cluster randomization, exposure modeling, regression adjustment, causal message-passing for SUTVA violation [status: current] [sources: 1] [source_type: peer_reviewed]
 - [Contextual Relevance, Feedback Loops, and User Trust](wiki/sources/contextual-relevance-feedback-trust.md) — bias feedback loops in ranker training; contextual vs behavioral advertising performance; balancing ad relevance with trust [status: current] [sources: 1] [source_type: other]
 - [Reddit Max Campaigns Trajectory vs Meta Advantage+](wiki/sources/reddit-max-campaigns-trajectory.md) — Max CPA -17%, conversions +27%; Advantage+ became default Q2 2026; Reddit differentiates on transparency [status: current] [sources: 1] [source_type: other]
+- [Ad Click Prediction: a View from the Trenches](wiki/sources/ad-click-prediction-view-from-the-trenches.md) — McMahan et al. (KDD 2013); CTR prediction at Google: FTRL-Proximal, per-coordinate rates, memory optimization [status: current] [sources: 1] [source_type: peer_reviewed] [processing_status: chunked] [ingest_count: 1]

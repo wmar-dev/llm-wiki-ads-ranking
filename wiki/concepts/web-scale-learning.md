@@ -4,6 +4,7 @@ type: "concept"
 sources:
   - "web/unreasonable-effectiveness-of-data.md"
   - "web/edelman-ostrovsky-schwarz-gsp-auction.md"
+  - "web/ad-click-prediction-view-from-the-trenches.md"
 status: "draft"
 created: "2026-06-08"
 last_updated: "2026-06-08"
@@ -46,6 +47,7 @@ Web-scale learning principles directly shape production ads ranking systems:
 - **Wide & shallow architectures**: Google's Wide & Deep model and similar architectures use wide linear models with cross-product features — a direct application of "simple models with many features."
 - **Embedding tables**: Learned representations for millions of ads, users, and queries are a form of memorization at scale.
 - **Data pipeline investment**: Industry wisdom holds that improving data quality and volume often yields larger gains than improving model architecture — consistent with the web-scale learning thesis.
+- **FTRL-Proximal at Google**: Google's production CTR prediction system uses simple logistic regression with per-coordinate learning rates and aggressive memory optimization — a direct instantiation of "simple models with many features" operating at billions of coefficients [[wiki/sources/ad-click-prediction-view-from-the-trenches.md]].
 
 ```mermaid
 sequenceDiagram
@@ -70,6 +72,16 @@ A notable claim from [[wiki/sources/unreasonable-effectiveness-of-data.md]] is t
 - Below threshold: models rely heavily on priors, regularization, and feature engineering
 - At threshold: raw data volume dominates — simple logistic regression with good features approaches the performance of deep neural networks
 - Far above threshold: diminishing returns set in, but even minor modeling improvements compound over billions of predictions
+
+## Negative Results at Scale
+
+Google's CTR system tested several techniques that failed in their sparse, high-noise setting despite success elsewhere:
+
+- **Dropout**: No benefit at any rate tested (0.1–0.5). In the sparse feature + noisy label setting, dropout reduces data volume rather than regularizing — opposite effect from dense vision tasks [[wiki/sources/ad-click-prediction-view-from-the-trenches.md]].
+- **Feature hashing**: Could not project below billions of features without loss; Google preferred interpretable (non-hashed) vectors [[wiki/sources/ad-click-prediction-view-from-the-trenches.md]].
+- **Feature bagging**: Slightly reduced predictive quality (−0.1% to −0.6% AucLoss).
+
+These results caution against assuming techniques that work in dense, low-noise settings transfer to web-scale ad ranking.
 
 ## Limitations and Modern Context
 

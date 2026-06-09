@@ -1,6 +1,7 @@
 import json
 import mimetypes
 import os
+import re
 import time
 from pathlib import Path
 
@@ -17,9 +18,19 @@ _md = (
     .use(dollarmath_plugin, allow_digits=False)
 )
 
+_WIKI_LINK_RE = re.compile(r"\[\[wiki/([^\]]+)\]\]")
+
+
+def _wiki_link(m: re.Match) -> str:
+    page = m.group(1)
+    label = page.replace(".md", "").replace("/", " › ").replace("-", " ").title()
+    return f'<a href="/wiki/{page}">{label}</a>'
+
 
 def render_page(md_path: Path) -> str:
-    return _md.render(md_path.read_text(encoding="utf-8"))
+    text = md_path.read_text(encoding="utf-8")
+    text = _WIKI_LINK_RE.sub(_wiki_link, text)
+    return _md.render(text)
 
 
 def _log_access(path: str, status: int) -> None:
