@@ -20,5 +20,6 @@ dist/
 # Editors
 .vscode/
 .idea/
+.obsidian/
 *.swp
 *.tmp
