@@ -49,11 +49,19 @@ def _meta_html(meta: dict) -> str:
     return f'<p class="page-meta">{" · ".join(parts)}</p>'
 
 
+_MD_LINK_RE = re.compile(r'\bhref="wiki/([^"]+)\.md"')
+
+
+def _md_link(m: re.Match) -> str:
+    return f'href="/wiki/{m.group(1)}"'
+
+
 def render_page(md_path: Path) -> tuple[str, dict]:
     text = md_path.read_text(encoding="utf-8")
     body, meta = _parse_frontmatter(text)
     body = _WIKI_LINK_RE.sub(_wiki_link, body)
     html = _md.render(body)
+    html = _MD_LINK_RE.sub(_md_link, html)
     meta_line = _meta_html(meta)
     if meta_line:
         html = html.replace("</h1>", f"</h1>\n{meta_line}", 1)

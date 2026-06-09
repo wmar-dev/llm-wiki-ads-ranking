@@ -97,6 +97,10 @@ Fetched from Meta Engineering blog (engineering.fb.com); saved to raw/web/meta-r
 
 Partial gap — existing pages covered theoretical auction optimality (GSP equilibrium, VCG comparison) and general A/B testing well, but lacked systematic treatment of empirical optimality verification (offline metrics like AucLoss, progressive validation, counterfactual evaluation, and automated optimization). Enriched with Meta REA blog post. Created synthesis page (wiki/synthesis/how-to-know-optimality.md) with a 6-layer hierarchy: theory → offline metrics → counterfactual eval → A/B testing → systematic optimization → business outcomes.
 
+## [2026-06-09] lint | 2 errors, 0 warnings, 16 info
+
+L-001: 2 banner-blindness source pages missing from index. L-009: 16 entity gaps (Andromeda, ARM, Bootstrap, FTRL-Proximal, GEM, Google, Lattice, MAX, Meta, Monolith, Reddit, Smart Bidding, TikTok, UTIS, VCG, rGSP). No stale or contested pages. No broken cross-refs or sources.
+
 ## [2026-06-09] ingest | Monolith: Real Time Recommendation System With Collisionless Embedding Table
 
 Fetched from arXiv (2209.07663) via ar5iv HTML conversion; saved to raw/web/monolith-realtime-recommendation-system.md. Single-pass processing (2,441 words). Source type: peer_reviewed (ORSUM@ACM RecSys 2022). Created source summary (wiki/sources/), entity page for Monolith system (wiki/entities/), and two concept pages: online training for recommendation systems (wiki/concepts/) and collisionless embedding table (wiki/concepts/). Key findings: Cuckoo hash-based collisionless embedding improves AUC vs hash-trick approaches; minute-level parameter sync achieves 79.80 AUC (Criteo) vs 79.43 batch-only; 14–18% AUC improvement in production A/B test. No contradictions with existing pages that reference Monolith (TikTok blog post, TikTok synthesis).
