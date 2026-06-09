@@ -11,11 +11,11 @@ last_updated: "2026-06-09"
 
 # Ad Blindness and Banner Blindness
 
-**Ad blindness** (also called **banner blindness**) is the tendency of web users to consciously or unconsciously ignore page elements they perceive to be advertisements. First documented in 1998 by Benway and Lane, the phenomenon has been replicated across three decades of eyetracking studies and remains a robust behavioral pattern on both desktop and mobile [[wiki/banner-blindness-wikipedia.md]].
+**Ad blindness** (also called **banner blindness**) is the tendency of web users to consciously or unconsciously ignore page elements they perceive to be advertisements. First documented in 1998 by Benway and Lane, the phenomenon has been replicated across three decades of eyetracking studies and remains a robust behavioral pattern on both desktop and mobile [[wiki/sources/banner-blindness-wikipedia.md]].
 
 ## How It Works
 
-Banner blindness is an instance of **selective attention**: people direct their focus only to stimuli related to their current goals. Because attention capacity is limited, users learn to skip elements that are typically irrelevant — ads chief among them [[wiki/banner-blindness-revisited-users-dodge-ads-on-mobile-and-desktop-nng.md]].
+Banner blindness is an instance of **selective attention**: people direct their focus only to stimuli related to their current goals. Because attention capacity is limited, users learn to skip elements that are typically irrelevant — ads chief among them [[wiki/sources/banner-blindness-revisited-users-dodge-ads-on-mobile-and-desktop-nng.md]].
 
 ```mermaid
 flowchart LR
@@ -33,11 +33,11 @@ Three ad-like traits cause elements to be ignored:
 
 1. **Ad-specific placement** — top of page, right rail, or bottom banner positions where users have learned to expect ads.
 2. **Ad-like visual treatment** — animation, colored backgrounds, distinctive borders, or any formatting that differs from the surrounding content.
-3. **Proximity to actual ads** — the Gestalt law of proximity means that content placed near ads is assumed to be ad-related and is also ignored [[wiki/banner-blindness-revisited-users-dodge-ads-on-mobile-and-desktop-nng.md]].
+3. **Proximity to actual ads** — the Gestalt law of proximity means that content placed near ads is assumed to be ad-related and is also ignored [[wiki/sources/banner-blindness-revisited-users-dodge-ads-on-mobile-and-desktop-nng.md]].
 
 ## The Hot-Potato Phenomenon
 
-When a user glances at an ad once and finds it irrelevant, they may avoid that entire screen region on subsequent visits — not just on that page but across different websites. Nielsen Norman Group found that on one page, the right rail received **0.8% of user attention** despite occupying **25% of the content area** — a 33× deficit [[wiki/banner-blindness-revisited-users-dodge-ads-on-mobile-and-desktop-nng.md]].
+When a user glances at an ad once and finds it irrelevant, they may avoid that entire screen region on subsequent visits — not just on that page but across different websites. Nielsen Norman Group found that on one page, the right rail received **0.8% of user attention** despite occupying **25% of the content area** — a 33× deficit [[wiki/sources/banner-blindness-revisited-users-dodge-ads-on-mobile-and-desktop-nng.md]].
 
 ## Mobile vs Desktop
 
@@ -48,7 +48,7 @@ When a user glances at an ad once and finds it irrelevant, they may avoid that e
 | Peripheral vision | Ads in peripheral vision are easily ignored | Screen-filling ads force involuntary fixations |
 | Faux ads | Content mistaken for ads occasionally | More frequent — users scroll past large images assuming they are ads |
 
-On mobile, inline ads are difficult to avoid because the screen shows so little content at once, and ads occupy a large proportion of the viewport. Users often fixate on mobile ads involuntarily while scrolling but still fail to cognitively process them [[wiki/banner-blindness-revisited-users-dodge-ads-on-mobile-and-desktop-nng.md]].
+On mobile, inline ads are difficult to avoid because the screen shows so little content at once, and ads occupy a large proportion of the viewport. Users often fixate on mobile ads involuntarily while scrolling but still fail to cognitively process them [[wiki/sources/banner-blindness-revisited-users-dodge-ads-on-mobile-and-desktop-nng.md]].
 
 ## Cognitive Impact Beyond Blindness
 
@@ -59,11 +59,11 @@ On mobile, inline ads are difficult to avoid because the screen shows so little 
 - Have **poorer recall** of what they learned (up to 38% less)
 - Experience **visual crowding** — excess stimuli overload cognitive capacity, impairing short-term memory
 
-These effects occur even when users do not consciously fixate on ads, suggesting that ads impose a cognitive load through peripheral vision alone [[wiki/banner-blindness-wikipedia.md]].
+These effects occur even when users do not consciously fixate on ads, suggesting that ads impose a cognitive load through peripheral vision alone [[wiki/sources/banner-blindness-wikipedia.md]].
 
 ## Emotion and Memorability
 
-Contrary to the expectation that emotionally charged ads capture attention, research shows that **neutral-valence banners are recognized better** than positive or negative ones. Users have learned that bright, emotional imagery signals advertising and actively ignore it. Neutral banners are not perceived as typical ads and therefore escape the learned-avoidance filter [[wiki/banner-blindness-wikipedia.md]].
+Contrary to the expectation that emotionally charged ads capture attention, research shows that **neutral-valence banners are recognized better** than positive or negative ones. Users have learned that bright, emotional imagery signals advertising and actively ignore it. Neutral banners are not perceived as typical ads and therefore escape the learned-avoidance filter [[wiki/sources/banner-blindness-wikipedia.md]].
 
 ## Countermeasures
 
@@ -75,7 +75,7 @@ Contrary to the expectation that emotionally charged ads capture attention, rese
 | Location choice | Place ads in the top-left reading path | Still subject to learned avoidance |
 | Modest animation | Moderate motion increases recognition | Rapid animation reduces recall and increases annoyance |
 
-Personalized ads are clicked more often but also trigger avoidance in users with high privacy concerns [[wiki/banner-blindness-wikipedia.md]].
+Personalized ads are clicked more often but also trigger avoidance in users with high privacy concerns [[wiki/sources/banner-blindness-wikipedia.md]].
 
 ## Open Questions
 
