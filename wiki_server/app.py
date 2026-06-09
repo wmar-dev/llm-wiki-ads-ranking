@@ -14,7 +14,7 @@ _md = (
     MarkdownIt("commonmark")
     .enable("linkify")
     .enable("table")
-    .use(dollarmath_plugin)
+    .use(dollarmath_plugin, allow_digits=False)
 )
 
 
