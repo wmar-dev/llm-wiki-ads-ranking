@@ -92,3 +92,5 @@ Under standard assumptions (independent private values, risk-neutral bidders), t
 ## Related Pages
 
 - [[wiki/sources/overlapping-experiment-infrastructure.md]] — experimentation infrastructure for testing auction parameter changes at scale
+- [[wiki/sources/google-ad-rank-briefing.md]] — Google's internal description of Ad Rank with LTV scoring, thresholds, and rGSP *(regulatory filing)*
+- [[wiki/concepts/google-ad-rank-ltv-scoring.md]] — production Ad Rank system with cost-side terms and reserve pricing

@@ -9,6 +9,7 @@
 - [What Is a Second Price Auction?](wiki/synthesis/second-price-auction.md) — Vickrey/GSP auction mechanics, incentive compatibility, revenue equivalence, and relevance to ads ranking systems [status: current] [sources: 1]
 - [Internet Advertising and the GSP Auction](wiki/sources/edelman-ostrovsky-schwarz-gsp-auction.md) — Edelman, Ostrovsky & Schwarz (AER 2007); proves GSP lacks dominant-strategy truthfulness but has a unique locally envy-free equilibrium with VCG-equivalent payoffs [status: current] [sources: 1] [source_type: peer_reviewed]
 - [Generalized Second-Price Auction (GSP)](wiki/concepts/generalized-second-price-auction.md) — multi-slot auction mechanism used in search advertising; bid × quality score ranking; locally envy-free equilibrium [status: current] [sources: 1]
+- [Google Ad Rank and LTV Scoring](wiki/concepts/google-ad-rank-ltv-scoring.md) — production Ad Rank system: LTV = eCPM - costs (pCTR, pCQ, pLQ); thresholds, reserve pricing, rGSP, Smart Bidding [status: draft] [sources: 2]
 
 ## Machine Learning at Scale
 
@@ -22,3 +23,10 @@
 - [How TikTok's Algorithm Really Works](wiki/sources/tiktok-unsupervised-algorithm-deep-dive.md) — unsupervised learning engine behind FYP; embeddings, Monolith real-time training, two-stage architecture [status: draft] [sources: 1] [source_type: blog_post]
 
 ## Sources
+
+- [Overlapping Experiment Infrastructure](wiki/sources/overlapping-experiment-infrastructure.md) — Google's layered A/B testing system (KDD 2010) [status: current] [sources: 1] [source_type: peer_reviewed] [processing_status: processed] [ingest_count: 1]
+- [Internet Advertising and the GSP Auction](wiki/sources/edelman-ostrovsky-schwarz-gsp-auction.md) — Edelman, Ostrovsky & Schwarz (AER 2007) [status: current] [sources: 1] [source_type: peer_reviewed]
+- [The Unreasonable Effectiveness of Data](wiki/sources/unreasonable-effectiveness-of-data.md) — Halevy, Norvig & Pereira (IEEE Intelligent Systems 2009) [status: current] [sources: 1] [source_type: peer_reviewed] [processing_status: processed] [ingest_count: 1]
+- [How TikTok Recommends Content](wiki/sources/tiktok-recommender-system.md) — TikTok official documentation on recommender signals [status: current] [sources: 1] [source_type: other]
+- [How TikTok's Algorithm Really Works](wiki/sources/tiktok-unsupervised-algorithm-deep-dive.md) — unsupervised learning engine behind FYP [status: draft] [sources: 1] [source_type: blog_post]
+- [How Search Ads are Ranked and Priced on Google](wiki/sources/google-ad-rank-briefing.md) — Google's internal briefing paper to UK CMA (submitted in DOJ case); reveals LTV scoring formula, thresholds, rGSP, and pricing mechanics [status: current] [sources: 1] [source_type: other] [processing_status: processed] [ingest_count: 1]

@@ -54,9 +54,14 @@ A bidding profile is **locally envy-free** if no advertiser prefers to swap posi
 
 - Strategic underbidding is rational — advertisers shade bids below true value.
 - Quality score models (ML-based CTR prediction) introduce additional complexity not captured by the original GSP theory.
+- Google's production Ad Rank system uses an **LTV (Long-term Value) Score** that includes cost-side terms (creative quality, landing page quality) absent from the theoretical GSP model.
+- Google launched **rGSP (Randomized General Second-Price Auction)** globally in January 2019, adding randomization to the mechanism.
+- Reserve pricing applies when no competitor clears the ad quality threshold — a significant fraction of real-world auctions.
 - Modern programmatic display advertising increasingly uses **first-price auction** formats (header bidding), where GSP assumptions do not hold.
 
 ## Related Pages
 
 - [[wiki/synthesis/second-price-auction.md]]
 - [[wiki/sources/edelman-ostrovsky-schwarz-gsp-auction.md]]
+- [[wiki/sources/google-ad-rank-briefing.md]]
+- [[wiki/concepts/google-ad-rank-ltv-scoring.md]]

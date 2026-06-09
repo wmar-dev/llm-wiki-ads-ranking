@@ -1,0 +1,27 @@
+FULL TEXT EXTRACTED FROM PDF: https://www.justice.gov/d9/2023-10/416881.pdf
+
+[See pdf extraction output above for the full 1162-line text. This file is the raw extraction
+preserved for reference. The summary at raw/web/google-ad-rank-briefing-paper.md contains the
+key structural overview.]
+
+--- CONTENTS ---
+
+INTRODUCTION
+THE GOOGLE SEARCH RESULTS PAGE (SERP)
+AD RANK: AN OVERVIEW
+Computing LTV: an Overview
+Bidding: Manual vs. Automated
+Predicted Clickthrough Rate (pCTR)
+Formats and Extensions
+Predicted Creative Quality (pCQ)
+Predicted Landing Page Experience (pLQ)
+Thresholds and Reserve Prices
+Actual CPC: What Advertisers Actually Pay per Click
+Randomized General Second-Price Auction (rGSP)
+SIGNIFICANT CHANGES TO AD RANK, PAST AND FUTURE
+
+--- KEY NUMBERS ---
+- Jan 2020: ~20% of global queries resulted in at least one text ad on first-page SERP
+- <2% of global queries resulted in 4+ ads
+- ~XX% of ad clicks were reserve-priced (redacted)
+- ~XX% of global search ads revenue from singleton ads (redacted)

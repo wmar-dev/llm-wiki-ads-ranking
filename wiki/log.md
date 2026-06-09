@@ -19,3 +19,7 @@ Fixed L-003 (frontmatter standardized on overlapping-experiment-infrastructure.m
 ## [2026-06-08] query | how does tiktok algorithm work | pages-read: 0 | sources-ingested: 3
 
 Total gap — no existing wiki pages on TikTok. Fetched 3 sources (TikTok official docs, Kingy AI deep dive, DEV system design). Created 2 source summaries, 1 synthesis page (wiki/synthesis/tiktok-recommendation-algorithm.md). Key finding: unsupervised clustering + embeddings → two-stage candidate generation and ranking → real-time feedback loop.
+
+## [2026-06-08] ingest | How Search Ads are Ranked and Priced on Google
+
+Downloaded 31 MB PDF from DOJ website (justice.gov); extracted 4,765 words via pdftotext. Single-pass processing. Source: Google's internal briefing paper to UK CMA (2020), submitted as Exhibit UPX0010 in US v. Google. Source type: other (regulatory filing). Created source summary (wiki/sources/google-ad-rank-briefing.md) and concept page (wiki/concepts/google-ad-rank-ltv-scoring.md). Updated existing GSP concept page and second-price synthesis page with rGSP and reserve pricing details. Key findings: LTV score uses cost-side terms (pCQ, pLQ) not present in theoretical GSP models; rGSP launched globally Jan 2019; reserve pricing applies when no competitor clears quality threshold. No contradictions — existing theoretical pages describe the idealized model; this source reveals the production implementation.
