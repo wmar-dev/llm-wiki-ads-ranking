@@ -26,7 +26,7 @@ sequenceDiagram
 
     Adv->>Eng: Submit CPC bid
     Eng->>Ranker: Rank by bid × quality score
-    Ranker->>Adv: Assign slot; charge next bidder's clearing price
+    Ranker->>Adv: Assign slot, charge next bidder's clearing price
 ```
 
 ## Relationship to Vickrey (Second-Price) Auction

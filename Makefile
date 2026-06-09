@@ -29,3 +29,6 @@ ingest:
 
 index:
 	uv run python -m wiki_server.search rebuild
+
+validate-mermaid:
+	uv run python scripts/validate_mermaid.py --all

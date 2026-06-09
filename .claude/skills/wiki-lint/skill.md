@@ -85,52 +85,31 @@ Scan every ` ```mermaid ` fenced block in each wiki page and validate against th
 Mermaid parser. Report errors with page path, line number, and the parser error
 message.
 
-Use Playwright to parse each diagram against the Mermaid CDN version used by the
-wiki (mermaid@11). Write a temporary validation script `/tmp/validate_mermaid.py`:
+The project includes a validation script at `scripts/validate_mermaid.py`. It has
+two modes:
 
-```python
-import sys, json, asyncio
-from playwright.async_api import async_playwright
-
-async def validate(text):
-    async with async_playwright() as p:
-        browser = await p.chromium.launch()
-        page = await browser.new_page()
-        result = await page.evaluate("""
-            async (diagram) => {
-                const m = await import(
-                    'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs'
-                );
-                const mmd = m.default || m;
-                try {
-                    const ok = await mmd.parse(diagram);
-                    return { valid: true };
-                } catch(e) {
-                    return {
-                        valid: false,
-                        error: e.message || String(e),
-                        line: e.line || e.loc?.first_line || null
-                    };
-                }
-            }
-        """, text)
-        await browser.close()
-        return result
-
-if __name__ == '__main__':
-    text = sys.stdin.read()
-    result = asyncio.run(validate(text))
-    print(json.dumps(result))
-```
-
-For each mermaid block found, run:
+**Validate a single diagram** (pipe source to stdin):
 ```sh
-uv run python /tmp/validate_mermaid.py << 'MERMAID_EOF'
+uv run python scripts/validate_mermaid.py << 'MERMAID_EOF'
 <diagram source here>
 MERMAID_EOF
 ```
 
-Report every diagram that returns `{"valid": false}`, including the page path,
+**Validate all diagrams** in the wiki at once:
+```sh
+uv run python scripts/validate_mermaid.py --all
+```
+
+The `--all` mode scans every `wiki/**/*.md` file, extracts all ` ```mermaid `
+blocks, validates each against Mermaid v11 (via Playwright + CDN), and exits with
+code 1 if any diagram fails. Output format:
+
+```
+OK    concepts/foo.md:17
+FAIL  synthesis/bar.md:42  Parse error on line 3: ...
+```
+
+Report every diagram that returns `FAIL`, including the page path,
 the line number of the ` ```mermaid ` fence, and the parser error message.
 
 ---
