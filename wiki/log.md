@@ -11,3 +11,7 @@ Fetched from NBER/Cramton mirror; saved to raw/web/edelman-ostrovsky-schwarz-gsp
 ## [2026-06-08] ingest | The Unreasonable Effectiveness of Data
 
 Fetched via web search (PDF not text-parseable); saved to raw/web/unreasonable-effectiveness-of-data.md. Created source summary (wiki/sources/) and concept page (wiki/concepts/web-scale-learning.md). Peer-reviewed (IEEE Intelligent Systems 2009). No contradictions found with existing pages. Key thesis: simple models + lots of data outperform complex models + less data.
+
+## [2026-06-08] lint | 2 errors, 0 warnings, 0 info
+
+Fixed L-003 (frontmatter standardized on overlapping-experiment-infrastructure.md) and L-005 (broken cross-ref in second-price-auction.md pointing to wrong path). Macro eval not triggered (ingest count=2, need multiple of 10).

@@ -91,4 +91,4 @@ Under standard assumptions (independent private values, risk-neutral bidders), t
 
 ## Related Pages
 
-- [[wiki/overlapping-experiment-infrastructure.md]] — experimentation infrastructure for testing auction parameter changes at scale
+- [[wiki/sources/overlapping-experiment-infrastructure.md]] — experimentation infrastructure for testing auction parameter changes at scale

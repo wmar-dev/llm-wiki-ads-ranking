@@ -1,9 +1,12 @@
 ---
 title: "Overlapping Experiment Infrastructure: More, Better, Faster Experimentation"
-source: "raw/pdf/overlapping-experiment-infrastructure.pdf"
+type: "source_summary"
+sources:
+  - "pdf/overlapping-experiment-infrastructure.pdf"
 source_url: "https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/36500.pdf"
-source_type: "pdf"
-ingested_at: "2026-06-08"
+status: "current"
+created: "2026-06-08"
+last_updated: "2026-06-08"
 ---
 
 **Authors**: Diane Tang, Ashish Agarwal, Deirdre O'Brien, Mike Meyer (Google, Inc.)
