@@ -4,6 +4,10 @@
 
 - [Ad Blindness and Banner Blindness](wiki/synthesis/ad-blindness.md) — definition, mechanisms, triggers, mobile vs desktop, cognitive impact, and countermeasures for the phenomenon where users ignore perceived advertisements [status: current] [sources: 2]
 
+## Auction & Ranking Optimality
+
+- [How Do You Know Your Auction or Ranking Is Optimal?](wiki/synthesis/how-to-know-optimality.md) — theoretical, offline, counterfactual, online, and business-level criteria for assessing ranking/auction optimality [status: current] [sources: 5]
+
 ## Experimentation & A/B Testing
 
 - [Overlapping Experiment Infrastructure: More, Better, Faster Experimentation](wiki/sources/overlapping-experiment-infrastructure.md) — Google's layered A/B testing system (KDD 2010); introduces domains/layers/launch layers and supporting tools for running thousands of simultaneous experiments
@@ -48,6 +52,7 @@
 - [How the TikTok Recommendation Algorithm Works](wiki/synthesis/tiktok-recommendation-algorithm.md) — two-stage pipeline (candidate generation + ranking); unsupervised clustering + embeddings; implicit signal-driven feedback loop; exploration vs exploitation [status: current] [sources: 3]
 - [How TikTok Recommends Content](wiki/sources/tiktok-recommender-system.md) — TikTok official documentation on recommender signals (user interactions, content info, user info) [status: current] [sources: 1] [source_type: other]
 - [How TikTok's Algorithm Really Works](wiki/sources/tiktok-unsupervised-algorithm-deep-dive.md) — unsupervised learning engine behind FYP; embeddings, Monolith real-time training, two-stage architecture [status: draft] [sources: 1] [source_type: blog_post]
+- [Two-Tower and Factorized Models: Architecture for Billion-Scale Retrieval](wiki/synthesis/two-tower-factorized-models.md) — dual-encoder architecture for retrieval stage; independent user/item towers; in-batch negatives; sampling bias correction; FAISS ANN search; multi-stage pipeline; cold-start handling [status: current] [sources: 2]
 
 ## Sources
 
@@ -70,3 +75,6 @@
 - [Contextual Relevance, Feedback Loops, and User Trust](wiki/sources/contextual-relevance-feedback-trust.md) — bias feedback loops in ranker training; contextual vs behavioral advertising performance; balancing ad relevance with trust [status: current] [sources: 1] [source_type: other]
 - [Reddit Max Campaigns Trajectory vs Meta Advantage+](wiki/sources/reddit-max-campaigns-trajectory.md) — Max CPA -17%, conversions +27%; Advantage+ became default Q2 2026; Reddit differentiates on transparency [status: current] [sources: 1] [source_type: other]
 - [Ad Click Prediction: a View from the Trenches](wiki/sources/ad-click-prediction-view-from-the-trenches.md) — McMahan et al. (KDD 2013); CTR prediction at Google: FTRL-Proximal, per-coordinate rates, memory optimization [status: current] [sources: 1] [source_type: peer_reviewed] [processing_status: chunked] [ingest_count: 1]
+- [Ranking Engineer Agent (REA): Meta's Autonomous Ads Ranking Optimizer](wiki/sources/meta-ranking-engineer-agent-rea.md) — autonomous AI agent for end-to-end ML experimentation on ads ranking; 2× accuracy improvement over baseline [status: current] [sources: 1] [source_type: other]
+- [Two-Tower Models: The Architecture Powering Google, TikTok, and YouTube](wiki/sources/two-tower-models-engineers-of-ai.md) — comprehensive tutorial on two-tower: architecture constraint, in-batch negatives, sampling bias correction, FAISS serving, multi-stage pipeline [status: draft] [sources: 1] [source_type: other] [processing_status: processed] [ingest_count: 1]
+- [Implement Two-Tower Retrieval for Large-Scale Candidate Generation](wiki/sources/implement-two-tower-retrieval-google-cloud.md) — Google Cloud reference architecture: Vertex AI two-tower deployment, decoupled tower serving, cold-start handling [status: draft] [sources: 1] [source_type: other] [processing_status: processed] [ingest_count: 1]

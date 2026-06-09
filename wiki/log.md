@@ -80,3 +80,15 @@ Fixed 2 L-001 orphans (deleted raw webpage copies wrongly placed in wiki/). Rema
 ## [2026-06-09] query | why ads have auctions | pages-read: 5 | sources-ingested: 0
 
 Full coverage from existing wiki pages on GSP auction theory (Edelman et al., AER 2007) and Google Ad Rank mechanics. No web enrichment needed. Created synthesis page (wiki/synthesis/why-ads-have-auctions.md) covering scarcity, perishing inventory, price discovery, and why fixed prices fail.
+
+## [2026-06-09] query | what are two tower or factorized models | pages-read: 4 | sources-ingested: 2
+
+Partial gap — existing pages mentioned two-tower/multi-tower models in passing (TikTok, Reddit, Meta) but lacked a standalone architecture definition. Enriched with 2 web sources (EngineersOfAI tutorial, Google Cloud reference architecture). Created synthesis page (wiki/synthesis/two-tower-factorized-models.md). Key finding: two-tower models solve billion-scale retrieval via the architectural constraint of independent user/item towers enabling precomputed embeddings + ANN search; the "factorized" name derives from deep-learning generalization of matrix factorization.
+
+## [2026-06-09] ingest | Ranking Engineer Agent (REA): Meta's Autonomous Ads Ranking Optimizer
+
+Fetched from Meta Engineering blog (engineering.fb.com); saved to raw/web/meta-ranking-engineer-agent-rea.md. Created source summary (wiki/sources/meta-ranking-engineer-agent-rea.md). Key finding: autonomous AI agent with dual-source hypothesis engine and three-phase planning (Validation → Combination → Exploitation) doubled average model accuracy across six models.
+
+## [2026-06-09] query | how do you know your auction or ranking is optimal | pages-read: 5 | sources-ingested: 1
+
+Partial gap — existing pages covered theoretical auction optimality (GSP equilibrium, VCG comparison) and general A/B testing well, but lacked systematic treatment of empirical optimality verification (offline metrics like AucLoss, progressive validation, counterfactual evaluation, and automated optimization). Enriched with Meta REA blog post. Created synthesis page (wiki/synthesis/how-to-know-optimality.md) with a 6-layer hierarchy: theory → offline metrics → counterfactual eval → A/B testing → systematic optimization → business outcomes.
