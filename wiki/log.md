@@ -45,6 +45,10 @@ Partial coverage — existing wiki had 1 source on Google's overlapping experime
 
 Partial coverage — existing wiki mentioned delta method and empirical carve-up in passing. Enrichment: fetched Deng et al. (2018) delta method paper from ar5iv HTML (Microsoft ExP, KDD 2018). Created synthesis page (wiki/synthesis/confidence-interval-methods.md) covering 9 methods: t-test/Wald, delta method, Fieller, Edgeworth expansion, bootstrap (3 variants: percentile/BCa/t), outer CI for quantiles, hybrid method, Bayesian credible intervals, and confidence sequences (mSPRT, AsympCS, design-based, SAVI). Includes decision flowcharts, method comparison table, and implementation notes. Open questions: width penalty of confidence sequences, adjustment for network interference.
 
+## [2026-06-08] query | what is the jackknife method | pages-read: 1 | sources-ingested: 1
+
+Total gap — no existing wiki pages on jackknife. Fetched 1 source (Wikipedia). Created source summary (wiki/sources/jackknife-resampling.md) and synthesis page (wiki/synthesis/jackknife-method.md). Key finding: leave-one-out resampling for bias and variance estimation; linear approximation of bootstrap; conservative variance estimates.
+
 ## [2026-06-08] ingest | How Search Ads are Ranked and Priced on Google
 
 Downloaded 31 MB PDF from DOJ website (justice.gov); extracted 4,765 words via pdftotext. Single-pass processing. Source: Google's internal briefing paper to UK CMA (2020), submitted as Exhibit UPX0010 in US v. Google. Source type: other (regulatory filing). Created source summary (wiki/sources/google-ad-rank-briefing.md) and concept page (wiki/concepts/google-ad-rank-ltv-scoring.md). Updated existing GSP concept page and second-price synthesis page with rGSP and reserve pricing details. Key findings: LTV score uses cost-side terms (pCQ, pLQ) not present in theoretical GSP models; rGSP launched globally Jan 2019; reserve pricing applies when no competitor clears quality threshold. No contradictions — existing theoretical pages describe the idealized model; this source reveals the production implementation.

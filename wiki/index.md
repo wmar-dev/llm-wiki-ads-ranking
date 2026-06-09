@@ -5,6 +5,7 @@
 - [Overlapping Experiment Infrastructure: More, Better, Faster Experimentation](wiki/sources/overlapping-experiment-infrastructure.md) — Google's layered A/B testing system (KDD 2010); introduces domains/layers/launch layers and supporting tools for running thousands of simultaneous experiments
 - [How A/B Tests Work](wiki/synthesis/how-ab-tests-work.md) — comprehensive overview: randomization, hypothesis testing, OEC, sample sizing, A/A tests, CUPED, triggering, overlapping/layered experiments, and common pitfalls [status: current] [sources: 1]
 - [Methods for Computing Confidence Intervals in A/B Testing](wiki/synthesis/confidence-interval-methods.md) — decision framework for CI method selection: t-test/Wald, delta method, Fieller, bootstrap (BCa/percentile/t), outer CI for quantiles, hybrid method, Bayesian credible intervals, confidence sequences (mSPRT, AsympCS, design-based, SAVI), and CUPED [status: current] [sources: 1]
+- [The Jackknife Method](wiki/synthesis/jackknife-method.md) — leave-one-out resampling for bias and variance estimation; compares to bootstrap; relevance to A/B testing [status: current] [sources: 1]
 
 ## Auction Mechanisms & Pricing
 
@@ -55,3 +56,4 @@
 - [Reddit Max Campaigns](wiki/sources/reddit-max-campaigns.md) — Reddit Inc: AI-powered fully automated MAX campaigns with Community Intelligence [status: current] [sources: 1] [source_type: other] [processing_status: processed] [ingest_count: 1]
 - [Reddit Audience Targeting](wiki/sources/reddit-audience-targeting.md) — Reddit Business: official targeting guide with Community, Interest, Keyword + custom audiences [status: current] [sources: 1] [source_type: other] [processing_status: processed] [ingest_count: 1]
 - [Contextual Relevance of Ads at Reddit](wiki/sources/contextual-relevance-of-ads-reddit.md) — Reddit Engineering blog: LLM-as-judge labeling, fine-tuned embedding model for post-level contextual relevance, auction utility boosting [status: draft] [sources: 1] [source_type: other] [processing_status: processed] [ingest_count: 1]
+- [Jackknife Resampling](wiki/sources/jackknife-resampling.md) — leave-one-out resampling for bias and variance estimation; pre-dates the bootstrap; developed by Quenouille (1949) and Tukey (1958) [status: current] [sources: 1] [source_type: other]

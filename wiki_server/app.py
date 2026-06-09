@@ -6,10 +6,16 @@ from pathlib import Path
 
 from flask import Flask, abort, render_template, request, send_file
 from markdown_it import MarkdownIt
+from mdit_py_plugins.dollarmath import dollarmath_plugin
 
 from wiki_server import config
 
-_md = MarkdownIt("commonmark").enable("linkify").enable("table")
+_md = (
+    MarkdownIt("commonmark")
+    .enable("linkify")
+    .enable("table")
+    .use(dollarmath_plugin)
+)
 
 
 def render_page(md_path: Path) -> str:
