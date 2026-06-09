@@ -18,17 +18,32 @@
   </script>
 </head>
 <body>
-  <nav>
-    <a href="/" class="nav-home">Wiki</a>
-    <form action="/search" method="get" class="nav-search">
+  <aside class="sidebar">
+    <div class="sidebar-heading"><a href="/">LLM Wiki</a></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <div class="nav-label">Pages</div>
+        <a href="/wiki/synthesis/">Synthesis</a>
+        <a href="/wiki/concepts/">Concepts</a>
+        <a href="/wiki/entities/">Entities</a>
+        <a href="/wiki/sources/">Sources</a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-label">Tools</div>
+        <a href="/search">Search</a>
+        <a href="/metrics">Metrics</a>
+      </div>
+    </nav>
+  </aside>
+  <div class="content-wrapper">
+    <form action="/search" method="get" class="top-search">
       <input type="search" name="q" placeholder="Search…" value="{{ request.args.get('q', '') }}">
-      <button type="submit">Search</button>
+      <button type="submit">Go</button>
     </form>
-    <a href="/metrics" class="nav-metrics">Metrics</a>
-  </nav>
-  <main>
-    {% block content %}{% endblock %}
-  </main>
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {

@@ -54,6 +54,28 @@ def create_app() -> Flask:
         _log_access("/", 200)
         return render_template("page.html", content=html, title="Wiki Index")
 
+    _section_dirs = {
+        "synthesis": config.WIKI_DIR / "synthesis",
+        "concepts": config.WIKI_DIR / "concepts",
+        "entities": config.WIKI_DIR / "entities",
+        "sources": config.WIKI_DIR / "sources",
+    }
+
+    @app.route("/wiki/<section>/")
+    def wiki_section(section):
+        dir_path = _section_dirs.get(section)
+        if not dir_path or not dir_path.exists():
+            return render_template("page.html", content="<p>Section not found.</p>", title=section.title()), 404
+        entries = sorted(dir_path.iterdir())
+        links = "".join(
+            f'<li><a href="/wiki/{section}/{f.name}">{f.stem.replace("-", " ").title()}</a></li>\n'
+            for f in entries if f.suffix == ".md"
+        )
+        count = sum(1 for f in entries if f.suffix == ".md")
+        html = f"<h1>{section.title()}</h1>\n<p>{count} page(s)</p>\n<ul>\n{links}</ul>"
+        _log_access(f"/wiki/{section}/", 200)
+        return render_template("page.html", content=html, title=f"{section.title()} — LLM Wiki")
+
     @app.route("/wiki/<path:page>")
     def wiki_page(page):
         slug = page[:-3] if page.endswith(".md") else page
