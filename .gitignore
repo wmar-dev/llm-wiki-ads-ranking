@@ -1,3 +1,6 @@
+# Raw source files
+raw/pdf/
+
 # Generated artifacts
 search.db
 access.log

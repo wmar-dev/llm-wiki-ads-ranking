@@ -50,13 +50,14 @@ def create_app() -> Flask:
 
     @app.route("/wiki/<path:page>")
     def wiki_page(page):
-        md_path = config.WIKI_DIR / f"{page}.md"
+        slug = page[:-3] if page.endswith(".md") else page
+        md_path = config.WIKI_DIR / f"{slug}.md"
         if not md_path.exists():
             _log_access(request.path, 404)
             return render_template("404.html"), 404
         html = render_page(md_path)
         _log_access(request.path, 200)
-        return render_template("page.html", content=html, title=page.replace("-", " ").title())
+        return render_template("page.html", content=html, title=slug.replace("-", " ").title())
 
     @app.route("/search")
     def search():

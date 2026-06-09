@@ -1,0 +1,172 @@
+Source: https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/36500.pdf
+Fetched: 2026-06-08
+Format: PDF (text extraction)
+
+---
+
+# Overlapping Experiment Infrastructure: More, Better, Faster Experimentation
+
+Diane Tang, Ashish Agarwal, Deirdre O'Brien, Mike Meyer
+Google, Inc., Mountain View, CA
+[diane,agarwal,deirdre,mmm]@google.com
+
+KDD'10, July 25–28, 2010, Washington, DC, USA.
+Copyright 2010 ACM 978-1-4503-0055-1/10/07
+
+## ABSTRACT
+
+At Google, experimentation is practically a mantra; we evaluate almost every change that potentially affects what our users experience. Such changes include not only obvious user-visible changes such as modifications to a user interface, but also more subtle changes such as different machine learning algorithms that might affect ranking or content selection. Our insatiable appetite for experimentation has led us to tackle the problems of how to run more experiments, how to run experiments that produce better decisions, and how to run them faster. In this paper, we describe Google's overlapping experiment infrastructure that is a key component to solving these problems. In addition, because an experiment infrastructure alone is insufficient, we also discuss the associated tools and educational processes required to use it effectively. We conclude by describing trends that show the success of this overall experimental environment.
+
+Categories and Subject Descriptors: G.3 [Probability and Statistics]: Experimental Design—controlled experiments, randomized experiments, A/B testing; I.2.6 [Learning]: [real-time, automation, causality]
+
+Keywords: Controlled experiments, A/B testing, Website Testing, MultiVariable Testing
+
+## 1. INTRODUCTION
+
+Google is a data-driven company, which means that decision-makers in the company want empirical data to drive decisions about whether a change should be launched to users. This data is most commonly gathered by running live traffic experiments.
+
+The design goals for the experiment infrastructure are therefore: more, better, faster.
+
+- More: Scalability to run more experiments simultaneously, with flexibility for different configurations and different sizes.
+- Better: Invalid experiments should not be allowed to run on live traffic. Valid but bad experiments should be caught quickly and disabled. Standardized metrics should be easily available for all experiments.
+- Faster: It should be easy and quick to set up an experiment; easy enough that a non-engineer can do so without writing any code.
+
+The solution proposed is to partition the parameters into subsets, each subset associated with a layer that contains experiments, and traffic diversion into experiments in different layers is orthogonal. Each query would be in N experiments, where N equals the number of layers.
+
+## 2. RELATED WORK
+
+Related work falls in three areas: statistical literature on multi-factorial experiments; growing body of work on how to run web experiments (especially Kohavi et al. KDD survey); and interleaved experiments for evaluating ranking changes.
+
+## 3. BACKGROUND
+
+At Google, users interact by sending requests for web pages via their browser. For search results pages, the request may hit multiple binaries before returning results. One binary determines organic search results relevance, another determines ad relevance, and a third formats the resulting web page.
+
+Each binary has an associated binary push (periodic, weekly) and data push (on demand or every few hours). An experiment in web search diverts some subset of the incoming queries to an alternate processing path.
+
+For experiment diversion: random traffic (flipping a coin on every query) or cookie mod (given a numeric representation of a cookie, take that number modulo 1000). Cookie-mod-based diversion ensures consistent user experience across successive queries.
+
+Prior to overlapping experiment infrastructure, Google used a basic single layer infrastructure where each query is in at most one experiment. This was not sufficiently scalable.
+
+## 4. OVERLAPPING EXPERIMENT INFRASTRUCTURE
+
+### Core Concepts
+
+- A **domain** is a segmentation of traffic.
+- A **layer** corresponds to a subset of the system parameters.
+- An **experiment** is a segmentation of traffic where zero or more system parameters can be given alternate values.
+
+Domains contain layers. Layers contain experiments, and can also contain domains (nesting).
+
+### Traffic Diversion Types
+
+Four diversion types supported, in priority order:
+1. User-id mods
+2. Cookie mods (mod = f(cookie, layer) % 1000 to ensure orthogonality between layers)
+3. Cookie-day mods (mod of cookie combined with day; changes set of cookies in experiment from day-to-day)
+4. Random traffic
+
+Once an event meets the criteria for a particular experiment in one diversion type, it is not considered by remaining diversion types.
+
+### Conditions
+
+Conditions allow better utilization of traffic by assigning specific events to an experiment or domain. Supported conditions include country, language, browser, machine, or datacenter. Conditions are specified directly in experiment configuration, allowing conflict detection at creation time.
+
+### Launch Layers
+
+Launch layers differ from experiment layers:
+- Always contained within the default domain (run over all traffic)
+- A parameter can be in at most one launch layer and at most one "normal" layer simultaneously
+- Experiments within launch layers provide an alternative default value for parameters
+
+This allows gradual roll-out of changes to all users without interfering with existing experiments.
+
+### Typical Feature Lifecycle
+
+1. Implement the new feature in the appropriate binary
+2. Create a canary experiment (data push) to ensure the feature is working
+3. Create an experiment or set of experiments to evaluate the feature
+4. Evaluate the metrics from the experiment
+5. If launchable, create a new launch layer, gradually ramp up, then delete the launch layer and change default values
+
+## 5. TOOLS & PROCESSES
+
+### 5.1 Tools
+
+**Data File Checks**: Automated checks for syntax errors, consistency and constraints errors (uniqueness of IDs, whether the experiment is in the right layer, traffic constraint checks), and basic experiment design checks.
+
+**Real-time Monitoring**: Captures basic metrics (e.g., CTR) as quickly as possible. Experimenters can set expected ranges; automated alerts are fired if metrics go outside expected range.
+
+### 5.2 Experiment Design & Sizing
+
+#### 5.2.1 Sizing
+
+Effective size of an experiment: N = (1/queries_control + 1/queries_experiment)^{-1}
+
+Kohavi assumes experiment and control are same size (queries_experiment = 2N ≥ 16(s/θ)^2). With a large shared control, can use queries_experiment = N ≥ 10.5(s/θ)^2 with 90% power.
+
+For ratio metrics, the standard error per experimental unit (s0) is calculated using the delta method. A sizing tool allows experimenters to specify metrics, desired detectable change, diversion type, and traffic segment to get required experiment size.
+
+Uniformity trials (A vs. A experiments) are constantly run to empirically measure natural variance of metrics.
+
+#### 5.2.2 Triggering, Logging, & Counter-factuals
+
+An experiment may trigger only on a subset of diverted requests (the **trigger set**). The **counter-factual** (when the experiment would have triggered) is logged in the control. This is important for sizing and analyzing experiments, as including unchanged requests dilutes the measured impact.
+
+#### 5.2.3 Pre- & Post-periods
+
+A **pre-period** is a period prior to starting the experiment where the same traffic is diverted but no changes are made — useful for ensuring traffic is comparable to control. A **post-period** is the same after the experiment — useful for detecting learning effects.
+
+### 5.3 Fast Analytics
+
+The primary goal is to provide accurate values for the suite of metrics. Key design goals for the analysis tool:
+- Correctly computed confidence intervals (delta method or empirical carve-up method)
+- Good UI with sparklines and easy comparisons
+- Support for slicing (to detect Simpson's paradox — mix shifts)
+- Extensibility for custom metrics and slicings
+
+A single canonical tool ensures consistent implementation with agreed-upon filters for different teams.
+
+### 5.4 Education
+
+#### 5.4.1 Experiment Council
+
+A group of engineers reviews a light-weight checklist before experiments run. Questions cover: basic experiment characterization, experiment set-up, diversion and triggering, analysis, sizing and duration, and experiment design. Checklist is hosted on a web application for archival and educational purposes.
+
+#### 5.4.2 Interpreting the Data
+
+A discussion forum where experimenters bring results to discuss with experts. Goals: ensure results are valid, ensure metrics are complete, discuss whether the experiment is a positive or negative user experience. Open so future experimenters can attend to learn.
+
+## 6. RESULTS
+
+Deployed in March 2007. Results (y-axes elided for confidentiality, linear scale, 2007–2010):
+- Nearly an order of magnitude more experiments
+- More launches
+- More people running experiments
+
+Qualitative improvements: fewer misconfigured experiments, fewer forgotten experiments, fewer debates about metric definitions, better sanity checks via pre-periods.
+
+Speed improvements: implementation is now the slowest phase; experiment push and analysis are faster.
+
+## 7. CONCLUSIONS AND FUTURE WORK
+
+The overlapping experiment infrastructure, associated tools, and educational processes facilitate more, better, and faster experimentation. The design choices are generalizable to any entity that wants to gather empirical data to evaluate changes.
+
+Future work areas:
+- Expediting implementation of new features and facilitating radically different experiments
+- Extending composable operators (multiplication, addition) to allow the same numeric parameter in multiple layers
+- Efficiently running experiments on small traffic slices (e.g., rare languages)
+- More expressive conditions with associated verification
+
+## 8. REFERENCES
+
+[1] D. Agarwal et al. Estimating rates of rare events at multiple resolutions. KDD 2007.
+[2] W. G. Cochran. Sampling Techniques. Wiley, 1977.
+[3] D. Cox and N. Reid. The theory of the design of experiments, 2000.
+[4] T. Crook et al. Seven pitfalls to avoid when running controlled experiments on the web. Microsoft white paper, 2008.
+[5] Google. Google website optimizer.
+[6] T. Joachims. Optimizing search engines using clickthrough data. KDD 2002.
+[7] R. Kohavi et al. Controlled experiments on the web: Survey and practical guide. Data Mining and Knowledge Discovery, 2008.
+[8] M. Krieger. Wrap up & experimentation: Cs147l lecture, 2009.
+[9] Microsoft. Microsoft's experimentation platform.
+[10] M. Richardson et al. Predicting clicks: Estimating the click-through rate for new ads. WWW 2007.
+[11] L. Wasserman. All of Statistics: A Concise Course in Statistical Inference. Springer Texts, 2004.

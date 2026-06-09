@@ -1,8 +1,3 @@
-<!-- SPECKIT START -->
-For additional context about technologies to be used, project structure,
-shell commands, and other important information, read the current plan:
-`specs/002-content-search-media/plan.md`
-<!-- SPECKIT END -->
 
 ## Quickstart
 
@@ -11,6 +6,7 @@ shell commands, and other important information, read the current plan:
 ```sh
 make install    # uv sync + playwright install chromium
 make serve      # Flask at http://localhost:5000
+make dev        # Flask at http://localhost:5000 with debug mode + auto-reload
 ```
 
 **Ingest sources**:
@@ -35,3 +31,10 @@ make index
 - `search.db` and `access.log*` are gitignored and regenerated automatically.
 - Search uses SQLite FTS5 native `bm25()` — no external search service needed.
 - Log rotates at 10 MB; all segments remain queryable from `/metrics`.
+- Wiki pages support Mermaid diagrams (fenced ` ```mermaid ` blocks), GFM tables, and linked matplotlib chart scripts (`wiki/assets/<slug>-chart.py`).
+- `/wiki/<slug>` and `/wiki/<slug>.md` both resolve to the same page.
+
+<!-- SPECKIT START -->
+For additional context about technologies to be used, project structure,
+shell commands, and other important information, read the current plan
+<!-- SPECKIT END -->
