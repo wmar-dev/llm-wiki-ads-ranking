@@ -15,3 +15,7 @@ Fetched via web search (PDF not text-parseable); saved to raw/web/unreasonable-e
 ## [2026-06-08] lint | 2 errors, 0 warnings, 0 info
 
 Fixed L-003 (frontmatter standardized on overlapping-experiment-infrastructure.md) and L-005 (broken cross-ref in second-price-auction.md pointing to wrong path). Macro eval not triggered (ingest count=2, need multiple of 10).
+
+## [2026-06-08] query | how does tiktok algorithm work | pages-read: 0 | sources-ingested: 3
+
+Total gap — no existing wiki pages on TikTok. Fetched 3 sources (TikTok official docs, Kingy AI deep dive, DEV system design). Created 2 source summaries, 1 synthesis page (wiki/synthesis/tiktok-recommendation-algorithm.md). Key finding: unsupervised clustering + embeddings → two-stage candidate generation and ranking → real-time feedback loop.

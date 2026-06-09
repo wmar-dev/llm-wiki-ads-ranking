@@ -15,4 +15,10 @@
 - [The Unreasonable Effectiveness of Data](wiki/sources/unreasonable-effectiveness-of-data.md) — Halevy, Norvig & Pereira (IEEE Intelligent Systems 2009); argues simple models + lots of data outperform complex models + less data; foundational paper for web-scale learning [status: current] [sources: 1] [source_type: peer_reviewed] [processing_status: processed] [ingest_count: 1]
 - [Web-Scale Learning](wiki/concepts/web-scale-learning.md) — paradigm of training ML on naturally occurring large-scale data; threshold of sufficient data; memorization at scale [status: draft] [sources: 2]
 
+## Recommendation Systems
+
+- [How the TikTok Recommendation Algorithm Works](wiki/synthesis/tiktok-recommendation-algorithm.md) — two-stage pipeline (candidate generation + ranking); unsupervised clustering + embeddings; implicit signal-driven feedback loop; exploration vs exploitation [status: current] [sources: 3]
+- [How TikTok Recommends Content](wiki/sources/tiktok-recommender-system.md) — TikTok official documentation on recommender signals (user interactions, content info, user info) [status: current] [sources: 1] [source_type: other]
+- [How TikTok's Algorithm Really Works](wiki/sources/tiktok-unsupervised-algorithm-deep-dive.md) — unsupervised learning engine behind FYP; embeddings, Monolith real-time training, two-stage architecture [status: draft] [sources: 1] [source_type: blog_post]
+
 ## Sources
