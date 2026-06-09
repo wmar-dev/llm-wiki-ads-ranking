@@ -80,13 +80,66 @@ Flag pages with `sources: []` (informational only).
 Identify named entities (companies, models, systems, teams) mentioned across ≥3
 pages that have no dedicated `wiki/entities/` page. These are gaps worth filling.
 
+#### L-010: Mermaid syntax errors
+Scan every ` ```mermaid ` fenced block in each wiki page and validate against the
+Mermaid parser. Report errors with page path, line number, and the parser error
+message.
+
+Use Playwright to parse each diagram against the Mermaid CDN version used by the
+wiki (mermaid@11). Write a temporary validation script `/tmp/validate_mermaid.py`:
+
+```python
+import sys, json, asyncio
+from playwright.async_api import async_playwright
+
+async def validate(text):
+    async with async_playwright() as p:
+        browser = await p.chromium.launch()
+        page = await browser.new_page()
+        result = await page.evaluate("""
+            async (diagram) => {
+                const m = await import(
+                    'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs'
+                );
+                const mmd = m.default || m;
+                try {
+                    const ok = await mmd.parse(diagram);
+                    return { valid: true };
+                } catch(e) {
+                    return {
+                        valid: false,
+                        error: e.message || String(e),
+                        line: e.line || e.loc?.first_line || null
+                    };
+                }
+            }
+        """, text)
+        await browser.close()
+        return result
+
+if __name__ == '__main__':
+    text = sys.stdin.read()
+    result = asyncio.run(validate(text))
+    print(json.dumps(result))
+```
+
+For each mermaid block found, run:
+```sh
+uv run python /tmp/validate_mermaid.py << 'MERMAID_EOF'
+<diagram source here>
+MERMAID_EOF
+```
+
+Report every diagram that returns `{"valid": false}`, including the page path,
+the line number of the ` ```mermaid ` fence, and the parser error message.
+
 ---
 
 ### Step 4 — Classify all issues
 
 Combine all findings into three groups:
 
-- **Error**: L-001, L-002, L-003, L-004, L-005
+- **Error**: L-001, L-002, L-003, L-004, L-005, L-010
 - **Warning**: L-006, L-007
 - **Info**: L-008, L-009
 
@@ -140,6 +193,7 @@ For each Error or Warning, propose one or two concrete options:
 | L-005 broken cross-ref | (A) Remove the broken `[[...]]` ref, or (B) create a stub page at the target path |
 | L-006 stale | Re-ingest the original source using `/wiki-ingest` |
 | L-007 contested, no Dispute | Add a `## Dispute` section summarising the conflicting claims |
+| L-010 mermaid syntax error | Fix the diagram syntax per the parser error message |
 
 ---
 
