@@ -3,6 +3,8 @@
 ## Experimentation & A/B Testing
 
 - [Overlapping Experiment Infrastructure: More, Better, Faster Experimentation](wiki/sources/overlapping-experiment-infrastructure.md) — Google's layered A/B testing system (KDD 2010); introduces domains/layers/launch layers and supporting tools for running thousands of simultaneous experiments
+- [How A/B Tests Work](wiki/synthesis/how-ab-tests-work.md) — comprehensive overview: randomization, hypothesis testing, OEC, sample sizing, A/A tests, CUPED, triggering, overlapping/layered experiments, and common pitfalls [status: current] [sources: 1]
+- [Methods for Computing Confidence Intervals in A/B Testing](wiki/synthesis/confidence-interval-methods.md) — decision framework for CI method selection: t-test/Wald, delta method, Fieller, bootstrap (BCa/percentile/t), outer CI for quantiles, hybrid method, Bayesian credible intervals, confidence sequences (mSPRT, AsympCS, design-based, SAVI), and CUPED [status: current] [sources: 1]
 
 ## Auction Mechanisms & Pricing
 
