@@ -3,7 +3,8 @@ title: "Contextual Relevance of Ads at Reddit"
 type: "source_summary"
 sources:
   - "web/reddit-contextual-relevance-ads.md"
-status: "draft"
+  - "web/contextual-relevance-feedback-trust.md"
+status: "current"
 created: "2026-06-08"
 last_updated: "2026-06-08"
 ---
@@ -58,11 +59,23 @@ flowchart LR
 
 Three main categories: Mixed feeds (e.g., Home), Subreddit feeds, and individual Post pages. Posts represent the best opportunity for contextual advertising due to specific, high-signal context.
 
+## Answered Questions
+
+### Feedback loops in ranker training
+
+AI feedback loops arise when rankers retrain on user reactions to their own predictions, amplifying popularity bias and reducing diversity over multiple cycles. Mitigation strategies include in-processing fairness constraints (FADE, FairAgent), self-play frameworks (SPRec) that suppress biased predictions, and simulation-based multi-round auditing. However, only 24 of 347 surveyed papers (2025) validated mitigations in dynamic settings — most fail in the long term [[wiki/sources/contextual-relevance-feedback-trust.md]].
+
+### When contextual relevance is critical
+
+Contextual relevance is critical when: (1) privacy regulations limit behavioral targeting reach, (2) brand safety is paramount (contextual <1% incidents vs behavioral 4-7%), (3) full audience reach is needed (100% vs 40-55% consented), and (4) cost efficiency is the priority (30-40% lower CPM). CTR is within 5-8% of behavioral targeting, while viewability (+10-15%) and user engagement (43% more neural engagement, 2.2x better recall) exceed behavioral. Other factors (price, brand affinity, creative quality) can dominate when they directly address immediate user intent [[wiki/sources/contextual-relevance-feedback-trust.md]].
+
+### Balancing relevance with trust
+
+40% of consumers find ads irrelevant (Bain 2024), and over-targeting drives 22% mobile ad-block adoption. The balance requires: user-centric ad formats (native, non-intrusive), AI-powered contextual targeting that avoids personal data, Acceptable Ads standards, and cross-industry collaboration. Kantar (2024) finds that over-targeting pushes users to offline channels; brands that prioritize context over surveillance build long-term trust and loyalty [[wiki/sources/contextual-relevance-feedback-trust.md]].
+
 ## Open Questions
 
-- How to break feedback loops and biases in ranker training data?
-- When is contextual relevance critical vs. when do other factors dominate?
-- How to balance relevance with engagement quality and user trust over the long term?
+*None remaining.*
 
 ## Team
 

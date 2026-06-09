@@ -3,6 +3,8 @@ title: "Methods for Computing Confidence Intervals in A/B Testing"
 type: "synthesis"
 sources:
   - "pdf/overlapping-experiment-infrastructure.pdf"
+  - "web/time-uniform-clt-asymp-cs.md"
+  - "web/network-interference-ab-testing.md"
 status: "current"
 created: "2026-06-08"
 last_updated: "2026-06-08"
@@ -171,7 +173,15 @@ flowchart LR
 - **For ratio metrics in distributed systems**, the delta method requires only per-cluster sums, sums of squares, and cross-products — trivially parallelizable.
 - **For sequential monitoring**, always use confidence sequences rather than repeated fixed-horizon CIs. At scale, automate the stopping rule: stop when the confidence sequence excludes zero or narrows below a practical significance threshold.
 
-## Open Questions
+## Answered Questions
 
-- Can confidence sequences match the width of fixed-horizon CIs in the worst case while maintaining anytime validity, or is there an unavoidable penalty?
-- How should confidence intervals be adjusted for network interference (where user A's treatment affects user B's outcome)?
+**Confidence intervals for network interference** require either design-based or analysis-based adjustments, with no universal solution:
+
+- **Design**: cluster-randomized trials contain spillover within clusters (Facebook/Meta uses this; requires 2–5× more data). Staggered rollout designs leveraging multiple treatment proportions can identify global treatment effects.
+- **Analysis**: exposure-modeling HT estimators (Aronow & Samii), regression adjustment with network covariates (Han & Ugander), causal message-passing for unknown interference structures (Shirani & Bayati, PNAS 2024), and block bootstrap for valid CIs by resampling network clusters.
+
+The choice depends on whether the interference structure is known, the network size, and data availability [[wiki/sources/network-interference-ab-testing.md]].
+
+## Answered Questions
+
+**Confidence sequences cannot match fixed-horizon CI width in the worst case**: there is an unavoidable penalty. The law of the iterated logarithm imposes a lower bound of $O(\sqrt{\log\log n/n})$ on CS width, versus $O(1/\sqrt{n})$ for fixed-horizon CIs. However, this penalty is modest in practice: nonasymptotic CSs stay within a factor of ~2× of fixed-sample CLT bounds over five orders of magnitude in time (Howard et al., 2021), and asymptotic CSs (AsympCS) achieve the optimal LIL rate (Waudby-Smith et al., 2024). The practical cost is 2–7× more data depending on the specific construction [[wiki/sources/time-uniform-clt-asymp-cs.md]].

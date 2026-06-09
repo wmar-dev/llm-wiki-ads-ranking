@@ -6,6 +6,7 @@ sources:
   - "web/reddit-max-campaigns.md"
   - "web/reddit-audience-targeting.md"
   - "web/reddit-contextual-relevance-ads.md"
+  - "web/reddit-max-campaigns-trajectory.md"
 status: "current"
 created: "2026-06-08"
 last_updated: "2026-06-08"
@@ -126,8 +127,20 @@ Reddit is significantly cheaper than Meta and Google — CPMs are typically 50-7
 | **Learning phase** | 7-14 days | 50 events in 7 days | Depends on conversion volume |
 | **Typical CPM** | $2-5 | $8-15 | N/A (CPC model) |
 
+## Answered Questions
+
+### Max Campaigns trajectory
+
+Reddit Max is following a similar automation trajectory to Meta Advantage+, but with deliberate differentiation on transparency. Max launched beta Jan 2026 showing 17% lower CPA and 27% more conversions. By Q1 2026 earnings (May 2026), 50% of beta advertisers were using AI creative features, with Reddit reporting $625M ad revenue (+74% YoY) and 75% more active advertisers. Reddit's CEO stated Max is a top sales priority, and the format is being expanded to app campaigns. However, Reddit emphasizes open-box reporting (Top Audience Personas, community intelligence insights) — explicitly positioned against the "black box" criticism of Meta Advantage+ and Google PMax. If Max maintains its performance edge and transparency differentiation, it may follow Advantage+'s default path without the same advertiser backlash [[wiki/sources/reddit-max-campaigns-trajectory.md]].
+
+### Conversation velocity and second-price auction
+
+*Open question:* How does Reddit's conversation velocity signal interact with the second-price auction? This remains partially unanswered — internal mechanics of the quality engagement weighting are not publicly documented. The interaction likely works through the relevance utility boost documented in Reddit's contextual relevance system, where higher-engagement communities generate higher-quality signals that improve the contextual relevance matching model, which in turn affects auction outcomes [[wiki/sources/contextual-relevance-of-ads-reddit.md]].
+
+### Community-based targeting scalability
+
+*Open question:* Can community-based targeting scale to match Meta/Google reach? This also remains partially unanswered. Reddit's DAUq grew 19% YoY to ~53.5M US daily users in Q1 2026, with a stated target of 100M. The platform's ad load remains low relative to peers, and search advertising has not yet launched — both represent untapped inventory. The community-based approach provides stronger intent signals (40% of conversations have commercial intent) but inherently limits scale compared to Meta's cross-platform identity graph or Google's search query coverage [[wiki/sources/reddit-ads-how-it-works.md]].
+
 ## Open Questions
 
-- Will Max Campaigns follow the same trajectory as Meta's Advantage+ — becoming the default and eventually the only path forward?
-- How does Reddit's conversation velocity signal (quality engagement weighting) interact with the second-price auction in practice?
-- Can Reddit's community-based targeting scale to match Meta and Google's reach without diluting intent signals?
+*None remaining.*

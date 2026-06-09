@@ -45,6 +45,18 @@ Partial coverage — existing wiki had 1 source on Google's overlapping experime
 
 Partial coverage — existing wiki mentioned delta method and empirical carve-up in passing. Enrichment: fetched Deng et al. (2018) delta method paper from ar5iv HTML (Microsoft ExP, KDD 2018). Created synthesis page (wiki/synthesis/confidence-interval-methods.md) covering 9 methods: t-test/Wald, delta method, Fieller, Edgeworth expansion, bootstrap (3 variants: percentile/BCa/t), outer CI for quantiles, hybrid method, Bayesian credible intervals, and confidence sequences (mSPRT, AsympCS, design-based, SAVI). Includes decision flowcharts, method comparison table, and implementation notes. Open questions: width penalty of confidence sequences, adjustment for network interference.
 
+## [2026-06-08] answer | confidence sequences width penalty + network interference CI adjustment | pages-updated: 1 | sources-ingested: 2
+
+Answered 2 questions in confidence-interval-methods.md: (1) CS width penalty is unavoidable — LIL lower bound O(√(log log n/n)), but factor of ~2× in practice (Waudby-Smith et al., 2024); (2) Network interference CIs require cluster randomization, exposure modeling, or regression adjustment — no universal solution.
+
+## [2026-06-08] answer | feedback loops, contextual relevance dominance, balancing relevance with trust | pages-updated: 1 | sources-ingested: 1
+
+Answered 3 questions in contextual-relevance-of-ads-reddit.md: (1) Feedback loop bias amplified over cycles; self-play frameworks (SPRec) show promise but only 24/347 papers validated in dynamic settings; (2) Contextual relevance critical when privacy, brand safety, or full reach needed — within 5-8% of behavioral CTR at 30-40% lower CPM; (3) Balance requires user-centric formats, AI contextual targeting, and Acceptable Ads standards.
+
+## [2026-06-08] answer | Reddit Max trajectory, conversation velocity, community targeting scale | pages-updated: 1 | sources-ingested: 1
+
+Answered 2 of 3 questions in reddit-ads.md: Max following Advantage+ trajectory but with transparency differentiation; community targeting scalability remains partially unanswered (DAUq growing but below Meta/Google reach). Conversation velocity interaction with auction also partially unanswered.
+
 ## [2026-06-08] query | what is the jackknife method | pages-read: 1 | sources-ingested: 1
 
 Total gap — no existing wiki pages on jackknife. Fetched 1 source (Wikipedia). Created source summary (wiki/sources/jackknife-resampling.md) and synthesis page (wiki/synthesis/jackknife-method.md). Key finding: leave-one-out resampling for bias and variance estimation; linear approximation of bootstrap; conservative variance estimates.
