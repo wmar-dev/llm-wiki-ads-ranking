@@ -1,4 +1,6 @@
 from dataclasses import dataclass
+from pathlib import Path
+from wiki_server import config
 from wiki_server.search import get_db
 
 
@@ -34,8 +36,8 @@ def search(query: str, limit: int = 10) -> list[SearchResult]:
     results = []
     for row in rows:
         page_path = row["path"]
-        # Convert filesystem path to URL: wiki/some-page.md -> /wiki/some-page
-        url = "/" + page_path.replace("\\", "/").removesuffix(".md")
+        # Convert filesystem path to URL: /abs/path/wiki/s/s.md -> /wiki/s/s
+        url = "/wiki/" + str(Path(page_path).relative_to(config.WIKI_DIR).with_suffix(""))
         results.append(
             SearchResult(
                 path=page_path,
