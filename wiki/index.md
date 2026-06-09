@@ -10,6 +10,7 @@
 - [Internet Advertising and the GSP Auction](wiki/sources/edelman-ostrovsky-schwarz-gsp-auction.md) — Edelman, Ostrovsky & Schwarz (AER 2007); proves GSP lacks dominant-strategy truthfulness but has a unique locally envy-free equilibrium with VCG-equivalent payoffs [status: current] [sources: 1] [source_type: peer_reviewed]
 - [Generalized Second-Price Auction (GSP)](wiki/concepts/generalized-second-price-auction.md) — multi-slot auction mechanism used in search advertising; bid × quality score ranking; locally envy-free equilibrium [status: current] [sources: 1]
 - [Google Ad Rank and LTV Scoring](wiki/concepts/google-ad-rank-ltv-scoring.md) — production Ad Rank system: LTV = eCPM - costs (pCTR, pCQ, pLQ); thresholds, reserve pricing, rGSP, Smart Bidding [status: draft] [sources: 2]
+- [What Are Vickrey and GSP Auctions?](wiki/synthesis/vickrey-and-gsp.md) — Vickrey second-price auction (1961) and Generalized Second-Price auction for multi-slot ad allocation; incentive compatibility, locally envy-free equilibrium, production differences [status: current] [sources: 2]
 
 ## Machine Learning at Scale
 
