@@ -5,6 +5,7 @@ import re
 import time
 from pathlib import Path
 
+import yaml
 from flask import Flask, abort, render_template, request, send_file
 from markdown_it import MarkdownIt
 from mdit_py_plugins.dollarmath import dollarmath_plugin
@@ -28,10 +29,35 @@ def _wiki_link(m: re.Match) -> str:
     return f'<a href="/wiki/{href}">{label}</a>'
 
 
-def render_page(md_path: Path) -> str:
+def _parse_frontmatter(text: str) -> tuple[str, dict]:
+    if text.startswith("---\n"):
+        end = text.find("\n---\n", 4)
+        if end != -1:
+            meta = yaml.safe_load(text[4:end]) or {}
+            return text[end + 5:], meta
+    return text, {}
+
+
+def _meta_html(meta: dict) -> str:
+    parts = []
+    if meta.get("created"):
+        parts.append(f"Created {meta['created']}")
+    if meta.get("last_updated"):
+        parts.append(f"Updated {meta['last_updated']}")
+    if not parts:
+        return ""
+    return f'<p class="page-meta">{" · ".join(parts)}</p>'
+
+
+def render_page(md_path: Path) -> tuple[str, dict]:
     text = md_path.read_text(encoding="utf-8")
-    text = _WIKI_LINK_RE.sub(_wiki_link, text)
-    return _md.render(text)
+    body, meta = _parse_frontmatter(text)
+    body = _WIKI_LINK_RE.sub(_wiki_link, body)
+    html = _md.render(body)
+    meta_line = _meta_html(meta)
+    if meta_line:
+        html = html.replace("</h1>", f"</h1>\n{meta_line}", 1)
+    return html, meta
 
 
 def _log_access(path: str, status: int) -> None:
@@ -62,9 +88,9 @@ def create_app() -> Flask:
         if not index_path.exists():
             html = "<p>No pages yet. Use <code>make ingest</code> to add content.</p>"
         else:
-            html = render_page(index_path)
+            html, _ = render_page(index_path)
         _log_access("/", 200)
-        return render_template("page.html", content=html, title="Wiki Index")
+        return render_template("page.html", content=html, title="Wiki Index", meta={})
 
     _section_dirs = {
         "synthesis": config.WIKI_DIR / "synthesis",
@@ -90,7 +116,7 @@ def create_app() -> Flask:
         count = sum(1 for f in entries if f.suffix == ".md")
         html = f"<h1>{section.title()}</h1>\n<p>{count} page(s)</p>\n<ul>\n{links}</ul>"
         _log_access(f"/wiki/{section}/", 200)
-        return render_template("page.html", content=html, title=f"{section.title()} — LLM Wiki")
+        return render_template("page.html", content=html, title=f"{section.title()} — LLM Wiki", meta={})
 
     @app.route("/wiki/<path:page>", strict_slashes=False)
     def wiki_page(page):
@@ -99,9 +125,9 @@ def create_app() -> Flask:
         if not md_path.exists():
             _log_access(request.path, 404)
             return render_template("404.html"), 404
-        html = render_page(md_path)
+        html, meta = render_page(md_path)
         _log_access(request.path, 200)
-        return render_template("page.html", content=html, title=slug.replace("-", " ").title())
+        return render_template("page.html", content=html, title=slug.replace("-", " ").title(), meta=meta)
 
     @app.route("/search")
     def search():
