@@ -1,0 +1,16 @@
+---
+status: current
+sources: 1
+source_type: peer_reviewed
+ingest_count: 1
+---
+
+# Network Interference in A/B Testing
+
+Modern approaches for handling SUTVA violations in social/network settings:
+
+1. **UNITE** (Shankar et al., AISTATS 2024): GATE estimator requiring only superset-of-neighbors knowledge, not full network
+2. **Surrogate Network + Pseudo-Inverse** (WeChat, arXiv 2408.04441): tested on 53M+ user experiment; detects interference via estimator differences
+3. **Causal Message-Passing** (PMC 2024): models interference as dynamic propagation through network; no prior network knowledge needed
+4. **Just Ramp-up** (arXiv 2410.12740): leverages existing ramp-up process (different treatment proportions across experiments) with regression-based estimators — no additional experiment resources required
+5. **Dyadic Data Estimator** (WeChat, arXiv 2402.12653): unbiased estimator for total treatment effect using pairwise outcome data
