@@ -4,9 +4,10 @@ type: "concept"
 sources:
   - "web/google-ad-rank-briefing-paper.md"
   - "web/edelman-ostrovsky-schwarz-gsp-auction.md"
+  - "web/rgsp-randomized-second-price-explained.md"
 status: "draft"
 created: "2026-06-08"
-last_updated: "2026-06-08"
+last_updated: "2026-06-09"
 ---
 
 # Google Ad Rank and LTV Scoring
@@ -39,7 +40,7 @@ Only ads with **LTV > 0** are eligible. Thresholds differ by slot (top vs. botto
 - **Actual CPC** = minimum amount needed to: (1) clear the LTV > 0 threshold, and (2) beat the next-highest competitor's LTV score
 - **Reserve price**: when no competitor passes the threshold, the winner pays the minimum bid that achieves LTV > 0
 - **Second-price**: when competitors exist, the winner pays enough to beat the next competitor
-- Pricing follows the **rGSP** (Randomized General Second-Price Auction) mechanism since January 2019
+- Pricing follows the [[wiki/concepts/randomized-gsp-rgsp.md|**rGSP**]] (Randomized General Second-Price Auction) mechanism since January 2019: when top contenders' LTV scores are close enough, the slot winner is chosen **at random** from that group rather than always being the single highest-LTV ad, and the winner pays the next-highest qualifying bid plus $0.01
 
 *Inference: Reserve pricing applies to a significant share of clicks, especially for singleton ads (only one ad shown on the SERP). Precise percentages were redacted in the public filing.* — [[wiki/sources/google-ad-rank-briefing.md]] *(other)*
 
@@ -74,3 +75,4 @@ Advertisers can use **Smart Bidding** where ML sets bids at query time based on 
 - [[wiki/sources/google-ad-rank-briefing.md]]
 - [[wiki/concepts/generalized-second-price-auction.md]]
 - [[wiki/synthesis/second-price-auction.md]]
+- [[wiki/concepts/randomized-gsp-rgsp.md]] — dedicated page on the rGSP randomization mechanism, revenue impact, and DOJ trial findings

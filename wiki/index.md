@@ -29,8 +29,10 @@
 - [What Is a Second Price Auction?](wiki/synthesis/second-price-auction.md) — Vickrey/GSP auction mechanics, incentive compatibility, revenue equivalence, and relevance to ads ranking systems [status: current] [sources: 1]
 - [Internet Advertising and the GSP Auction](wiki/sources/edelman-ostrovsky-schwarz-gsp-auction.md) — Edelman, Ostrovsky & Schwarz (AER 2007); proves GSP lacks dominant-strategy truthfulness but has a unique locally envy-free equilibrium with VCG-equivalent payoffs [status: current] [sources: 1] [source_type: peer_reviewed]
 - [Generalized Second-Price Auction (GSP)](wiki/concepts/generalized-second-price-auction.md) — multi-slot auction mechanism used in search advertising; bid × quality score ranking; locally envy-free equilibrium [status: current] [sources: 1]
-- [Google Ad Rank and LTV Scoring](wiki/concepts/google-ad-rank-ltv-scoring.md) — production Ad Rank system: LTV = eCPM - costs (pCTR, pCQ, pLQ); thresholds, reserve pricing, rGSP, Smart Bidding [status: draft] [sources: 2]
+- [Google Ad Rank and LTV Scoring](wiki/concepts/google-ad-rank-ltv-scoring.md) — production Ad Rank system: LTV = eCPM - costs (pCTR, pCQ, pLQ); thresholds, reserve pricing, rGSP, Smart Bidding [status: draft] [sources: 3]
 - [What Are Vickrey and GSP Auctions?](wiki/synthesis/vickrey-and-gsp.md) — Vickrey second-price auction (1961) and Generalized Second-Price auction for multi-slot ad allocation; incentive compatibility, locally envy-free equilibrium, production differences [status: current] [sources: 2]
+- [Randomized Generalized Second-Price Auction (rGSP)](wiki/concepts/randomized-gsp-rgsp.md) — Google's auction mechanism since Jan 2019: randomizes the slot winner among close-LTV bidders, prices at next-highest bid + $0.01; revenue impact and DOJ antitrust trial findings [status: draft] [sources: 2]
+- [What Is rGSP?](wiki/synthesis/rgsp.md) — explains rGSP mechanism, how it differs from standard GSP equilibrium theory, revenue/pricing impact, and DOJ controversy [status: current] [sources: 3]
 
 ## Machine Learning at Scale
 
@@ -105,3 +107,4 @@
 - [LLaTTE Scaling Laws for Recommendation](wiki/sources/llatte-scaling-laws-recommendation.md) — power-law scaling proven for RecSys; 4.3% conversion uplift; 45× upstream model [status: current] [sources: 1] [source_type: peer_reviewed]
 - [Always-Valid Sequential Testing](wiki/sources/always-valid-sequential-testing.md) — Johari et al. (Operations Research 2022); CS deployed at Optimizely, Adobe, Netflix [status: current] [sources: 1] [source_type: peer_reviewed]
 - [Network Interference in A/B Testing](wiki/sources/network-interference-ab-testing-methods.md) — UNITE, Causal-MP, surrogate networks, ramp-up merging, dyadic estimators [status: current] [sources: 1] [source_type: peer_reviewed]
+- [What is RGSP? Google's Randomized Generalized Second-Price Ad Auctions Explained](wiki/sources/rgsp-randomized-second-price-explained.md) — Search Engine Land coverage of DOJ trial testimony detailing the rGSP randomization mechanism, revenue impact, and Adam Juda email [status: draft] [sources: 1] [source_type: news_article] [processing_status: processed] [ingest_count: 1]

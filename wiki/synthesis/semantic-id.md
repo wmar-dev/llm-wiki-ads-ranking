@@ -17,12 +17,12 @@ A **Semantic ID (SID)** is a discrete tuple of codewords that encodes an item's 
 
 ```mermaid
 flowchart LR
-    A[Item Content\n(title, description, image)] --> B[Pre-trained Encoder\n(SentenceT5, BERT, CLIP)]
-    B --> C[Dense Embedding\n~768d vector]
-    C --> D[Quantizer\n(RQ-VAE / RQ-KMeans)]
-    D --> E[Semantic ID\n(c0, c1, c2)]
-    E --> F[Seq-to-Seq Model\n(T5, Transformer)]
-    F --> G[Autoregressive Decode\nnext item's SID tokens]
+    A["Item Content<br/>(title, description, image)"] --> B["Pre-trained Encoder<br/>(SentenceT5, BERT, CLIP)"]
+    B --> C["Dense Embedding<br/>~768d vector"]
+    C --> D["Quantizer<br/>(RQ-VAE / RQ-KMeans)"]
+    D --> E["Semantic ID<br/>(c0, c1, c2)"]
+    E --> F["Seq-to-Seq Model<br/>(T5, Transformer)"]
+    F --> G["Autoregressive Decode<br/>next item's SID tokens"]
 ```
 
 ## How It Works
