@@ -76,6 +76,25 @@ A sequence-to-sequence model (T5, Transformer decoder) is trained on user behavi
 
 Meta's Andromeda system uses a related but distinct concept: **Entity IDs** cluster visually similar ad creatives via CV, where only genuinely distinct visual concepts create new retrieval paths. This is a form of semantic clustering but at the visual level and without the quantization → generative retrieval pipeline. [[wiki/synthesis/meta-ad-ranking.md]]
 
+## Semantic IDs in Ranking Models
+
+Beyond generative retrieval, Semantic IDs can replace item IDs directly in production ranking models. Singh et al. (2024) demonstrated this at YouTube scale: SIDs from RQ-VAE (L=8, K=2048) replace video IDs in a multi-task ranking model serving billions of embeddings [[wiki/sources/better-generalization-semantic-ids-ranking.md]] *(peer_reviewed)*.
+
+### Adaptation Methods
+
+| Method | How It Works | Embedding Lookups per Item | Best For |
+|--------|-------------|---------------------------|----------|
+| **Unigram** | Each SID code maps to its own embedding table row | L (e.g., 8) | Simple baseline |
+| **Bigram** | Pairs of consecutive codes share an embedding row | L/2 (e.g., 4) | Fewer lookups, larger table |
+| **SPM** | SentencePiece learns variable-length subwords from SID distribution | Dynamic (reduced for head items) | Large-scale production |
+
+### Key Findings
+
+- **Raw content embeddings cannot replace IDs**: directly feeding frozen content embeddings as features degrades CTR — ranking models depend on learnable memorization from embedding tables. Increasing model depth helps but at prohibitive serving cost.
+- **SIDs succeed where raw embeddings fail**: by providing learnable embedding tables keyed by discrete SID subwords, the model retains memorization capacity while gaining semantic generalization.
+- **SentencePiece tokenization outperforms fixed N-grams** for SID adaptation in large embedding tables. SPM dynamically groups co-occurring code sequences into subwords, reducing lookups for head items while preserving rare-code distinctions for tail items — analogous to subword tokenization in LLMs.
+- **Semantic representations are stable over time**: RQ-VAE models trained on older vs. recent data produce SIDs with comparable downstream ranking quality.
+
 ## Limitations
 
 - **Performance gap**: Generative retrieval with SIDs still underperforms dense retrieval on some benchmarks, especially for head/torso items where dense embeddings provide finer discrimination.
