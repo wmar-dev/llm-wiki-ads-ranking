@@ -15,7 +15,7 @@
 ## Experimentation & A/B Testing
 
 - [Overlapping Experiment Infrastructure: More, Better, Faster Experimentation](wiki/sources/overlapping-experiment-infrastructure.md) — Google's layered A/B testing system (KDD 2010); introduces domains/layers/launch layers and supporting tools for running thousands of simultaneous experiments
-- [How A/B Tests Work](wiki/synthesis/how-ab-tests-work.md) — comprehensive overview: randomization, hypothesis testing, OEC, sample sizing, A/A tests, CUPED, triggering, overlapping/layered experiments, and common pitfalls [status: current] [sources: 1]
+- [How A/B Tests Work](wiki/synthesis/how-ab-tests-work.md) — comprehensive overview: randomization, hypothesis testing, OEC, sample sizing, A/A tests, CUPED, triggering, overlapping/layered experiments, sequential testing, network interference, and common pitfalls [status: current] [sources: 3]
 - [Methods for Computing Confidence Intervals in A/B Testing](wiki/synthesis/confidence-interval-methods.md) — decision framework for CI method selection: t-test/Wald, delta method, Fieller, bootstrap (BCa/percentile/t), outer CI for quantiles, hybrid method, Bayesian credible intervals, confidence sequences (mSPRT, AsympCS, design-based, SAVI), and CUPED [status: current] [sources: 1]
 - [The Jackknife Method](wiki/synthesis/jackknife-method.md) — leave-one-out resampling for bias and variance estimation; compares to bootstrap; relevance to A/B testing [status: current] [sources: 1]
 
@@ -41,7 +41,7 @@
 ## Ad Ranking & Delivery
 
 - [How Meta Ad Ranking Works](wiki/synthesis/meta-ad-ranking.md) — Meta's 2026 ads ranking: 5-system stack (Andromeda, Lattice, GEM, UTIS, ARM); creative-first neural retrieval; unified cross-surface ranking; foundation model teacher-student architecture; GSP auction [status: current] [sources: 3]
-- [Meta Ads Ranking System](wiki/entities/meta-ads-ranking-system.md) — entity overview of Meta's 5-system architecture, auction equation, targeting inversion, and infrastructure [status: draft] [sources: 3]
+- [Meta Ads Ranking System](wiki/entities/meta-ads-ranking-system.md) — entity overview of Meta's 5-system architecture, auction equation, targeting inversion, and infrastructure [status: current] [sources: 5]
 - [Meta Adaptive Ranking Model](wiki/sources/meta-adaptive-ranking-model.md) — Meta Engineering blog on ARM: request-centric computation, selective FP8 quantization, multi-card GPU sharding for O(1T) parameter models [status: current] [sources: 1] [source_type: other]
 - [Meta's Generative Ads Model (GEM)](wiki/sources/meta-gem-ads-foundation-model.md) — Meta Engineering blog on the GEM foundation model teacher with knowledge distillation to downstream models [status: current] [sources: 1] [source_type: other]
 - [The Meta Ads Algorithm in 2026](wiki/sources/meta-ads-algorithm-2026-guide.md) — practitioner analysis of 5-system stack, auction equation, targeting inversion, learning phase, and campaign structure [status: draft] [sources: 1] [source_type: blog_post]
@@ -100,3 +100,7 @@
 - [Digital Ad Formats: IAB Taxonomy and Format Types](wiki/sources/digital-ad-formats-epom.md) — 9 major ad formats: banner, interstitial, rich media, native, video, push, search, social, email; pricing benchmarks and performance metrics [status: current] [sources: 1] [source_type: blog_post]
 - [Google Product Taxonomy for Shopping Ads](wiki/sources/google-product-taxonomy.md) — hierarchical taxonomy for Shopping Ads: ~6,000+ categories, auto-assignment, manual override, bid management per category [status: current] [sources: 1] [source_type: official_documentation]
 - [TIGER: Transformer Index for Generative Recommenders](wiki/sources/tiger-transformer-index-generative-recommenders.md) — Rajput et al. (NeurIPS 2023); first Semantic ID proposal; RQ-VAE quantization + seq2seq decoding [status: current] [sources: 1] [source_type: peer_reviewed]
+- [User True Interest Survey (UTIS)](wiki/sources/meta-utis-user-true-interest-survey.md) — Meta Engineering: perception layer on survey responses, +5.2% engagement, +5.4% satisfaction [status: current] [sources: 1] [source_type: other]
+- [LLaTTE Scaling Laws for Recommendation](wiki/sources/llatte-scaling-laws-recommendation.md) — power-law scaling proven for RecSys; 4.3% conversion uplift; 45× upstream model [status: current] [sources: 1] [source_type: peer_reviewed]
+- [Always-Valid Sequential Testing](wiki/sources/always-valid-sequential-testing.md) — Johari et al. (Operations Research 2022); CS deployed at Optimizely, Adobe, Netflix [status: current] [sources: 1] [source_type: peer_reviewed]
+- [Network Interference in A/B Testing](wiki/sources/network-interference-ab-testing-methods.md) — UNITE, Causal-MP, surrogate networks, ramp-up merging, dyadic estimators [status: current] [sources: 1] [source_type: peer_reviewed]

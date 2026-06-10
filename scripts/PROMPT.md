@@ -1,0 +1,4 @@
+- what are the different bidding types?
+- what is ad pacing
+- bandit approaches to ads
+- how does youtube shorts recommendation work?

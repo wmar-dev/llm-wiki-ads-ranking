@@ -3,6 +3,7 @@ title: "What Is a Semantic ID?"
 type: "synthesis"
 sources:
   - "web/tiger-transformer-index-generative-recommenders.md"
+  - "web/better-generalization-semantic-ids-ranking.md"
 status: "current"
 created: "2026-06-09"
 last_updated: "2026-06-09"

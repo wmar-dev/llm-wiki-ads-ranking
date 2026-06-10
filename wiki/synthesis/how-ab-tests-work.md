@@ -3,9 +3,11 @@ title: "How A/B Tests Work"
 type: "synthesis"
 sources:
   - "pdf/overlapping-experiment-infrastructure.pdf"
+  - "web/always-valid-sequential-testing.md"
+  - "web/network-interference-ab-testing-methods.md"
 status: "current"
 created: "2026-06-08"
-last_updated: "2026-06-08"
+last_updated: "2026-06-09"
 ---
 
 # How A/B Tests Work
@@ -145,7 +147,24 @@ Each query can simultaneously be in N experiments (one per layer), enabling mass
 
 A/B testing is how ads ranking systems evolve incrementally. Every change — a new model architecture, feature, auction parameter, or relevance embedding — is validated through controlled experiments before launch. The CTR prediction algorithm, learning rates, and other model parameters are explicitly tested through this infrastructure [[wiki/sources/overlapping-experiment-infrastructure.md]]. Triggering and counter-factual logging are particularly important for ads where the treatment may only affect a subset of queries.
 
-## Open Questions
+## Sequential Testing (Answered)
 
-- Can sequential testing methods (e.g., always-valid p-values, Bayesian approaches) fully replace fixed-horizon designs without sacrificing power?
-- How should experiments account for interference between users in social/network settings (e.g., a change to one user's experience affects their interactions with others)?
+**Can sequential testing fully replace fixed-horizon designs?** Not universally, but the gap is narrowing. Anytime-valid methods (confidence sequences, mSPRT, AsympCS) have been deployed at Optimizely, Adobe Experience Platform, and Netflix [[wiki/sources/always-valid-sequential-testing.md]] *(peer_reviewed)*:
+
+- **Power trade-off**: CS are typically 1–4× wider than fixed-horizon CIs for the same sample size, but early stopping yields *lower expected sample sizes* (e.g., sequential test avg 1,806 obs vs fixed-horizon 2,676 — 33% reduction)
+- **Anytime validity "for free"**: Koning (2025) proved any valid fixed-n test can be converted into an anytime-valid sequential test via conditional expectation
+- **Where fixed-horizon still wins**: Pre-registered trials where effect size is precisely known; very small n where asymptotic CS may not hold; settings requiring exact power guarantees at a specific sample size
+
+*Inference: The remaining gap is not theoretical but practical — most teams still use fixed-horizon out of inertia, not necessity.*
+
+## Network Interference (Answered)
+
+Several production-validated approaches exist [[wiki/sources/network-interference-ab-testing-methods.md]] *(peer_reviewed)*:
+
+1. **Cluster randomization**: Partition network into weakly-connected clusters; randomize at cluster level (standard at Meta, LinkedIn, WeChat)
+2. **UNITE** (AISTATS 2024): GATE estimator requiring only superset-of-neighbors knowledge
+3. **Pseudo-inverse/SNIPE estimator**: tested on 53M+ user experiment at WeChat
+4. **Causal Message-Passing** (2024): models interference as dynamic network propagation; no prior network knowledge needed
+5. **Just Ramp-up** (2024): leverages existing ramp-up process (different treatment proportions) with regression-based estimators — no additional experiment resources
+
+*Inference: No universal solution — choice depends on network structure knowledge (full graph, partial, or none) and experimental design flexibility. Cluster randomization remains most common; newer methods enable valid inference even with unknown structures.*

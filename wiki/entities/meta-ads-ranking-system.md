@@ -5,9 +5,11 @@ sources:
   - "web/meta-adaptive-ranking-model.md"
   - "web/meta-gem-ads-foundation-model.md"
   - "web/meta-ads-algorithm-2026-guide.md"
-status: "draft"
+  - "web/meta-utis-user-true-interest-survey.md"
+  - "web/llatte-scaling-laws-recommendation.md"
+status: "current"
 created: "2026-06-08"
-last_updated: "2026-06-08"
+last_updated: "2026-06-09"
 ---
 
 # Meta Ads Ranking System
@@ -64,8 +66,16 @@ Since Andromeda, creative IS the targeting. The system reads creative content to
 
 Meta's system differs from [[wiki/concepts/google-ad-rank-ltv-scoring.md]] in that it uses a foundation model teacher-student architecture and combines organic content signals with ad signals. Both use generalized second-price auction principles ([[wiki/concepts/generalized-second-price-auction.md]]).
 
-## Open Questions
+## Answered Questions
 
-- How does UTIS's survey-based interest signal interact with short-term engagement optimization?
-- Will the Adaptive Ranking Model expand beyond Instagram, and what latency trade-offs apply?
-- How does GEM's scaling law compare to inference-time compute scaling in LLMs?
+### UTIS and engagement optimization
+
+UTIS does not conflict with engagement — it improves it. Meta's production A/B test (10M+ users) showed UTIS increased total user engagement by +5.2% while also raising satisfaction (+5.4% high ratings). Precision identifying true interests improved from 48.3% (heuristic) to 63.2%. UTIS acts as a Perception Layer in parallel to the Late Stage Ranking, providing a "boost and demote" signal: content with high predicted true interest receives a modest ranking boost; clickbait with low predicted interest is demoted. The results demonstrated that true interest alignment and engagement are *complementary* when the interest signal is integrated as a soft feature in a multi-objective value formula. [[wiki/sources/meta-utis-user-true-interest-survey.md]]
+
+### ARM expansion beyond Instagram
+
+ARM launched on Instagram only in Q4 2025 (+3% conversions, +5% CTR). Meta's language calls it "the first milestone in our journey." A phased expansion to Facebook Feed, Reels, and other surfaces is expected throughout 2026. The latency trade-offs are managed through request-centric computation sharing (sub-linear scaling), selective FP8 quantization (35% MFU), and multi-card GPU sharding for O(1T) parameter models at sub-100ms latency. [[wiki/sources/meta-adaptive-ranking-model.md]] *(company engineering blog)*
+
+### GEM scaling law vs LLM inference-time scaling
+
+GEM follows the same *power-law scaling* as LLMs — recommendation performance improves log-linearly with compute (FLOPs), similar to Chinchilla-style scaling laws. The LLaTTE paper (Meta, Jan 2026) proved this empirically and showed that semantic content features are a *prerequisite* for steep scaling. However, the key difference is architectural: GEM uses *teacher-student distillation* to transfer learning to smaller servable models, while LLM inference-time scaling typically involves chain-of-thought or test-time compute on the same large model. GEM is 4× more efficient per unit data/compute than prior models. [[wiki/sources/llatte-scaling-laws-recommendation.md]] *(peer_reviewed)*
