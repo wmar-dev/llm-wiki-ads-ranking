@@ -1,8 +1,13 @@
 ---
-status: current
-sources: 1
+title: "User True Interest Survey (UTIS)"
+type: "source_summary"
+sources:
+  - "web/meta-utis-user-true-interest-survey.md"
+status: "current"
 source_type: other
 ingest_count: 1
+created: "2026-06-09"
+last_updated: "2026-06-09"
 ---
 
 # User True Interest Survey (UTIS)

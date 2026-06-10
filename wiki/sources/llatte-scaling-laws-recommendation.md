@@ -1,8 +1,13 @@
 ---
-status: current
-sources: 1
+title: "LLaTTE: Scaling Laws for Multi-Stage Sequence Modeling in Large-Scale Ads Recommendation"
+type: "source_summary"
+sources:
+  - "web/llatte-scaling-laws-recommendation.md"
+status: "current"
 source_type: peer_reviewed
 ingest_count: 1
+created: "2026-06-09"
+last_updated: "2026-06-09"
 ---
 
 # LLaTTE: Scaling Laws for Multi-Stage Sequence Modeling in Large-Scale Ads Recommendation

@@ -1,8 +1,13 @@
 ---
-status: current
-sources: 1
+title: "Google Product Taxonomy for Shopping Ads"
+type: "source_summary"
+sources:
+  - "web/google-merchant-center-product-category.md"
+status: "current"
 source_type: official_documentation
 ingest_count: 1
+created: "2026-06-09"
+last_updated: "2026-06-09"
 ---
 
 # Google Product Taxonomy for Shopping Ads

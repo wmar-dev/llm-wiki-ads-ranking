@@ -1,6 +1,11 @@
 ---
-status: current
-sources: 1
+title: "Does Google Shopping Ads Have a Vertical Classification?"
+type: "synthesis"
+sources:
+  - "web/google-merchant-center-product-category.md"
+status: "current"
+created: "2026-06-09"
+last_updated: "2026-06-09"
 ---
 
 # Does Google Shopping Ads Have a Vertical Classification?

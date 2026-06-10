@@ -1,8 +1,13 @@
 ---
-status: current
-sources: 1
+title: "Always-Valid Inference and Anytime-Valid Confidence Sequences"
+type: "source_summary"
+sources:
+  - "web/always-valid-sequential-testing.md"
+status: "current"
 source_type: peer_reviewed
 ingest_count: 1
+created: "2026-06-09"
+last_updated: "2026-06-09"
 ---
 
 # Always-Valid Inference and Anytime-Valid Confidence Sequences

@@ -1,8 +1,13 @@
 ---
-status: current
-sources: 1
+title: "TIGER: Transformer Index for GEnerative Recommenders"
+type: "source_summary"
+sources:
+  - "web/tiger-transformer-index-generative-recommenders.md"
+status: "current"
 source_type: peer_reviewed
 ingest_count: 1
+created: "2026-06-09"
+last_updated: "2026-06-09"
 ---
 
 # TIGER: Transformer Index for GEnerative Recommenders
