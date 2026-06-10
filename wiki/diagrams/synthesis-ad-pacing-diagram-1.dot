@@ -1,0 +1,39 @@
+digraph G {
+    rankdir=TB;
+    node [fontsize=11, shape=box];
+    edge [fontsize=10, arrowhead=normal];
+
+    BUDGET [label="Campaign Budget + Delivery Schedule", shape=ellipse, style=filled, fillcolor=lightgrey];
+    LOOP [label="Pacing Controller\n(target spend vs. actual spend)"];
+
+    BUDGET -> LOOP;
+
+    subgraph cluster_throttle {
+        label="Throttling";
+        style=dashed;
+        THROT [label="Probabilistic auction participation\n(coin-flip on remaining budget)"];
+    }
+
+    subgraph cluster_bidmod {
+        label="Bid Modulation";
+        style=dashed;
+        PID [label="PID controller"];
+        MPC [label="Model Predictive\nControl (MPC)"];
+        DOGD [label="Dual Online\nGradient Descent"];
+    }
+
+    LOOP -> THROT;
+    LOOP -> PID;
+    LOOP -> MPC;
+    LOOP -> DOGD;
+
+    AUCTION [label="Per-Impression Auction\n(first- or second-price)", shape=ellipse];
+    THROT -> AUCTION;
+    PID -> AUCTION;
+    MPC -> AUCTION;
+    DOGD -> AUCTION;
+
+    SPEND [label="Observed Spend + Performance"];
+    AUCTION -> SPEND;
+    SPEND -> LOOP [label="feedback loop", style=dashed, constraint=false];
+}

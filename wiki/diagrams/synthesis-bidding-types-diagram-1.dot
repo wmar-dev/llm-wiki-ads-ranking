@@ -1,0 +1,47 @@
+digraph G {
+    rankdir=TB;
+    node [fontsize=11, shape=box];
+    edge [fontsize=10, arrowhead=normal];
+
+    BID [label="Ad Bidding", shape=ellipse, style=filled, fillcolor=lightgrey];
+
+    subgraph cluster_pricing {
+        label="Pricing Model (what you pay for)";
+        style=dashed;
+        CPM [label="CPM\nper 1,000 impressions"];
+        CPC [label="CPC\nper click"];
+        CPA [label="CPA / CPL\nper action or lead"];
+        CPV [label="CPV\nper video view"];
+        OCPM [label="oCPM\nCPM optimized for conversions"];
+    }
+
+    subgraph cluster_strategy {
+        label="Bid Strategy (how the system spends)";
+        style=dashed;
+        MANUAL [label="Manual bidding"];
+        AUTO [label="Automated / Smart Bidding"];
+        TCPA [label="Target CPA / Target ROAS"];
+        MAXCONV [label="Maximize Conversions / Clicks"];
+        COSTCAP [label="Cost Cap / Bid Cap / Max Delivery"];
+        AUTO -> TCPA;
+        AUTO -> MAXCONV;
+        AUTO -> COSTCAP;
+    }
+
+    subgraph cluster_auction {
+        label="Auction Mechanism (how bids clear)";
+        style=dashed;
+        FIRSTP [label="First-price\nprogrammatic RTB / display"];
+        SECONDP [label="Second-price / GSP\nsearch + social feeds"];
+    }
+
+    BID -> CPM;
+    BID -> CPC;
+    BID -> CPA;
+    BID -> CPV;
+    BID -> OCPM;
+    BID -> MANUAL;
+    BID -> AUTO;
+    BID -> FIRSTP;
+    BID -> SECONDP;
+}
