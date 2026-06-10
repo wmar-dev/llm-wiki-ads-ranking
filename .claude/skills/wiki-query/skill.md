@@ -117,7 +117,24 @@ Choose the output format based on the question. Default to prose; layer in visua
 **Always consider adding to any synthesis or comparison page:**
 
 - **Markdown tables** — use whenever comparing ≥3 items across ≥2 attributes, or summarizing parameter ranges
-- **Mermaid diagrams** — use for pipelines, architectures, data flows, decision trees, entity relationships, timelines
+- **Graphviz diagrams (preferred)** — use for pipelines, architectures, data flows, decision trees, entity relationships, timelines
+- **Mermaid diagrams (fallback)** — same use cases, only when Graphviz isn't suitable
+
+**Graphviz diagram format (preferred):**
+1. Write DOT source to `wiki/diagrams/<slug>-diagram-N.dot` (N increments per page, starting at 1)
+2. Render it: `uv run python scripts/render_dot.py wiki/diagrams/<slug>-diagram-N.dot`
+3. Embed the result in the page: `![<slug>-diagram-N](/assets/<slug>-diagram-N.svg)`
+
+Layout guidance:
+- `rankdir=LR` — pipelines, data flows
+- `rankdir=TB` with `cluster_<name>` subgraphs — architectures, hierarchies, entity relationships
+- `shape=diamond` nodes — decision trees
+- Keep node labels short (≤5 words); add a prose caption below the image
+- If the `.dot` source is edited later, re-render it so the SVG stays in sync
+
+**Mermaid diagram format (fallback)** — use only if `scripts/render_dot.py` or the
+`dot` CLI is unavailable, Graphviz rendering errors out, or the researcher
+explicitly asks for an editable Mermaid diagram:
 
 Mermaid diagram types to prefer:
 - `flowchart LR` — pipelines, data flows

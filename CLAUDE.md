@@ -18,6 +18,7 @@ make dev        # Flask at http://localhost:5000 with debug mode + auto-reload
 
 ```sh
 make index             # rebuild search.db
+make render-dot        # re-render all Graphviz DOT diagrams in wiki/diagrams/ to SVG
 make validate-mermaid  # validate all Mermaid diagrams in wiki/
 ```
 
@@ -27,7 +28,10 @@ make validate-mermaid  # validate all Mermaid diagrams in wiki/
 - `search.db` and `access.log*` are gitignored and regenerated automatically.
 - Search uses SQLite FTS5 native `bm25()` — no external search service needed.
 - Log rotates at 10 MB; all segments remain queryable from `/metrics`.
-- Wiki pages support Mermaid diagrams (fenced ` ```mermaid ` blocks), GFM tables, and linked matplotlib chart scripts (`wiki/assets/<slug>-chart.py`).
+- Wiki pages support diagrams as Graphviz DOT (`wiki/diagrams/<slug>.dot`, rendered to
+  `wiki/assets/<slug>.svg` via `scripts/render_dot.py` — preferred), Mermaid (fenced
+  ` ```mermaid ` blocks — fallback), GFM tables, and linked matplotlib chart scripts
+  (`wiki/assets/<slug>-chart.py`).
 - `/wiki/<slug>` and `/wiki/<slug>.md` both resolve to the same page.
 
 <!-- SPECKIT START -->

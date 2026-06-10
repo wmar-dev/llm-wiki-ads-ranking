@@ -1,4 +1,4 @@
-.PHONY: install serve dev test lint docker-build docker-up docker-down index
+.PHONY: install serve dev test lint docker-build docker-up docker-down index render-dot validate-mermaid
 
 install:
 	uv sync --all-extras && uv run playwright install chromium
@@ -26,6 +26,9 @@ docker-down:
 
 index:
 	uv run python -m wiki_server.search rebuild
+
+render-dot:
+	uv run python scripts/render_dot.py --all
 
 validate-mermaid:
 	uv run python scripts/validate_mermaid.py --all

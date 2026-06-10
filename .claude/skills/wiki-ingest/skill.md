@@ -182,10 +182,22 @@ When writing or updating wiki pages, enrich them with tables, diagrams, and plot
 | Content type | When to use | Format |
 |---|---|---|
 | **Markdown table** | Comparing ≥3 items across ≥2 attributes; listing metrics or parameters | Standard GFM table in the page body |
-| **Mermaid diagram** | Pipelines, architectures, data flows, decision trees, timelines, entity relationships | Fenced code block: ` ```mermaid ` |
+| **Graphviz diagram (preferred)** | Pipelines, architectures, data flows, decision trees, timelines, entity relationships | DOT source in `wiki/diagrams/<slug>-diagram-N.dot`, rendered to `wiki/assets/<slug>-diagram-N.svg` |
+| **Mermaid diagram (fallback)** | Same use cases, only when Graphviz isn't suitable | Fenced code block: ` ```mermaid ` |
 | **Matplotlib script** | Quantitative data with numeric trends, distributions, or comparisons | `wiki/assets/<slug>-chart.py` with `plt.savefig("wiki/assets/<slug>-chart.png")` |
 
-**Mermaid diagram guidance:**
+**Graphviz diagram guidance (preferred):**
+- Write DOT source to `wiki/diagrams/<slug>-diagram-N.dot` (N increments per page, starting at 1)
+- Render it: `uv run python scripts/render_dot.py wiki/diagrams/<slug>-diagram-N.dot`
+- Embed the result in the page: `![<slug>-diagram-N](/assets/<slug>-diagram-N.svg)`
+- Use `rankdir=LR` for pipelines and data flows, `rankdir=TB` for hierarchies and decision trees
+- Use `shape=box, style=rounded` for steps/nodes, `shape=diamond` for decisions, `cluster_<name>` subgraphs for groupings
+- Keep node labels short (≤5 words); add a prose caption below the image
+- If the `.dot` source is edited later, re-render it so the SVG stays in sync
+
+**Mermaid diagram guidance (fallback):**
+- Use only if `scripts/render_dot.py` or the `dot` CLI is unavailable, Graphviz rendering
+  errors out, or the researcher explicitly asks for an editable Mermaid diagram
 - Use `flowchart LR` for pipelines and data flows
 - Use `sequenceDiagram` for request/response or multi-system interactions
 - Use `classDiagram` for model or schema relationships
