@@ -1,7 +1,2 @@
-- what is VCG?
-- what is a conversion?
-- How does google analytics work?
-- What is the latency budget for ad ranking?
-- What are the components that make up an ad ranking system?
-- Why does Google charge per click while Meta charges per impression?
-- What is ad rank?
+- how are auctions used in food banks?
+- how are auctions used in scheduling classes?

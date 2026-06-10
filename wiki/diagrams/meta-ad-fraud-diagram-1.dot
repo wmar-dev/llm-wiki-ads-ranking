@@ -1,0 +1,26 @@
+digraph MetaAdFraudFunnel {
+  rankdir=TB;
+  node [shape=box, style=rounded, fontname="Helvetica", fontsize=11];
+  edge [fontname="Helvetica", fontsize=10];
+
+  submit [label="Ad submitted to\nMeta ad platform"];
+  score [label="Automated fraud-risk\nscoring (ML models)"];
+  decision [label="Model confidence\nof fraud ≥ 95%?", shape=diamond];
+  remove [label="Advertiser banned /\nad removed"];
+  penalty [label="\"Penalty bid\":\nhigher rate charged,\nad keeps running"];
+  served [label="~15B \"higher-risk\"\nads served per day\n(2024 internal est.)"];
+  revenue [label="~$16B (~10% of 2024\nrevenue) from scam /\nbanned-goods ads"];
+  reports [label="User fraud reports"];
+  reportsoutcome [label="96% ignored or\nincorrectly rejected\n(per CFA complaint)"];
+  removed2025 [label="159M scam ads removed\nin 2025 (92% proactive,\nper Meta H1 2026 report)"];
+
+  submit -> score;
+  score -> decision;
+  decision -> remove [label="yes"];
+  decision -> penalty [label="no"];
+  penalty -> served;
+  served -> revenue;
+  remove -> removed2025;
+  reports -> reportsoutcome;
+  reportsoutcome -> penalty [style=dashed, label="most reports\ndon't trigger removal"];
+}

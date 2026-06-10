@@ -7,9 +7,12 @@ sources:
   - "web/meta-ads-algorithm-2026-guide.md"
   - "web/meta-utis-user-true-interest-survey.md"
   - "web/llatte-scaling-laws-recommendation.md"
+  - "web/meta-integrity-report-h1-2026.md"
+  - "web/lawfare-reuters-meta-fraud-profit-scandal.md"
+  - "web/cfa-lawsuit-meta-scam-ads-ppc-land.md"
 status: "current"
 created: "2026-06-08"
-last_updated: "2026-06-09"
+last_updated: "2026-06-10"
 ---
 
 # Meta Ads Ranking System
@@ -61,6 +64,29 @@ Since Andromeda, creative IS the targeting. The system reads creative content to
 - **Pixel + CAPI** required. CAPI captures ~60-70% of conversions; browser-only captures less after iOS privacy changes.
 - **EMQ ≥ 7.0** target for primary conversion events
 - **Learning phase**: 50 optimization events within 7 days to exit
+
+## Fraud, Scams & Enforcement
+
+The same ranking/auction pipeline that serves legitimate ads also serves scam
+and deceptive ads, since Meta's automated systems score every submitted ad for
+fraud risk alongside relevance and value. As of 2026, the scale of this problem
+is large and contested:
+
+| Metric | Figure | Source |
+|---|---|---|
+| Scam ads removed (2025) | 159M+ (92% proactive) | [[wiki/sources/meta-integrity-report-h1-2026-fraud-scams.md]] *(official_documentation)* |
+| Scam ads removed (2025), per CFA complaint | 134M | [[wiki/sources/cfa-lawsuit-meta-scam-ads-2026.md]] *(news_article)* |
+| "Higher-risk" scam ads served per day | ~15B | [[wiki/sources/cfa-lawsuit-meta-scam-ads-2026.md]] *(news_article)* |
+| Projected 2024 revenue from scam/banned-goods ads | ~$16B (~10% of total) | [[wiki/sources/reuters-meta-fraud-profit-investigation.md]] *(news_article)* |
+| Ban threshold for fraud-flagged advertisers | 95% model confidence | [[wiki/sources/reuters-meta-fraud-profit-investigation.md]] *(news_article)* |
+
+Below the 95%-confidence ban threshold, flagged advertisers reportedly are
+charged a higher "penalty bid" rather than removed — i.e., the same auction
+mechanism (Total Value = Bid × EAR + Ad Quality, see Auction Mechanism above)
+continues to rank and serve ads from advertisers Meta's own models suspect of
+fraud, generating additional revenue in the process. Full detail and the
+enforcement-funnel diagram: [[wiki/synthesis/meta-ad-fraud.md]]. Conceptual
+background: [[wiki/concepts/scam-ads-and-ad-fraud.md]].
 
 ## Relationship to Other Systems
 
