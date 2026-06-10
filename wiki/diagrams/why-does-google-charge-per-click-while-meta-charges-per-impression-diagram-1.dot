@@ -1,0 +1,32 @@
+digraph G {
+    rankdir=TB;
+    node [shape=box, style=rounded, fontsize=11];
+    edge [fontsize=9];
+
+    subgraph cluster_google {
+        label="Google Search";
+        style=dashed;
+        g_origin [label="1998-2002: Goto.com -> Google\nCPC pioneered for paid search"];
+        g_context [label="High-intent context:\nuser typed a query"];
+        g_bill [label="Advertiser billed: CPC\n(pay only if clicked)"];
+        g_origin -> g_context -> g_bill;
+    }
+
+    subgraph cluster_meta {
+        label="Meta Feed";
+        style=dashed;
+        m_origin [label="1995-96: Netscape/Infoseek/\nDoubleClick popularize CPM\nfor display"];
+        m_context [label="Low-intent context:\nuser is browsing/scrolling"];
+        m_bill [label="Advertiser billed: CPM / oCPM\n(pay per impression)"];
+        m_origin -> m_context -> m_bill;
+    }
+
+    ecpm [label="Both auctions clear in\nimpression-equivalent terms:\neCPM = bid x pCTR (Google LTV)\nTotal Value = Bid x EAR + Quality (Meta)", shape=note, style=filled, fillcolor=lightyellow];
+
+    g_bill -> ecpm;
+    m_bill -> ecpm;
+
+    risk [label="Risk allocation:\nCPC -> platform bears risk of\nshown-but-unclicked impressions\nCPM -> advertiser bears risk of\nshown-but-unconverted impressions", shape=note, style=filled, fillcolor=lightyellow];
+
+    ecpm -> risk;
+}

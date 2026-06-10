@@ -1,0 +1,26 @@
+digraph G {
+    rankdir=TB;
+    node [shape=box, style=rounded, fontsize=11];
+    edge [fontsize=10];
+
+    subgraph cluster_without {
+        label="Scenario 1: Without Bidder A";
+        style=dashed;
+        w1 [label="Optimal allocation\nexcluding A"];
+        w2 [label="Others' total value = $18"];
+        w1 -> w2;
+    }
+
+    subgraph cluster_with {
+        label="Scenario 2: With Bidder A (actual)";
+        style=dashed;
+        a1 [label="Optimal allocation\nincluding A"];
+        a2 [label="Others' total value = $11\n(A's presence took a slot from them)"];
+        a1 -> a2;
+    }
+
+    diff [label="A's payment = $18 - $11 = $7\n(the externality A imposes on others)", shape=note, style=filled, fillcolor=lightyellow];
+
+    w2 -> diff;
+    a2 -> diff;
+}

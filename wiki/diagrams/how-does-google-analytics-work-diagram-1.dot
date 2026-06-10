@@ -1,0 +1,36 @@
+digraph G {
+    rankdir=LR;
+    node [shape=box, style=rounded, fontsize=11];
+    edge [fontsize=10];
+
+    subgraph cluster_collect {
+        label="Data Collection";
+        style=dashed;
+        web [label="Website\n(gtag.js / GTM)"];
+        app [label="Mobile App\n(Firebase SDK)"];
+    }
+
+    subgraph cluster_ga4 {
+        label="GA4 Property";
+        style=dashed;
+        events [label="Event-based data model\n(events, event_params,\nuser_properties, items)"];
+        reports [label="Reports UI\n(Realtime, standard,\nexploration reports)"];
+        events -> reports;
+    }
+
+    subgraph cluster_export {
+        label="BigQuery Export";
+        style=dashed;
+        bq [label="events_YYYYMMDD /\nevents_intraday_YYYYMMDD"];
+        predictive [label="Predictive scores\n(purchase / churn\nprobability) +\nBigQuery ML audiences"];
+        bq -> predictive;
+    }
+
+    ads [label="Google Ads\n(conversion import via gclid,\naudiences, Smart Bidding,\nAd Rank)", shape=box, style="rounded,filled", fillcolor=lightyellow];
+
+    web -> events;
+    app -> events;
+    events -> bq;
+    predictive -> ads [label="predictive audiences"];
+    events -> ads [label="conversion events\n(gclid join)"];
+}

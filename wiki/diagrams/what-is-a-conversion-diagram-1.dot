@@ -1,0 +1,21 @@
+digraph G {
+    rankdir=LR;
+    node [shape=box, style=rounded, fontsize=11];
+    edge [fontsize=10];
+
+    impression [label="Ad impression\n/ click"];
+    action [label="Conversion event\n(purchase, signup,\ninstall, lead, call)"];
+    tracking [label="Tracking\n(tag/pixel, app SDK,\nConversion API,\noffline import)"];
+    attribution [label="Attribution\n(match to click/view\nwithin lookback window)"];
+    pcvr [label="pCVR / conversion\nvalue model"];
+    bidding [label="Smart Bidding\n(Target CPA/ROAS,\noCPM)"];
+    rank [label="Ad Rank / LTV\nauction"];
+
+    impression -> action [label="user converts"];
+    action -> tracking;
+    tracking -> attribution;
+    attribution -> pcvr [label="training data"];
+    pcvr -> bidding [label="predicted CVR/value"];
+    bidding -> rank [label="per-auction bid"];
+    rank -> impression [label="future impressions", style=dashed, constraint=false];
+}

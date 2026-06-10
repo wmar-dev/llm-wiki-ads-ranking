@@ -1,0 +1,19 @@
+digraph G {
+    rankdir=LR;
+    node [shape=box, style=rounded, fontsize=11];
+    edge [fontsize=10];
+
+    req [label="Request arrives\n(page/app load,\nbid request)"];
+    retrieval [label="Retrieval\n~10-20ms\n(two-tower + ANN:\n100M -> ~1,000)"];
+    prerank [label="Pre-ranking\n~10-15ms\n(light model:\n1,000 -> ~200)"];
+    ranking [label="Heavy ranking\n~50-80ms\n(DLRM/DIN/Lattice:\n200 -> ~50)"];
+    auction [label="Auction / pricing\n~10-15ms\n(Ad Rank, GSP/rGSP)"];
+    resp [label="Ad served"];
+
+    req -> retrieval -> prerank -> ranking -> auction -> resp;
+
+    total [label="Total: ~100ms (Google Ad Rank,\nopen RTB DSP response)\nvs ~200-300ms (Meta, ARM-served\nLLM-scale models)", shape=note, style=filled, fillcolor=lightyellow];
+
+    resp -> total [style=invis];
+    {rank=same; resp; total;}
+}

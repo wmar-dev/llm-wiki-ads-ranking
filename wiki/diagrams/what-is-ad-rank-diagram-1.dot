@@ -1,0 +1,50 @@
+digraph G {
+    rankdir=TB;
+    node [shape=box, style=rounded, fontsize=11];
+    edge [fontsize=9];
+
+    subgraph cluster_inputs {
+        label="Inputs (per ad, per auction)";
+        style=dashed;
+        bid [label="Max CPC bid\n(manual or Smart Bidding)"];
+        pctr [label="pCTR\n(predicted CTR)"];
+        pcq [label="pCQ\n(predicted creative quality)"];
+        plq [label="pLQ\n(predicted landing\npage quality)"];
+    }
+
+    ecpm [label="eCPM = bid x pCTR"];
+    costs [label="costs = f(1-pCQ) + f(1-pLQ)"];
+    ltv [label="LTV (Ad Rank) =\neCPM - costs"];
+
+    bid -> ecpm;
+    pctr -> ecpm;
+    pcq -> costs;
+    plq -> costs;
+    ecpm -> ltv;
+    costs -> ltv;
+
+    elig [label="LTV > 0?", shape=diamond];
+    ltv -> elig;
+
+    noshow [label="Not eligible\n(reserve-price logic\nor no ad shown)"];
+    elig -> noshow [label="no"];
+
+    rank [label="Rank eligible ads\nby LTV (highest first)"];
+    elig -> rank [label="yes"];
+
+    close [label="Top LTV scores\nwithin close range?\n(rGSP, since Jan 2019)", shape=diamond];
+    rank -> close;
+
+    detwin [label="Highest-LTV ad wins\n(standard GSP order)"];
+    close -> detwin [label="no"];
+
+    randwin [label="Winner picked at random\nfrom close-LTV group\n(rGSP)"];
+    close -> randwin [label="yes"];
+
+    price [label="Actual CPC =\nnext-highest qualifying bid\n+ $0.01 (or reserve price)"];
+    detwin -> price;
+    randwin -> price;
+
+    served [label="Ad shown at this position,\nadvertiser charged Actual CPC\nper click"];
+    price -> served;
+}

@@ -165,10 +165,6 @@ A single real-world "bid" is a combination of all three axes. For example:
   first-price auctions compare in sophistication to Google's/Meta's Smart
   Bidding for second-price/GSP auctions — do they use similar ML techniques
   (e.g., contextual bandits, as in [[wiki/synthesis/bandit-algorithms-in-ad-systems.md]])?
-- Open question: For oCPM-style hybrid pricing, how is the "effective CPM"
-  the advertiser pays related to the underlying per-impression auction price
-  the platform pays internally (if the platform itself participates in a
-  first- or second-price auction for that inventory)?
 
 ## Related Pages
 
@@ -181,3 +177,4 @@ A single real-world "bid" is a combination of all three axes. For example:
 - [[wiki/synthesis/bandit-algorithms-in-ad-systems.md]] — exploration/exploitation in ad delivery
 - [[wiki/sources/tiktok-bidding-strategies.md]] — TikTok bidding options and strategies
 - [[wiki/sources/first-price-second-price-auction-setupad.md]] — first-price vs second-price in programmatic
+- [[wiki/synthesis/why-does-google-charge-per-click-while-meta-charges-per-impression.md]] — why CPC/CPM eCPM normalization lets oCPM and Smart Bidding bridge billing units

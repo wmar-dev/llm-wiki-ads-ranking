@@ -1,0 +1,43 @@
+digraph G {
+    rankdir=TB;
+    node [shape=box, style=rounded, fontsize=11];
+    edge [fontsize=9];
+
+    subgraph cluster_serving {
+        label="Online serving pipeline (~100ms budget)";
+        style=dashed;
+        request [label="Ad / page request"];
+        retrieval [label="1. Retrieval\n(two-tower + ANN)"];
+        prerank [label="2. Pre-ranking\n(light model)"];
+        ranking [label="3. Heavy ranking\n(pCTR / pCVR / quality)"];
+        auction [label="4. Auction & pricing\n(Ad Rank, GSP/rGSP)"];
+        served [label="Ad served"];
+
+        request -> retrieval -> prerank -> ranking -> auction -> served;
+    }
+
+    subgraph cluster_control {
+        label="Bidding & delivery control";
+        style=dashed;
+        bidstrategy [label="Bid strategy\n(Smart Bidding,\nTarget CPA/ROAS)"];
+        pacing [label="Pacing controller\n(throttling /\nbid modulation)"];
+        bidstrategy -> pacing;
+    }
+
+    subgraph cluster_learning {
+        label="Feedback & learning loop";
+        style=dashed;
+        conversions [label="Conversion tracking\n& attribution"];
+        bandits [label="Exploration\n(bandits)"];
+        experiments [label="Experimentation\n(A/B testing)"];
+    }
+
+    pacing -> auction [label="bid multiplier"];
+    conversions -> ranking [label="pCTR/pCVR\ntraining labels"];
+    conversions -> bidstrategy [label="reward signal"];
+    bandits -> ranking [label="creative arms"];
+    bandits -> pacing [label="budget allocation"];
+    experiments -> ranking [style=dotted, label="evaluates"];
+    experiments -> auction [style=dotted, label="evaluates"];
+    experiments -> bidstrategy [style=dotted, label="evaluates"];
+}
