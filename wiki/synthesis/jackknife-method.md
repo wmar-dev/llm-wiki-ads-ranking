@@ -3,9 +3,10 @@ title: "The Jackknife Method"
 type: "synthesis"
 sources:
   - "web/jackknife-resampling.md"
+  - "web/jackknife-delta-method-equivalence.md"
 status: "current"
 created: "2026-06-08"
-last_updated: "2026-06-08"
+last_updated: "2026-06-09"
 ---
 
 # The Jackknife Method
@@ -61,4 +62,4 @@ This avoids parametric assumptions (e.g., Fisher's $z$-transformation) and works
 
 The jackknife is used for confidence interval estimation of ratio metrics and other complex statistics where closed-form variance formulas are unavailable. It provides a nonparametric alternative to the delta method and is particularly useful as a cross-check when parametric assumptions are suspect [[wiki/sources/jackknife-resampling.md]] [[wiki/synthesis/confidence-interval-methods.md]].
 
-*Open question:* How does the jackknife compare to the delta method for ratio metrics in A/B testing at very large sample sizes ($n > 10^6$)?
+For ratio metrics — smooth functions of the means of clicks and impressions — the jackknife and delta-method variance estimators are **asymptotically equivalent**: their difference vanishes faster than $n^{-1/2}$, so at $n > 10^6$ both converge to the same variance estimate. The delta method needs only per-cluster sums and cross-products in a single pass, while the jackknife requires $n$ leave-one-out recomputations — computationally prohibitive at this scale unless reduced to incremental formulas that, for smooth statistics, converge to the delta-method formula anyway. **The delta method dominates on both accuracy and cost for ratio metrics at $n > 10^6$**; the jackknife retains value mainly for non-smooth statistics (medians, trimmed means, quantiles) where no delta-method linearization exists, or as a finite-sample cross-check at smaller $n$ [[wiki/sources/jackknife-delta-method-equivalence.md]].

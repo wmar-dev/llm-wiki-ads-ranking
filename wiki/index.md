@@ -17,7 +17,7 @@
 - [Overlapping Experiment Infrastructure: More, Better, Faster Experimentation](wiki/sources/overlapping-experiment-infrastructure.md) — Google's layered A/B testing system (KDD 2010); introduces domains/layers/launch layers and supporting tools for running thousands of simultaneous experiments
 - [How A/B Tests Work](wiki/synthesis/how-ab-tests-work.md) — comprehensive overview: randomization, hypothesis testing, OEC, sample sizing, A/A tests, CUPED, triggering, overlapping/layered experiments, sequential testing, network interference, and common pitfalls [status: current] [sources: 3]
 - [Methods for Computing Confidence Intervals in A/B Testing](wiki/synthesis/confidence-interval-methods.md) — decision framework for CI method selection: t-test/Wald, delta method, Fieller, bootstrap (BCa/percentile/t), outer CI for quantiles, hybrid method, Bayesian credible intervals, confidence sequences (mSPRT, AsympCS, design-based, SAVI), and CUPED [status: current] [sources: 1]
-- [The Jackknife Method](wiki/synthesis/jackknife-method.md) — leave-one-out resampling for bias and variance estimation; compares to bootstrap; relevance to A/B testing [status: current] [sources: 1]
+- [The Jackknife Method](wiki/synthesis/jackknife-method.md) — leave-one-out resampling for bias and variance estimation; compares to bootstrap; relevance to A/B testing [status: current] [sources: 2]
 
 ## Google Shopping Ads
 
@@ -25,7 +25,7 @@
 
 ## Auction Mechanisms & Pricing
 
-- [Why Ads Have Auctions](wiki/synthesis/why-ads-have-auctions.md) — economic rationale: scarcity, price discovery, allocative efficiency, perishing inventory; why fixed prices fail and GSP prevails [status: current] [sources: 2]
+- [Why Ads Have Auctions](wiki/synthesis/why-ads-have-auctions.md) — economic rationale: scarcity, price discovery, allocative efficiency, perishing inventory; why fixed prices fail and GSP prevails [status: current] [sources: 3]
 - [What Is a Second Price Auction?](wiki/synthesis/second-price-auction.md) — Vickrey/GSP auction mechanics, incentive compatibility, revenue equivalence, and relevance to ads ranking systems [status: current] [sources: 1]
 - [Internet Advertising and the GSP Auction](wiki/sources/edelman-ostrovsky-schwarz-gsp-auction.md) — Edelman, Ostrovsky & Schwarz (AER 2007); proves GSP lacks dominant-strategy truthfulness but has a unique locally envy-free equilibrium with VCG-equivalent payoffs [status: current] [sources: 1] [source_type: peer_reviewed]
 - [Generalized Second-Price Auction (GSP)](wiki/concepts/generalized-second-price-auction.md) — multi-slot auction mechanism used in search advertising; bid × quality score ranking; locally envy-free equilibrium [status: current] [sources: 1]
@@ -36,7 +36,7 @@
 
 ## Machine Learning at Scale
 
-- [The Unreasonable Effectiveness of Data](wiki/sources/unreasonable-effectiveness-of-data.md) — Halevy, Norvig & Pereira (IEEE Intelligent Systems 2009); argues simple models + lots of data outperform complex models + less data; foundational paper for web-scale learning [status: current] [sources: 1] [source_type: peer_reviewed] [processing_status: processed] [ingest_count: 1]
+- [The Unreasonable Effectiveness of Data](wiki/sources/unreasonable-effectiveness-of-data.md) — Halevy, Norvig & Pereira (IEEE Intelligent Systems 2009); argues simple models + lots of data outperform complex models + less data; foundational paper for web-scale learning [status: current] [sources: 2] [source_type: peer_reviewed] [processing_status: processed] [ingest_count: 1]
 - [Web-Scale Learning](wiki/concepts/web-scale-learning.md) — paradigm of training ML on naturally occurring large-scale data; threshold of sufficient data; memorization at scale [status: draft] [sources: 3]
 - [Ad Click Prediction: a View from the Trenches](wiki/sources/ad-click-prediction-view-from-the-trenches.md) — McMahan et al. (KDD 2013); Google's CTR prediction system: FTRL-Proximal algorithm, per-coordinate learning rates, memory optimization at billion-coefficient scale [status: current] [sources: 1] [source_type: peer_reviewed] [processing_status: chunked] [ingest_count: 1]
 
@@ -63,14 +63,19 @@
 
 ## Recommendation Systems
 
-- [How the TikTok Recommendation Algorithm Works](wiki/synthesis/tiktok-recommendation-algorithm.md) — two-stage pipeline (candidate generation + ranking); unsupervised clustering + embeddings; implicit signal-driven feedback loop; exploration vs exploitation [status: current] [sources: 3]
+- [How the TikTok Recommendation Algorithm Works](wiki/synthesis/tiktok-recommendation-algorithm.md) — two-stage pipeline (candidate generation + ranking); unsupervised clustering + embeddings; implicit signal-driven feedback loop; exploration vs exploitation [status: current] [sources: 4]
 - [How TikTok Recommends Content](wiki/sources/tiktok-recommender-system.md) — TikTok official documentation on recommender signals (user interactions, content info, user info) [status: current] [sources: 1] [source_type: other]
 - [How TikTok's Algorithm Really Works](wiki/sources/tiktok-unsupervised-algorithm-deep-dive.md) — unsupervised learning engine behind FYP; embeddings, Monolith real-time training, two-stage architecture [status: draft] [sources: 1] [source_type: blog_post]
 - [Two-Tower and Factorized Models: Architecture for Billion-Scale Retrieval](wiki/synthesis/two-tower-factorized-models.md) — dual-encoder architecture for retrieval stage; independent user/item towers; in-batch negatives; sampling bias correction; FAISS ANN search; multi-stage pipeline; cold-start handling [status: current] [sources: 2]
 - [Monolith Real-Time Recommendation System](wiki/entities/monolith-realtime-system.md) — ByteDance's production real-time recommendation system: collisionless embedding (Cuckoo hash), online training, minute-level parameter sync, deployed in BytePlus Recommend [status: current] [sources: 1]
 - [Online Training for Recommendation Systems](wiki/concepts/online-training-recommendation.md) — continuous model updating on streaming user feedback; Kafka/Flink streaming, incremental parameter sync, trade-offs between reliability and real-time learning [status: draft] [sources: 2]
 - [Collisionless Embedding Table](wiki/concepts/collisionless-embedding-table.md) — collision-free sparse feature embedding via Cuckoo hashing; frequency filtering and expirable embeddings for memory efficiency [status: draft] [sources: 1]
-- [Pinterest's Foundation Models: From PinFM to Unified Retrieval and Ranking](wiki/synthesis/pinterest-foundation-model.md) — PinFM 20B+ param transformer; DCAT 600% throughput gain; PinRec generative retrieval; UniPinRec full-stack unification; request-level deduplication stack [status: current] [sources: 2]
+- [Pinterest's Foundation Models: From PinFM to Unified Retrieval and Ranking](wiki/synthesis/pinterest-foundation-model.md) — PinFM 20B+ param transformer; DCAT 600% throughput gain; PinRec generative retrieval; UniPinRec full-stack unification; request-level deduplication stack; TransActV2 lifelong sequence ranking [status: current] [sources: 3]
+
+## Bandit Algorithms & Exploration
+
+- [How Are Bandit Algorithms Used in Ad Systems?](wiki/synthesis/bandit-algorithms-in-ad-systems.md) — explore/exploit loop; production applications in ad creative selection (fatigue-aware contextual bandits), budget allocation (budgeted UCB1), and bandit-based experimentation (JD.com Comparison Lift, +46% CTR); contrasts with TikTok's fixed-ratio exploration [status: current] [sources: 3]
+- [Multi-Armed Bandit Algorithms](wiki/concepts/multi-armed-bandit-algorithms.md) — epsilon-greedy, UCB1, Thompson Sampling, contextual bandits (LinUCB), budgeted/constrained bandits; relationship to A/B testing [status: draft] [sources: 3]
 
 ## Sources
 
@@ -108,3 +113,11 @@
 - [Always-Valid Sequential Testing](wiki/sources/always-valid-sequential-testing.md) — Johari et al. (Operations Research 2022); CS deployed at Optimizely, Adobe, Netflix [status: current] [sources: 1] [source_type: peer_reviewed]
 - [Network Interference in A/B Testing](wiki/sources/network-interference-ab-testing-methods.md) — UNITE, Causal-MP, surrogate networks, ramp-up merging, dyadic estimators [status: current] [sources: 1] [source_type: peer_reviewed]
 - [What is RGSP? Google's Randomized Generalized Second-Price Ad Auctions Explained](wiki/sources/rgsp-randomized-second-price-explained.md) — Search Engine Land coverage of DOJ trial testimony detailing the rGSP randomization mechanism, revenue impact, and Adam Juda email [status: draft] [sources: 1] [source_type: news_article] [processing_status: processed] [ingest_count: 1]
+- [Fatigue-Aware Ad Creative Selection](wiki/sources/fatigue-aware-ad-creative-selection.md) — Moriwaki et al. (arXiv 2019); contextual bandit for DSP ad creative selection accounting for wear-in/wear-out fatigue effects [status: current] [sources: 1] [source_type: peer_reviewed] [processing_status: processed] [ingest_count: 1]
+- [Dynamic Ad Allocation: Bandits with Budgets](wiki/sources/dynamic-ad-allocation-bandits-with-budgets.md) — budgeted UCB1 for online ad allocation with per-ad spend caps and provable regret bounds (arXiv 2013) [status: current] [sources: 1] [source_type: peer_reviewed] [processing_status: processed] [ingest_count: 1]
+- [Comparison Lift: Bandit-Based Experimentation System for Online Advertising](wiki/sources/comparison-lift-bandit-experimentation.md) — JD.com EaaS platform replacing fixed A/B testing with adaptive bandit allocation; 1,500+ experiments, +46% avg CTR (arXiv 2020) [status: current] [sources: 1] [source_type: peer_reviewed] [processing_status: processed] [ingest_count: 1]
+- [Approximating Auction Equilibria with Reinforcement Learning](wiki/sources/approximating-auction-equilibria-rl.md) — Rawat (arXiv 2024); RL bidding agents converge to classical auction equilibria (first-price b*(v)=v/2 under uniform valuations, second-price truthful b*(v)=v) with no collusive deviations found [status: current] [sources: 1] [source_type: other] [processing_status: processed] [ingest_count: 1]
+- [Statistical Learning from Attribution Sets](wiki/sources/statistical-learning-attribution-sets.md) — Applebaum, Busa-Fekete, Chen, Gentile, Koren & Mokhtari (arXiv 2026); unbiased loss estimators for conversion prediction under privacy-preserving attribution APIs; ERM guarantees preserved when correctly derived [status: current] [sources: 1] [source_type: other] [processing_status: processed] [ingest_count: 1]
+- [TransAct V2: Lifelong User Action Sequence Modeling on Pinterest Recommendation](wiki/sources/transact-v2-pinterest.md) — Xia et al. (Pinterest, arXiv 2025); 16K-action lifelong sequences (~160x scale-up), Next Action Loss; +13.31% offline HIT@3/repin, +6.35% online Homefeed Repin Volume [status: current] [sources: 1] [source_type: other] [processing_status: processed] [ingest_count: 1]
+- [Addictive Design on Online Platforms (TikTok DSA Enforcement)](wiki/sources/tiktok-dsa-addictive-design.md) — EPRS briefing (May 2026); Feb 2026 European Commission preliminary DSA breach finding against TikTok's recommender architecture — first enforcement targeting algorithm design itself [status: current] [sources: 1] [source_type: official_documentation] [processing_status: processed] [ingest_count: 1]
+- [Asymptotic Equivalence of the Jackknife and Infinitesimal Jackknife Variance Estimators for Some Smooth Statistics](wiki/sources/jackknife-delta-method-equivalence.md) — Gottlieb (Annals of the Institute of Statistical Mathematics, 2003); jackknife and delta-method variance estimators are asymptotically equivalent for smooth ratio metrics [status: current] [sources: 1] [source_type: peer_reviewed] [processing_status: processed] [ingest_count: 1]

@@ -4,6 +4,7 @@ type: "synthesis"
 sources:
   - "web/edelman-ostrovsky-schwarz-gsp-auction.md"
   - "web/google-ad-rank-briefing-paper.md"
+  - "web/approximating-auction-equilibria-rl.md"
 status: "current"
 created: "2026-06-09"
 last_updated: "2026-06-09"
@@ -64,7 +65,7 @@ Without quality weighting, auctions would devolve into a pure willingness-to-pay
 ## Open Questions
 
 - Would a dynamic first-price auction (as used in programmatic RTB) be more or less efficient than GSP for search advertising?
-- How does auction design interact with automated bidding agents — do ML-powered bidders converge to the same equilibria as human bidders?
+- Reinforcement-learning bidding agents trained via self-play (PPO, Neural Fictitious Self-Play) **converge to the same Bayes-Nash equilibria predicted by classical auction theory** for first-price auctions (b\*(v) = v/2 under uniform valuations, b\*(v) = 2v/3 for risk-averse bidders) and to truthful bidding b\*(v) = v in second-price auctions — the same dominant-strategy equilibrium underlying GSP's locally envy-free equilibrium. This suggests automated bidders need not break GSP's equilibrium-based revenue/efficiency guarantees in simple settings, though the study did not test richer multi-round or communication-rich environments where algorithmic collusion has been observed in other auction/pricing contexts [[wiki/sources/approximating-auction-equilibria-rl.md]].
 - Could a non-auction allocation mechanism (e.g., a continuously clearing market with posted prices) match auction efficiency at web scale?
 
 ## Related Pages
@@ -74,3 +75,4 @@ Without quality weighting, auctions would devolve into a pure willingness-to-pay
 - [[wiki/synthesis/vickrey-and-gsp.md]] — comparison of Vickrey, GSP, and VCG
 - [[wiki/sources/edelman-ostrovsky-schwarz-gsp-auction.md]] — seminal AER 2007 paper on GSP
 - [[wiki/concepts/google-ad-rank-ltv-scoring.md]] — Google's production Ad Rank mechanics
+- [[wiki/sources/approximating-auction-equilibria-rl.md]] — RL bidding agents converge to classical auction equilibria

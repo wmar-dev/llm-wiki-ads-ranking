@@ -5,9 +5,10 @@ sources:
   - "web/tiktok-recommender-system.md"
   - "web/tiktok-unsupervised-algorithm-deep-dive.md"
   - "web/tiktok-system-design-architecture.md"
+  - "web/tiktok-dsa-addictive-design.md"
 status: "current"
 created: "2026-06-08"
-last_updated: "2026-06-08"
+last_updated: "2026-06-09"
 ---
 
 # How the TikTok Recommendation Algorithm Works
@@ -108,8 +109,8 @@ Within 20-50 swipes, implicit watch-time signals reshape the user's embedding fr
 
 ## Open Questions
 
-- How does TikTok's algorithm handle the tension between watch-time optimization and user well-being, especially for younger users?
-- Can the unsupervised recommendation paradigm be audited effectively under regulations like the EU Digital Services Act?
+- TikTok's algorithm does not appear to distinguish "healthy" from "compulsive" engagement at the optimization level — the same watch-time, session-frequency, and night-time-usage signals it uses to maximize engagement are the signals EU regulators now treat as evidence of harm. On **February 6, 2026**, the European Commission preliminarily found TikTok in breach of the Digital Services Act over its "addictive design" — the first DSA enforcement action targeting recommender architecture itself rather than illegal content, data protection, or competition. Average daily TikTok usage reached 137 minutes (up from 27 minutes in 2019), and the Commission found TikTok "disregarded important indicators of compulsive use," with potential remedies including disabling infinite scroll/autoplay over time [[wiki/sources/tiktok-dsa-addictive-design.md]].
+- **Yes, in practice** — but DSA audits don't require introspecting the unsupervised clustering/embedding pipeline. Article 35 enforcement operationalizes "addictive design" via **behavioral outcome proxies** (time-of-day usage patterns, session frequency/duration, app-opening frequency) that are measurable without algorithmic transparency, then mandates *design-level* remedies (disabling autoplay/infinite scroll, age verification, parental controls) rather than changes to the ranking algorithm's internals [[wiki/sources/tiktok-dsa-addictive-design.md]].
 - Does TikTok's recommendation approach transfer to longer-form content (e.g., its expansion into 10+ minute videos and TV apps)?
 
 ## Related Pages
@@ -117,3 +118,4 @@ Within 20-50 swipes, implicit watch-time signals reshape the user's embedding fr
 - [[wiki/sources/tiktok-recommender-system.md]] — official TikTok documentation
 - [[wiki/sources/tiktok-unsupervised-algorithm-deep-dive.md]] — technical deep dive *(blog post)*
 - [[wiki/concepts/web-scale-learning.md]] — related paradigm of learning from large-scale behavioral data
+- [[wiki/sources/tiktok-dsa-addictive-design.md]] — EU DSA enforcement against TikTok's recommender design (Feb 2026)

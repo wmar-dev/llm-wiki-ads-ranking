@@ -4,6 +4,7 @@ type: "synthesis"
 sources:
   - "web/pinfm-foundation-model-pinterest.md"
   - "web/pinterest-request-level-deduplication.md"
+  - "web/transact-v2-pinterest.md"
 status: "current"
 created: "2026-06-09"
 last_updated: "2026-06-09"
@@ -49,7 +50,13 @@ Training fixes required to preserve model quality with request-sorted data:
 
 ## Beyond PinFM: The Foundation Model Ecosystem
 
-Pinterest has extended the foundation model paradigm into two additional systems:
+Pinterest has extended the foundation model paradigm into several additional systems:
+
+### TransActV2 (2025): Lifelong Sequence Ranking for Homefeed
+
+TransActV2 is Pinterest's production CTR ranking model for the Homefeed, extending lifelong user action sequences to **~16,000 actions** (a ~160x scale-up over real-time-only sequences) and adding a **Next Action Loss** auxiliary objective. Offline, this improved **HIT@3/repin by +13.31%** and reduced **HIT@3/hide by 11.25%** versus an RT-only baseline; online A/B tests showed **+6.35% Homefeed Repin Volume**, **−12.80% Hide Volume**, **+0.45% Impression Diversity**, and **+1.41% Time Spent on App** [[wiki/sources/transact-v2-pinterest.md]] *(other)*.
+
+TransActV2 was developed in parallel with PinFM and is **not benchmarked against it** — TransActV2 is a per-surface ranking model, while PinFM is upstream pretraining infrastructure. Both represent Pinterest's broader move toward foundation-model-style architectures across the stack.
 
 ### PinRec (2025): Unified Generative Retrieval
 
@@ -80,7 +87,7 @@ Pinterest's foundation model approach shares the pretrain-finetune paradigm with
 
 - How does PinFM's 20B+ parameter count compare to Meta's GEM in terms of cost per inference and quality per parameter?
 - Does UniPinRec's full-stack unification generalize to platforms with distinct retrieval and ranking pipelines (e.g., Meta, Google, TikTok)?
-- What is the marginal improvement of PinFM over TransActV2, given that TransActV2 already achieved +13.31% top-3 repin hit with lifelong sequences?
+- **No published source directly compares PinFM and TransActV2** — the +13.31% HIT@3/repin figure (and the matching +6.35% online Homefeed Repin Volume from A/B testing) comes from TransActV2's own paper, evaluated against an RT-only-sequence baseline of the *prior* TransAct model, not against PinFM. TransActV2 is a production point-wise ranking model for Homefeed; PinFM is a 20B+ parameter pretrained foundation encoder fine-tuned per surface. The two were developed in parallel as complementary pieces of Pinterest's stack — PinFM as upstream pretraining infrastructure, TransActV2 as a downstream ranking model — rather than as competing solutions to the same task, so a "marginal improvement" framing doesn't map onto any existing benchmark [[wiki/sources/transact-v2-pinterest.md]].
 
 ## Related Pages
 
@@ -88,3 +95,4 @@ Pinterest's foundation model approach shares the pretrain-finetune paradigm with
 - [[wiki/synthesis/two-tower-factorized-models.md]] — two-tower architecture used in PinRec and Pinterest's retrieval
 - [[wiki/concepts/web-scale-learning.md]] — paradigm of large-scale data driving model quality
 - [[wiki/synthesis/tiktok-recommendation-algorithm.md]] — comparative recommendation architecture
+- [[wiki/sources/transact-v2-pinterest.md]] — TransActV2 lifelong sequence ranking model for Homefeed

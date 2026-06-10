@@ -3,9 +3,10 @@ title: "The Unreasonable Effectiveness of Data"
 type: "source_summary"
 sources:
   - "web/unreasonable-effectiveness-of-data.md"
+  - "web/statistical-learning-attribution-sets.md"
 status: "current"
 created: "2026-06-08"
-last_updated: "2026-06-08"
+last_updated: "2026-06-09"
 ---
 
 # The Unreasonable Effectiveness of Data
@@ -57,8 +58,9 @@ While the article focuses on NLP, its core thesis applies directly to production
 
 - Does the "simple models + lots of data" thesis still hold in the era of deep learning and foundation models, or do sophisticated architectures extract more value from large data?
 - What is the data threshold for modern ads ranking systems — when does adding more data yield diminishing returns?
-- How does the rise of privacy regulations and signal loss (cookie deprecation, ATT) affect the availability of "free" training data?
+- Privacy regulations and signal loss (cookie deprecation, ATT) don't eliminate "free" training data so much as **degrade its precision**: third-party-cookie-based deterministic click→conversion labels are being replaced by privacy-preserving attribution APIs (e.g., Privacy Sandbox's Attribution Reporting API) that only reveal an *attribution set* — a group of candidate clicks that could have caused a conversion. Naive heuristics (e.g., uniform credit-splitting across the set) lose accuracy as these sets grow larger and more overlapping, but a properly-derived unbiased loss estimator lets Empirical Risk Minimization on pCVR models generalize with guarantees that scale with how informative the attribution-set prior is — meaning the "unreasonable effectiveness of data" thesis can still hold in the post-cookie era, provided the modeling approach accounts for the coarser label structure rather than treating it as missing data [[wiki/sources/statistical-learning-attribution-sets.md]].
 
 ## Related Pages
 
 - [[wiki/concepts/web-scale-learning.md]]
+- [[wiki/sources/statistical-learning-attribution-sets.md]] — how privacy-preserving attribution APIs reshape "free" training data for conversion models

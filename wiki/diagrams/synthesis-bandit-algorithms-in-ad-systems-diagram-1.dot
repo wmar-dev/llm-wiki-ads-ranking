@@ -1,0 +1,14 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11, shape=box, style=rounded];
+    edge [fontsize=10, arrowhead=normal];
+
+    Req [label="Ad request\n(user, page, context)"];
+    Policy [label="Bandit policy\nselects an arm"];
+    Serve [label="Serve\n(creative / budget level / variant)"];
+    Reward [label="Observe reward\n(click, conversion, spend)"];
+    Update [label="Update model\n(posterior / counts)"];
+
+    Req -> Policy -> Serve -> Reward -> Update;
+    Update -> Policy [label="next round", style=dashed, constraint=false];
+}
