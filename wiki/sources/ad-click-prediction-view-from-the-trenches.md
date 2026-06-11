@@ -85,6 +85,7 @@ This paper presents case studies from Google's deployed CTR prediction system fo
 - [[wiki/synthesis/how-ab-tests-work.md]] — evaluation methodology (progressive validation complements A/B testing)
 - [[wiki/synthesis/confidence-interval-methods.md]] — uncertainty quantification methods
 - [[wiki/synthesis/how-do-ad-systems-predict-conversions.md]] — how this CTR infrastructure (FTRL-Proximal, calibration) is reused and extended for pCVR prediction
+- [[wiki/synthesis/model-structures-for-pcvr.md]] — how FTRL-Proximal/LR fits as the linear baseline in the feature-interaction backbone spectrum (vs. Wide & Deep, DeepFM, DCN); does not resolve the sparsity-accuracy tradeoff question below
 
 ## Open Questions
 

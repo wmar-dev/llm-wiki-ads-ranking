@@ -75,3 +75,4 @@ both unbiased and timely.
 - [[wiki/sources/esmm-entire-space-multi-task-model.md]]
 - [[wiki/sources/ad-click-prediction-view-from-the-trenches.md]]
 - [[wiki/synthesis/what-is-a-conversion.md]]
+- [[wiki/synthesis/model-structures-for-pcvr.md]] — where FTP's delayed-feedback correction fits relative to feature-interaction backbones and multi-task (MMoE/PLE) architectures

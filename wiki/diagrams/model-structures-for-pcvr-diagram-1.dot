@@ -1,0 +1,33 @@
+digraph pcvr_model_structures {
+  rankdir=TB;
+  node [shape=box, style="rounded,filled", fillcolor="#eef3fb", fontsize=11];
+  edge [fontsize=10];
+
+  subgraph cluster_interaction {
+    label="Feature-interaction backbones";
+    style=dashed;
+    lr [label="LR / FTRL-Proximal\n(linear baseline)"];
+    wd [label="Wide & Deep\n(linear + DNN)"];
+    deepfm [label="DeepFM / DCN\n(FM or cross-net + DNN,\nshared embeddings)"];
+    lr -> wd -> deepfm [label="adds feature\ninteractions"];
+  }
+
+  subgraph cluster_multitask {
+    label="Multi-task architectures (CTR + CVR jointly)";
+    style=dashed;
+    sb [label="Shared-Bottom\n(single shared encoder)"];
+    mmoe [label="MMoE\n(shared experts +\nper-task gates)"];
+    ple [label="PLE\n(shared + task-specific\nexperts, progressive routing)"];
+    sb -> mmoe -> ple [label="reduces seesaw /\nnegative transfer"];
+  }
+
+  esmm [label="ESMM\nentire-space CTR/CVR/CTCVR\n(eliminates sample selection bias)", fillcolor="#fdf3d6"];
+  ftp [label="FTP\ndelayed-feedback correction\n(prophet aggregation)", fillcolor="#fdf3d6"];
+  output [label="pCTR / pCVR\n(feeds Ad Rank / Smart Bidding)", shape=ellipse, fillcolor="#e3f7e3"];
+
+  deepfm -> esmm [label="serves as CTR/CVR\ntower architecture"];
+  ple -> esmm [label="serves as shared\nCVR sub-network"];
+  esmm -> ftp [label="entire-space CVR\nlabels still delayed"];
+  ftp -> output;
+  esmm -> output [label="if no delay\ncorrection needed"];
+}

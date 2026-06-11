@@ -185,3 +185,4 @@ That bid then enters the same GSP/Ad Rank auction as any other bid
 - [[wiki/concepts/google-ad-rank-ltv-scoring.md]]
 - [[wiki/synthesis/bidding-types.md]]
 - [[wiki/synthesis/what-are-the-components-of-an-ad-ranking-system.md]]
+- [[wiki/synthesis/model-structures-for-pcvr.md]] — survey of feature-interaction backbones (DeepFM, DCN) and multi-task architectures (MMoE, PLE) that the ESMM/FTP framing described here wraps

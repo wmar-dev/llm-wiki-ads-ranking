@@ -85,3 +85,4 @@ observed.
 - [[wiki/sources/follow-the-prophet-delayed-feedback-cvr.md]]
 - [[wiki/sources/ad-click-prediction-view-from-the-trenches.md]]
 - [[wiki/synthesis/what-are-the-components-of-an-ad-ranking-system.md]]
+- [[wiki/synthesis/model-structures-for-pcvr.md]] — how ESMM's entire-space CVR sub-network composes with feature-interaction backbones (DeepFM/DCN) and multi-task architectures (MMoE/PLE)
