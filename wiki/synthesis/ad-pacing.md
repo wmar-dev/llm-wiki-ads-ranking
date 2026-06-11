@@ -6,9 +6,12 @@ sources:
   - "web/smart-pacing-online-ad-campaign-optimization.md"
   - "web/dynamic-ad-allocation-bandits-with-budgets.md"
   - "web/reddit-ads-how-it-works.md"
+  - "web/meta-bid-and-budget-pacing.md"
+  - "web/google-marketing-live-2026-bidding-budgeting.md"
+  - "web/offline-rl-production-bidding-meta.md"
 status: "current"
 created: "2026-06-09"
-last_updated: "2026-06-09"
+last_updated: "2026-06-10"
 ---
 
 # What Is Ad Pacing?
@@ -170,16 +173,48 @@ predicted response rate).
 
 ## Open Questions
 
-- Open question: How do major platforms (Google Smart Bidding, Meta) combine
-  pacing (spend-over-time control) with their bid-strategy layer (Target
-  CPA/ROAS, Cost Cap)? The 2025 practical guide treats these as adjacent but
-  separable systems; no source reviewed describes a unified production
-  architecture at Google or Meta scale.
-- Open question: The KDD 2015 system used 15-minute control loops at
-  billions of impressions/day in 2015 — what control-loop latency and
-  algorithm (PID/MPC/DOGD) do current (2026) production systems use, and has
-  the field shifted toward MPC or learned (RL-based) controllers as compute
-  costs have fallen?
+Google and Meta describe materially different couplings between pacing and
+bid strategy. **Meta's official documentation states that "budget pacing and
+bid pacing are one process"**: a per-ad-set **pacing multiplier** is applied
+directly to the same "total value" term the auction ranks on (advertiser bid
+x estimated action rate x ad quality), based on remaining budget and time —
+pacing is not a separate admission-control layer, it is folded into the bid
+calculation itself
+[[wiki/sources/meta-bid-and-budget-pacing.md]] *(official documentation)*.
+**Google's 2026 "demand-led pacing"**, by contrast, is described as operating
+*alongside* Smart Bidding rather than as one unified mechanism — pacing
+redistributes the daily budget toward higher-demand days (within monthly/daily
+caps), while Smart Bidding separately decides what to bid within whatever
+budget is available that day
+[[wiki/sources/google-marketing-live-2026-bidding-budgeting.md]]
+*(official documentation)*.
+
+- Open question: Google's public materials do not disclose whether pacing
+  modifies the per-auction bid value submitted to Ad Rank directly (a
+  Meta-style multiplier on the bid itself), or operates purely at the
+  coarser daily-budget-allocation level within which Smart Bidding then
+  optimizes — i.e., whether Google's architecture is actually closer to
+  Meta's "one process" framing than its public messaging suggests.
+At Meta, the modernization since KDD 2015 has been **incremental rather than
+a wholesale shift to MPC or online RL controllers**: a 2023 production system
+increased the control-loop frequency roughly 15x — from the KDD 2015 paper's
+15-minute loops to **per-minute, per-campaign** decisions — while keeping the
+controller itself a **PID-like heuristic** (a piece-wise polynomial function
+with a couple dozen scalar parameters). Reinforcement learning (Conservative
+Q-Learning) is used **offline**, on logged production data, to tune that
+heuristic's parameters; the trained neural network is discarded and only the
+tuned parameters ship to production. A/B tested at ~50 billion impressions,
+this yielded a statistically significant **+0.17% performance gain (95% CI
++0.05% to +0.3%)**
+[[wiki/sources/offline-rl-production-bidding-meta.md]] *(peer_reviewed)*. In
+short: faster control loop, RL-tuned PID — not "RL replaces PID."
+
+- Open question: this evidence is Meta-specific. No source found describes
+  Google's equivalent modernization (control-loop frequency, or whether/how
+  RL is used) for Smart Bidding's pacing layer since 2015 — whether Google
+  has followed a similar "RL-tuned heuristic at higher frequency" path, or
+  adopted a structurally different (e.g., MPC-based) controller, remains
+  unknown.
 
 ## Related Pages
 
@@ -187,5 +222,9 @@ predicted response rate).
 - [[wiki/synthesis/bandit-algorithms-in-ad-systems.md]] — explore/exploit framing for budget allocation, including the related open question on bandit-based pacing
 - [[wiki/sources/dynamic-ad-allocation-bandits-with-budgets.md]] — budgeted UCB1 for ad allocation
 - [[wiki/synthesis/reddit-ads.md]] — Standard vs. Accelerated pacing as a user-facing advertiser setting
+- [[wiki/sources/meta-bid-and-budget-pacing.md]] — Meta's "pacing multiplier" folded into the auction total-value calculation
+- [[wiki/sources/google-marketing-live-2026-bidding-budgeting.md]] — Google's 2026 demand-led pacing, positioned alongside Smart Bidding
+- [[wiki/sources/offline-rl-production-bidding-meta.md]] — Meta's offline-RL-tuned PID-like pacing controller, 1-minute control loops, +0.17% A/B result at 50B impressions
+- [[wiki/synthesis/what-are-the-components-of-an-ad-ranking-system.md]] — duplicate framing of the pacing/bid-strategy coupling question
 - [[wiki/sources/budget-pacing-algorithms-practical-guide.md]] — control-theoretic survey of pacing algorithms
 - [[wiki/sources/smart-pacing-online-ad-campaign-optimization.md]] — production layered-pacing case study (KDD 2015)

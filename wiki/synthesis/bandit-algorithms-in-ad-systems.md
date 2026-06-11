@@ -5,9 +5,11 @@ sources:
   - "web/fatigue-aware-ad-creative-selection.md"
   - "web/dynamic-ad-allocation-bandits-with-budgets.md"
   - "web/comparison-lift-bandit-experimentation.md"
+  - "web/lyft-contextual-bandits-advertising-budget-allocation.md"
+  - "web/google-smart-bidding-exploration.md"
 status: "current"
 created: "2026-06-09"
-last_updated: "2026-06-09"
+last_updated: "2026-06-10"
 ---
 
 # How Are Bandit Algorithms Used in Ad Systems?
@@ -69,12 +71,25 @@ spend budget. Here:
 *Inference: This budget-aware framing is what makes bandit theory
 deployable for real campaign management — a pure regret-minimizing bandit with
 no budget concept would happily keep "spending" on a high-CTR ad past an
-advertiser's actual cap.* Industry write-ups describe similar systems —
-combining a supervised model that predicts each campaign's payout from context
-features with Thompson Sampling to choose budget levels — for marketplace ad
-spend allocation. *Open question: a primary source for a specific production
-deployment of contextual budget-allocation bandits (beyond the theoretical
-budgeted-UCB1 result above) could not be retrieved during this query.*
+advertiser's actual cap.*
+
+**Production deployment: Lyft's Contextual Budgeting System (CBS).** Lyft
+runs exactly this combination — a supervised model predicts each campaign's
+payout from context features, predictions are extrapolated to untested budget
+levels, and **Thompson Sampling** selects each campaign's next budget level —
+in production for marketplace ad spend allocation. CBS manages "hundreds of
+millions of dollars" of annual marketing spend, and on new-driver-acquisition
+spend it improved mean CPA by **(22 +/- 10)%** versus Lyft's previous
+MCMC-based allocation strategy. New campaigns are cold-started via a
+transfer-learning mechanism that borrows statistical strength from similar
+campaigns' context features
+[[wiki/sources/lyft-contextual-bandits-advertising-budget-allocation.md]]
+*(peer_reviewed)*.
+
+- Open question: the available summary of Lyft's CBS does not specify the
+  granularity of its "arms" (individual ad sets/creatives vs. whole
+  campaigns) or how frequently the Thompson Sampling allocation is re-run
+  (real-time per-auction vs. periodic batch re-allocation).
 
 ## Application 3: Bandit-Based Experimentation (an A/B Test Alternative)
 
@@ -135,12 +150,24 @@ a bandit algorithm.*
 
 ## Open Questions
 
-- Open question: Do major ad platforms (Google, Meta, Reddit) publicly
-  document how bandit-based exploration interacts with their auction
-  mechanisms — e.g., does Google's Smart Bidding
-  ([[wiki/concepts/google-ad-rank-ltv-scoring.md]]) use bandit-style
-  exploration internally for bid/budget pacing, or is it framed purely as a
-  supervised forecasting problem?
+Google's Smart Bidding **does** ship an explore/exploit-shaped mechanism:
+**Smart Bidding Exploration** (announced May 2025) gives Target-ROAS
+campaigns an advertiser-configurable **ROAS-tolerance band (10-30%)** that is
+spent bidding into previously-untargeted "potentially high-performing" search
+queries, trading short-term ROAS for coverage of untested query categories —
+the same tradeoff structure as a bandit's explore/exploit balance. March-April
+2025 testing showed **+18%** more unique converting query categories and
+**+19%** more conversions. However, Google frames this publicly as
+"opportunity expansion," not as a named bandit algorithm — there is no
+mention of UCB, Thompson Sampling, confidence bounds, or regret
+[[wiki/sources/google-smart-bidding-exploration.md]] *(official documentation)*.
+
+- Open question: Google has not disclosed the underlying algorithm behind the
+  ROAS-tolerance band (e.g., whether it resembles a Thompson-Sampling- or
+  UCB-style posterior/confidence mechanism, or a simpler rule-based
+  threshold), nor how it composes with the pacing layer described in
+  [[wiki/synthesis/ad-pacing.md]]. Whether Meta or Reddit document an
+  equivalent mechanism is also unknown.
 
 ## Related Pages
 
@@ -148,7 +175,10 @@ a bandit algorithm.*
 - [[wiki/sources/fatigue-aware-ad-creative-selection.md]] — contextual bandit for ad creative selection under ad fatigue *(peer_reviewed)*
 - [[wiki/sources/dynamic-ad-allocation-bandits-with-budgets.md]] — budgeted UCB1 for ad allocation *(peer_reviewed)*
 - [[wiki/sources/comparison-lift-bandit-experimentation.md]] — bandit-based experimentation at JD.com *(peer_reviewed)*
+- [[wiki/sources/lyft-contextual-bandits-advertising-budget-allocation.md]] — Lyft's Contextual Budgeting System: production contextual bandit for ad budget allocation *(peer_reviewed)*
+- [[wiki/sources/google-smart-bidding-exploration.md]] — Google's Smart Bidding Exploration: ROAS-tolerance-based exploration of new query categories *(official documentation)*
 - [[wiki/synthesis/confidence-interval-methods.md]] — CI/CS methods, including Bayesian and design-based approaches relevant to bandits
 - [[wiki/synthesis/how-ab-tests-work.md]] — fixed-sample A/B testing, the alternative bandits replace
 - [[wiki/synthesis/tiktok-recommendation-algorithm.md]] — heuristic exploration vs. exploitation in a recommendation feed
-- [[wiki/concepts/google-ad-rank-ltv-scoring.md]] — Google's Smart Bidding, a candidate (unconfirmed) site for production bandit use
+- [[wiki/concepts/google-ad-rank-ltv-scoring.md]] — Google's Smart Bidding, now confirmed to include exploration via Smart Bidding Exploration
+- [[wiki/synthesis/ad-pacing.md]] — pacing/bid-strategy coupling, including the related open question on whether Google's pacing and Smart Bidding Exploration mechanisms compose

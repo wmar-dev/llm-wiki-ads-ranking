@@ -208,3 +208,51 @@ Partial gap — what-is-a-conversion.md, statistical-learning-attribution-sets.m
 ## [2026-06-10] query | what are some model structures for pCVR | pages-read: 4 | sources-ingested: 2
 
 Partial gap — how-do-ad-systems-predict-conversions.md and esmm-entire-space-multi-task-model.md covered the entire-space (ESMM) and delayed-feedback (FTP) "framing" layer for pCVR, and what-are-the-components-of-an-ad-ranking-system.md briefly named DLRM/DIN/Lattice as heavy-ranking architectures, but no page addressed the actual feature-interaction backbone architectures (Wide & Deep, DeepFM, DCN) or the multi-task architectures (MMoE, PLE) used to jointly model CTR+CVR. Also re-read ad-click-prediction-view-from-the-trenches.md (FTRL-Proximal as the linear baseline). Fetched and ingested 2 sources: DeepFM (Guo et al., Huawei, IJCAI 2017; arXiv:1703.04247, source_type: peer_reviewed) — FM component + DNN component sharing one embedding layer, no manual feature engineering, outperforms LR/FM/Wide & Deep; and PLE (Tang et al., Tencent, RecSys 2020; ACM DOI 10.1145/3383313.3412236, source_type: blog_post) — the ACM page returned HTTP 403 on two fetch attempts (retried once per policy, then fell back to a third-party blog mirror at blog.bayjarvis.com), Customized Gate Control (shared + task-specific experts, progressive routing) addressing the seesaw phenomenon/negative transfer in MTL, +2.23% view-count / +1.84% watch-time online vs. prior MTL baselines at Tencent. Created wiki/synthesis/model-structures-for-pcvr.md framing pCVR architecture as two orthogonal axes (feature-interaction backbone: LR/FTRL-Proximal -> Wide & Deep -> DeepFM/DCN; multi-task: Shared-Bottom -> MMoE -> PLE) plus how both compose with ESMM's entire-space framing and FTP's delayed-feedback correction, with a Graphviz "architecture family tree" diagram and two comparison tables. Added to "Machine Learning at Scale" index section plus both new sources to "## Sources". Step 7: no Open Questions were fully answered (ad-click-prediction-view-from-the-trenches.md's DLRM/DCN-vs-FTRL-Proximal sparsity-accuracy question is only partially addressed — DeepFM's accuracy comparison doesn't quantify sparsity tradeoffs — so it remains open) — instead added Related Pages cross-links from esmm-entire-space-multi-task-model.md, follow-the-prophet-delayed-feedback-cvr.md, ad-click-prediction-view-from-the-trenches.md, and how-do-ad-systems-predict-conversions.md to the new synthesis page. 1 new open question added to the new synthesis page.
+
+## [2026-06-10] fetch | https://www.joindatacops.com/resources/the-unspoken-truth-why-importing-ga4-conversions-to-google-ads-is-a-data-minefield/
+
+## [2026-06-10] fetch | https://www.groas.com/post/ga4-update-april-2026-what-changed-google-ads-conversion-tracking-fix
+
+## [2026-06-10] fetch | https://arxiv.org/abs/1110.0025
+
+## [2026-06-10] fetch | https://arxiv.org/abs/2009.05794
+
+## [2026-06-10] fetch | https://pmc.ncbi.nlm.nih.gov/articles/PMC10048037/
+
+## [2026-06-10] fetch | https://www.facebook.com/business/help/571961726580148
+
+## [2026-06-10] fetch | https://blog.google/products/ads-commerce/bidding-budgeting-google-marketing-live-2026/
+
+## [2026-06-10] fetch | https://arxiv.org/abs/2310.09426
+
+## [2026-06-10] fetch | https://www.adkdd.org/papers/contextual-bandits-for-advertising-budget-allocation/2020
+
+## [2026-06-10] fetch | https://blog.google/products/ads-commerce/smart-bidding-exploration-ai/
+
+## [2026-06-10] answer | GA4 attribution model vs. Google Ads attribution, and conversion-signal latency to Smart Bidding | pages-updated: 2 | sources-ingested: 2
+
+Ingested two blog posts (joindatacops.com on GA4-imported conversions, groas.com on the April 2026 GA4/Google Ads update) establishing that GA4's data-driven attribution and Google Ads' own attribution are independent, unreconciled systems — for GA4-imported conversion actions, GA4's DDA credit reaches Smart Bidding via a separate ~6-18 hour export pipeline (distinct from BigQuery's minutes-to-3-days streaming export), and an April 2026 DDA recalibration redistributes that credit. Updated wiki/synthesis/how-does-google-analytics-work.md (replaced both open questions with cited claims, added a residual question on whether Smart Bidding re-weights imported GA4 credit) and wiki/sources/ga4-bigquery-export-schema.md (clarified the BigQuery-export vs. conversion-import pipeline distinction).
+
+## [2026-06-10] answer | VCG combinatorial-allocation approximation in real-world RTB systems | pages-updated: 1 | sources-ingested: 1
+
+Ingested Nisan & Ronen's "Computationally Feasible VCG Mechanisms" (peer_reviewed), which describes the maximal-in-range (MIR) framework: restrict to a polynomial-time-optimizable subset of allocations, always pick the welfare-maximizer within that subset, and compute Clarke-pivot payments relative to the subset — preserving truthfulness at the cost of global efficiency, with greedy/matching-based ranges yielding constant-factor (e.g., 2x) approximations. Updated wiki/sources/vickrey-clarke-groves-mechanism.md, replacing the open question with this cited MIR framing plus a residual question about a named production system's MIR implementation.
+
+## [2026-06-10] answer | DLRM/DCN vs. FTRL-Proximal sparsity-accuracy tradeoff, and uncertainty-score generalization beyond FTRL | pages-updated: 1 | sources-ingested: 2
+
+Ingested the BARS benchmark (arXiv:2009.05794, peer_reviewed; Criteo/Avazu tables showing DeepFM/DCN/FiBiNET ~1-2pt AUC gains over LR) and a Bayesian Deep Learning CTR uncertainty paper (PMC10048037, peer_reviewed; MC-dropout epistemic/aleatoric decomposition with Logloss/RMSE improvements). Updated wiki/sources/ad-click-prediction-view-from-the-trenches.md, replacing both open questions with cited claims (deep models modestly outperform LR/FTRL on standard benchmarks; MC-dropout uncertainty is a viable generalization of per-coordinate uncertainty scoring) and adding two narrower residual open questions (FTRL-Proximal itself not benchmarked at billion-coefficient scale; no direct FTRL-vs-MC-dropout comparison).
+
+## [2026-06-10] answer | How pacing and bid-strategy logic are coupled at Google vs. Meta | pages-updated: 2 | sources-ingested: 2
+
+Ingested Meta's official "Bid and Budget Pacing" documentation (status: draft, recovered via search snippets; describes pacing and bidding as "one process" via a per-ad-set pacing multiplier on the auction's total-value term) and Google's Marketing Live 2026 bidding/budgeting announcement (official documentation; "demand-led pacing" framed as coordinated-but-adjacent to Smart Bidding). Updated wiki/synthesis/ad-pacing.md and wiki/synthesis/what-are-the-components-of-an-ad-ranking-system.md, replacing the duplicated open question with this Meta-vs-Google contrast plus a residual question on whether Google's internals are closer to Meta's unified model than its messaging suggests.
+
+## [2026-06-10] answer | Ad pacing control-loop modernization since KDD 2015 (PID/MPC/DOGD vs. RL) | pages-updated: 1 | sources-ingested: 1
+
+Ingested Meta AI's "Offline Reinforcement Learning for Optimizing Production Bidding Policies" (arXiv:2310.09426, peer_reviewed): production pacing remains a PID-like heuristic (piece-wise polynomial, ~dozen scalar params) but the control loop frequency increased ~15x (15-min to 1-min decisions per campaign), with offline Conservative Q-Learning used to tune the heuristic's parameters from logged data (+0.17% A/B gain at ~50B impressions). Updated wiki/synthesis/ad-pacing.md, replacing the open question with this "RL-tuned PID, not RL-replaces-PID" finding plus a residual question on whether Google has a similar modernization.
+
+## [2026-06-10] answer | Production deployment of contextual budget-allocation bandits | pages-updated: 1 | sources-ingested: 1
+
+Ingested Lyft's "Contextual Bandits for Advertising Budget Allocation" (AdKDD 2020, peer_reviewed): Lyft's Contextual Budgeting System combines supervised payout prediction, parametric extrapolation to untested budget levels, and Thompson Sampling for budget selection, with transfer-learning cold-start, managing "hundreds of millions of dollars" of annual spend and a (22 +/- 10)% CPA improvement. Updated wiki/synthesis/bandit-algorithms-in-ad-systems.md, replacing the inline open question with this cited production example plus a residual question on arm granularity and reallocation frequency.
+
+## [2026-06-10] answer | Whether major ad platforms frame budget/bid exploration as bandit-style and how it interacts with the auction | pages-updated: 2 | sources-ingested: 1
+
+Ingested Google's "Smart Bidding Exploration" announcement (May 2025, official documentation): Target-ROAS campaigns get an advertiser-configurable 10-30% ROAS-tolerance band used to bid into previously-untargeted query categories (+18% query categories, +19% conversions in testing), functionally an explore/exploit mechanism though Google frames it as "opportunity expansion" without bandit terminology. Updated wiki/synthesis/bandit-algorithms-in-ad-systems.md and wiki/synthesis/what-are-the-components-of-an-ad-ranking-system.md (batch-updated, same duplicated question), replacing the open question with this finding plus a residual question on the undisclosed underlying algorithm and Meta/Reddit equivalents.

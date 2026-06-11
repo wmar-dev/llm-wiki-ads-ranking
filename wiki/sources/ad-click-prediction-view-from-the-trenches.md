@@ -3,9 +3,11 @@ title: "Ad Click Prediction: a View from the Trenches"
 type: "source_summary"
 sources:
   - "web/ad-click-prediction-view-from-the-trenches.md"
+  - "web/open-benchmarking-ctr-prediction-bars.md"
+  - "web/bayesian-deep-learning-ctr-uncertainty-quantification.md"
 status: "current"
 created: "2026-06-08"
-last_updated: "2026-06-09"
+last_updated: "2026-06-10"
 ---
 
 # Ad Click Prediction: a View from the Trenches
@@ -86,9 +88,41 @@ This paper presents case studies from Google's deployed CTR prediction system fo
 - [[wiki/synthesis/confidence-interval-methods.md]] — uncertainty quantification methods
 - [[wiki/synthesis/how-do-ad-systems-predict-conversions.md]] — how this CTR infrastructure (FTRL-Proximal, calibration) is reused and extended for pCVR prediction
 - [[wiki/synthesis/model-structures-for-pcvr.md]] — how FTRL-Proximal/LR fits as the linear baseline in the feature-interaction backbone spectrum (vs. Wide & Deep, DeepFM, DCN); does not resolve the sparsity-accuracy tradeoff question below
+- [[wiki/sources/open-benchmarking-ctr-prediction-bars.md]] — BARS benchmark quantifying the deep-vs-linear AUC gap on sparse, high-cardinality CTR datasets
+- [[wiki/sources/bayesian-deep-learning-ctr-uncertainty-quantification.md]] — Monte Carlo dropout uncertainty quantification for deep CTR models, contrasted with the per-coordinate uncertainty score below
 
 ## Open Questions
 
-- How do modern deep learning CTR models (e.g., DLRM, DCN) compare with the FTRL-Proximal approach on sparsity-accuracy tradeoffs?
-- Does the uncertainty score generalize to modern neural network-based CTR prediction systems with non-linear feature interactions?
+Modern deep CTR architectures (DeepFM, DCN, xDeepFM, FiBiNET, etc.)
+consistently outperform a sparse linear baseline in the same family as
+FTRL-Proximal by roughly 1.5-2.0 absolute AUC points on standard
+high-cardinality benchmarks (Criteo, Avazu) — and this gap *persists* even at
+the extreme feature sparsity (millions of features) that motivated
+FTRL-Proximal's L1-sparsity focus, though after exhaustive tuning the
+differences *among* deep architectures themselves shrink
+[[wiki/sources/open-benchmarking-ctr-prediction-bars.md]] *(peer_reviewed)*.
+
+- Open question: the cited benchmark does not evaluate FTRL-Proximal itself
+  (only L2-regularized LR), nor the billions-of-coefficients streaming
+  online-learning regime described in this paper — whether the deep-model
+  advantage holds, or whether deep models' embedding tables become
+  operationally impractical first, at that scale is unresolved.
+
+Uncertainty quantification does generalize to deep, non-linear CTR models,
+but via a structurally different mechanism than FTRL-Proximal's
+per-coordinate score: Monte Carlo dropout (T stochastic forward passes,
+averaged) approximates a Bayesian posterior over the network's weights and
+decomposes uncertainty into epistemic (mutual information across samples) and
+aleatoric (entropy) components
+[[wiki/sources/bayesian-deep-learning-ctr-uncertainty-quantification.md]]
+*(peer_reviewed)*. This is a whole-network, sampling-based, distributional
+measure — not a per-feature closed-form statistic computable in a single
+sparse dot product like u(x) = αη · x.
+
+- Open question: no source found directly compares FTRL-Proximal's
+  per-coordinate uncertainty score against MC-dropout-style uncertainty in a
+  deep CTR model on the same dataset, or addresses whether MC-dropout's
+  T-forward-pass cost is tractable at the serving QPS and feature-sparsity
+  scale that motivated the original single-dot-product uncertainty score.
+
 - The count-based learning rate approximation Σg²ᵢ ≈ PN/(N+P) (Section 4.5) has a specific consequence for very rare features (<<100 occurrences): if a feature has so far appeared with only one outcome (P=0 or N=0 — common at low counts given typical CTRs of 1–2%), the approximation evaluates to **exactly 0**, which sets the per-coordinate learning rate to its maximum, η_{t,i} = α/β. In effect, the cheaper count-based approximation *amplifies* the "rare features keep higher learning rates longer" property baked into the exact formula — very-low-count features take the largest possible gradient steps per labeled example. The paper does not run a dedicated ablation at the <<100-occurrence regime, but this behavior is mitigated upstream by **probabilistic feature inclusion** (Poisson/Bloom-filter inclusion, Section 4.3): features below the inclusion-count threshold *n* are excluded from the model entirely, so they never receive a learning rate at all. The combination — exclude until count > n, then apply a near-maximal learning rate via the count-based approximation — is the paper's implicit answer to handling very rare features, though a formal variance/accuracy analysis specifically for the <<100-occurrence band remains unpublished [[raw/web/ad-click-prediction-view-from-the-trenches.md]].

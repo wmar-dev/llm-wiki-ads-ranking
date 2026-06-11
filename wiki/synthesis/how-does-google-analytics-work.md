@@ -5,6 +5,8 @@ sources:
   - "web/google-analytics-data-collection.md"
   - "web/ga4-bigquery-export-schema.md"
   - "web/google-ads-about-conversions.md"
+  - "web/ga4-conversions-google-ads-data-minefield.md"
+  - "web/ga4-april-2026-conversion-tracking-update.md"
 status: "current"
 created: "2026-06-10"
 last_updated: "2026-06-10"
@@ -83,10 +85,13 @@ wiki:
   and as signals into **Smart Bidding** (Target CPA/ROAS)
   [[wiki/synthesis/what-is-a-conversion.md]] [[wiki/concepts/google-ad-rank-ltv-scoring.md]].
 - **Attribution model**: GA4's default attribution model is **data-driven
-  attribution**, which uses machine learning over observed touchpoint sequences
-  to assign fractional conversion credit, rather than rigid rules like
-  last-click *(Inference: based on aggregated search results, not the primary
-  fetched documentation pages — flagged for verification)*.
+  attribution (DDA)**, which uses machine learning over observed touchpoint
+  sequences to assign fractional conversion credit, rather than rigid rules like
+  last-click. For a **GA4-imported conversion action**, this fractional credit is
+  computed by GA4 *before* the conversion ever reaches Google Ads — Smart Bidding
+  receives whatever value GA4's DDA model assigned, with no separate arbitration
+  on the Google Ads side
+  [[wiki/sources/ga4-conversions-google-ads-data-minefield.md]] *(blog post)*.
 
 ## Why It Matters for Ads Ranking
 
@@ -105,17 +110,50 @@ bidding and ranking systems documented elsewhere in this wiki:
 
 ## Open Questions
 
-- Open question: How does GA4's data-driven attribution model interact with
-  Google Ads' own attribution settings when both are active for the same
-  conversion — which one ultimately determines the credit used by Smart Bidding?
-- Open question: How much latency exists between a GA4-recorded conversion event
-  and that signal becoming available to Smart Bidding / Ad Rank for the next
-  auction (real-time vs. batch via BigQuery export)?
+GA4 attribution and Google Ads' own conversion-action attribution are
+**independent systems that are not designed to match** — different attribution
+windows, different counting units (GA4 sessions vs. Google Ads ad
+interactions/clicks), and different cross-device credit models
+[[wiki/sources/ga4-conversions-google-ads-data-minefield.md]] *(blog post)*.
+There is no automatic reconciliation between the two:
+
+- For a **native Google Ads conversion tag** (gtag.js / Google tag), Google Ads'
+  own attribution setting (DDA by default) governs, and Smart Bidding sees that
+  credit within seconds.
+- For a **GA4-imported conversion action**, GA4's own DDA model computes the
+  fractional credit *before* the conversion reaches Google Ads — Smart Bidding
+  receives whatever value GA4 already assigned, with the GA4 → Google Ads export
+  pipeline (ingest → process → key-event classification → export) adding a
+  reported **6–18 hours** of latency end-to-end
+  [[wiki/sources/ga4-conversions-google-ads-data-minefield.md]] *(blog post)*.
+  This is a separate, slower pipeline from BigQuery's streaming export (intraday
+  tables update within minutes; daily tables finalize within ~3 days)
+  [[wiki/sources/ga4-bigquery-export-schema.md]] *(official documentation)*,
+  which serves analytics/BQML use cases rather than Smart Bidding's
+  conversion-import signal.
+- Practitioner guidance is to designate **one** conversion action — usually the
+  native tag — as the Smart Bidding source of truth, and treat GA4 as a
+  cross-channel reporting layer, to avoid double counting and conflicting
+  signals [[wiki/sources/ga4-conversions-google-ads-data-minefield.md]].
+- A **April 2026 update** recalibrated GA4's DDA model and tightened key-event
+  qualification rules (e.g., `generate_lead` now requires `currency`/`value`,
+  `purchase` requires transaction-ID dedup, the acquisition lookback window
+  shortened from 90 to 30 days) — this redistributes the credit GA4-imported
+  conversion actions hand to Smart Bidding even when underlying user behavior is
+  unchanged
+  [[wiki/sources/ga4-april-2026-conversion-tracking-update.md]] *(blog post)*.
+
+- Open question: neither source reviewed states explicitly whether Smart Bidding
+  applies any *additional* model on top of an imported GA4-DDA-attributed
+  conversion value (e.g., re-weighting by predicted incrementality), or consumes
+  it as-is. Google's official Smart Bidding documentation does not address this.
 
 ## Related Pages
 
 - [[wiki/sources/google-analytics-data-collection.md]]
 - [[wiki/sources/ga4-bigquery-export-schema.md]]
+- [[wiki/sources/ga4-conversions-google-ads-data-minefield.md]]
+- [[wiki/sources/ga4-april-2026-conversion-tracking-update.md]]
 - [[wiki/synthesis/what-is-a-conversion.md]]
 - [[wiki/concepts/google-ad-rank-ltv-scoring.md]]
 - [[wiki/synthesis/what-is-ad-rank.md]]

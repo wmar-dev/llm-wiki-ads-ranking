@@ -12,6 +12,10 @@ sources:
   - "pdf/overlapping-experiment-infrastructure.pdf"
   - "web/rtb-latency-budget-systemdr.md"
   - "web/reddit-contextual-relevance-ads.md"
+  - "web/meta-bid-and-budget-pacing.md"
+  - "web/google-marketing-live-2026-bidding-budgeting.md"
+  - "web/lyft-contextual-bandits-advertising-budget-allocation.md"
+  - "web/google-smart-bidding-exploration.md"
 status: "current"
 created: "2026-06-10"
 last_updated: "2026-06-10"
@@ -233,17 +237,42 @@ This budget is *why* the architecture looks the way it does:
 
 ## Open Questions
 
-- Open question: How tightly coupled are the bid-strategy and pacing layers
-  in production at Google/Meta scale — are they unified into a single
-  optimization, or do they operate as separable systems that interact only
-  through the submitted bid? [[wiki/synthesis/ad-pacing.md]] flags this as
-  unresolved.
-- Open question: Do major platforms expose the exploration (bandit) layer as
-  a first-class, separately-tunable component, or is it implicit inside the
-  ranking/bid-strategy models' own training-data collection?
-  [[wiki/synthesis/bandit-algorithms-in-ad-systems.md]] flags a related
-  question about whether Smart Bidding uses bandit-style exploration
-  internally.
+Google and Meta couple bid-strategy and pacing differently. Meta's official
+documentation describes them as **"one process"**: a per-ad-set pacing
+multiplier is applied directly to the same auction "total value" term as the
+bid (advertiser bid x estimated action rate x ad quality)
+[[wiki/sources/meta-bid-and-budget-pacing.md]] *(official documentation)*.
+Google's 2026 "demand-led pacing" is instead described as operating
+*alongside* Smart Bidding — pacing redistributes the daily budget toward
+higher-demand days, while Smart Bidding separately optimizes the bid within
+that budget [[wiki/sources/google-marketing-live-2026-bidding-budgeting.md]]
+*(official documentation)*. See [[wiki/synthesis/ad-pacing.md]] for details.
+
+- Open question: whether Google's pacing layer modifies the per-auction Ad
+  Rank bid value directly (Meta-style multiplier) or only the coarser daily
+  budget allocation remains undisclosed in Google's public materials
+  [[wiki/synthesis/ad-pacing.md]].
+- Major platforms **do** expose at least one exploration layer as a
+  first-class, separately-tunable component. Google's **Smart Bidding
+  Exploration** (May 2025) gives Target-ROAS campaigns an
+  advertiser-configurable **ROAS-tolerance band (10-30%)**, spent bidding
+  into previously-untargeted query categories — functionally an
+  explore/exploit tradeoff, though Google publicly frames it as "opportunity
+  expansion" rather than naming a bandit algorithm (no UCB/Thompson
+  Sampling/regret terminology). March-April 2025 testing showed +18% more
+  unique converting query categories and +19% more conversions
+  [[wiki/sources/google-smart-bidding-exploration.md]] *(official
+  documentation)*. Separately, Lyft's production **Contextual Budgeting
+  System** combines supervised payout prediction with Thompson Sampling to
+  allocate marketing spend across campaigns, managing "hundreds of millions
+  of dollars" annually with a (22 +/- 10)% CPA improvement
+  [[wiki/sources/lyft-contextual-bandits-advertising-budget-allocation.md]]
+  *(peer_reviewed)*.
+  - Open question: Google has not disclosed the algorithm underlying the
+    Smart Bidding Exploration tolerance band (Thompson-Sampling/UCB-style vs.
+    a simpler rule-based threshold), nor whether Meta or Reddit expose an
+    equivalent first-class exploration control.
+    [[wiki/synthesis/bandit-algorithms-in-ad-systems.md]]
 
 ## Related Pages
 
@@ -259,5 +288,7 @@ This budget is *why* the architecture looks the way it does:
 - [[wiki/synthesis/what-is-a-conversion.md]] — conversion tracking and attribution
 - [[wiki/synthesis/how-does-google-analytics-work.md]] — analytics-to-ranking data flow
 - [[wiki/synthesis/bandit-algorithms-in-ad-systems.md]] — exploration layer
+- [[wiki/sources/lyft-contextual-bandits-advertising-budget-allocation.md]] — Lyft's production contextual-bandit budget allocator *(peer_reviewed)*
+- [[wiki/sources/google-smart-bidding-exploration.md]] — Google's Smart Bidding Exploration ROAS-tolerance mechanism *(official documentation)*
 - [[wiki/synthesis/how-ab-tests-work.md]] — experimentation infrastructure
 - [[wiki/synthesis/what-is-the-latency-budget-for-ad-ranking.md]] — the cross-cutting latency constraint

@@ -37,6 +37,13 @@ specific ad click that drove them [[raw/web/ga4-bigquery-export-schema.md]].
 | Events carry repeatable event_params/user_properties/items records | Stated |
 | GA4 computes predictive scores (purchase/churn probability) per user | Stated (from search aggregation, not the primary fetched doc) |
 | GA4-to-Google-Ads join uses `gclid` to attribute conversions to ad clicks | Stated (from search aggregation) |
+| Intraday/streaming export tables (`events_intraday_YYYYMMDD`) populate within minutes of an event; the finalized daily table (`events_YYYYMMDD`) is updated for up to ~3 days afterward | Stated — confirmed by Google's "BigQuery Export" overview (support.google.com/analytics/answer/9358801), which describes intraday data as available "within a few minutes" |
+
+**Note:** this BigQuery export path (minutes-to-3-days) is the latency for raw
+analytics/BQML access. It is a *different pipeline* from GA4's "key event" export
+into Google Ads conversion actions, which is what feeds Smart Bidding — see
+[[wiki/sources/ga4-conversions-google-ads-data-minefield.md]] for that path's
+6–18 hour latency.
 
 ## Relevance to Ads Ranking
 

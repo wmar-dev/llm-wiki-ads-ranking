@@ -3,6 +3,7 @@ title: "Vickrey–Clarke–Groves (VCG) Mechanism"
 type: "source_summary"
 sources:
   - "web/vickrey-clarke-groves-mechanism.md"
+  - "web/computationally-feasible-vcg-mechanisms-nisan-ronen.md"
 status: "draft"
 created: "2026-06-10"
 last_updated: "2026-06-10"
@@ -57,9 +58,26 @@ combinatorial settings) at search-engine scale.
 
 ## Open Questions
 
-- How do real-world combinatorial ad-allocation systems (e.g., programmatic RTB
-  with bundled placements) approximate VCG payments given the NP-hardness of exact
-  computation?
+Real-world combinatorial ad-allocation systems approximate VCG via the
+**maximal-in-range (MIR)** framework: fix in advance a restricted,
+polynomial-time-optimizable subset of allocations (e.g., weighted-matching slot
+assignments for bundled/multi-slot placements), always output the
+welfare-maximizing allocation *within that subset*, and compute Clarke-pivot
+payments relative to the subset rather than the true (NP-hard) global optimum.
+Because the mechanism is exactly optimal over its fixed range, truthfulness is
+preserved — at the cost of allocative efficiency relative to the unrestricted
+optimum. Restricting to greedy/matching-based ranges can yield constant-factor
+(e.g., 2x) welfare approximations
+[[wiki/sources/computationally-feasible-vcg-mechanisms-nisan-ronen.md]]
+*(peer_reviewed)*. This is the same "sacrifice global optimality for tractable
+truthfulness" trade-off that motivates GSP as a practical alternative to VCG for
+the simpler single-dimension ad-ranking case.
+
+- Open question: no primary source describing a *specific production system's*
+  combinatorial/MIR implementation (e.g., a named ad exchange's or SSP's
+  multi-slot bundled-placement pricing algorithm) was found — public accounts of
+  VCG-in-practice (e.g., Varian & Harris, "VCG in Theory and Practice") were not
+  retrievable in readable form during this query.
 
 ## Related Pages
 
@@ -67,3 +85,4 @@ combinatorial settings) at search-engine scale.
 - [[wiki/concepts/generalized-second-price-auction.md]]
 - [[wiki/synthesis/vickrey-and-gsp.md]]
 - [[wiki/sources/edelman-ostrovsky-schwarz-gsp-auction.md]]
+- [[wiki/sources/computationally-feasible-vcg-mechanisms-nisan-ronen.md]]
