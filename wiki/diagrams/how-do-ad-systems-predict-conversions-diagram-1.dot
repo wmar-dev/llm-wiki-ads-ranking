@@ -1,0 +1,32 @@
+digraph G {
+    rankdir=TB;
+    node [shape=box, style=rounded, fontsize=11];
+    edge [fontsize=10];
+
+    imp [label="Impression\n(entire space - all candidates)", shape=ellipse, style=filled, fillcolor=lightgray];
+    emb [label="Shared embedding layer\n(user, ad, context features)"];
+
+    subgraph cluster_ctr {
+        label="CTR tower";
+        style=dashed;
+        ctr [label="P(click | impression)\n= pCTR"];
+    }
+
+    subgraph cluster_cvr {
+        label="CVR tower (shared params)";
+        style=dashed;
+        cvr [label="P(conversion | click, impression)\n= pCVR"];
+    }
+
+    ctcvr [label="CTCVR = pCTR x pCVR\n= P(click AND conversion | impression)", shape=note, style=filled, fillcolor=lightyellow];
+
+    loss [label="Loss computed on entire impression space\n(CTR label + CTCVR label always defined)\n-> CVR tower gets gradient via CTCVR\n-> eliminates sample-selection bias", shape=note, style=filled, fillcolor=honeydew];
+
+    imp -> emb;
+    emb -> ctr;
+    emb -> cvr;
+    ctr -> ctcvr;
+    cvr -> ctcvr;
+    ctcvr -> loss;
+    ctr -> loss;
+}

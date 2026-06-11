@@ -113,3 +113,4 @@ relative to manual campaigns [[wiki/sources/reddit-max-campaigns-trajectory.md]]
 - [[wiki/concepts/google-ad-rank-ltv-scoring.md]]
 - [[wiki/sources/statistical-learning-attribution-sets.md]]
 - [[wiki/synthesis/what-is-ad-rank.md]]
+- [[wiki/synthesis/how-do-ad-systems-predict-conversions.md]] — deep dive on the pCVR modeling techniques (ESMM, delayed feedback) behind this page's "Conversion Rate (CVR) and pCVR" section
