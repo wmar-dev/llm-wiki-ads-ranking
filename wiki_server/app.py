@@ -22,10 +22,14 @@ _md = (
 _WIKI_LINK_RE = re.compile(r"\[\[wiki/([^\]]+)\]\]")
 
 
+def _slug_title(slug: str) -> str:
+    return slug.replace("-", " ").title()
+
+
 def _wiki_link(m: re.Match) -> str:
     page = m.group(1)
     href = page[:-3] if page.endswith(".md") else page
-    label = href.replace("/", " › ").replace("-", " ").title()
+    label = " › ".join(_slug_title(part) for part in href.split("/"))
     return f'<a href="/wiki/{href}">{label}</a>'
 
 
@@ -41,7 +45,7 @@ def _parse_frontmatter(text: str) -> tuple[str, dict]:
 def _page_title(md_path: Path) -> str:
     text = md_path.read_text(encoding="utf-8")
     _, meta = _parse_frontmatter(text)
-    return meta.get("title") or md_path.stem.replace("-", " ").title()
+    return meta.get("title") or _slug_title(md_path.stem)
 
 
 def _meta_html(meta: dict) -> str:
@@ -117,8 +121,8 @@ def create_app() -> Flask:
     @app.route("/wiki/concepts/")
     @app.route("/wiki/entities/")
     @app.route("/wiki/sources/")
-    def wiki_section(section=None):
-        section = section or request.path.split("/")[-2]
+    def wiki_section():
+        section = request.path.split("/")[-2]
         dir_path = _section_dirs.get(section)
         if not dir_path or not dir_path.exists():
             return render_template("page.html", content="<p>Section not found.</p>", title=section.title()), 404
@@ -141,7 +145,7 @@ def create_app() -> Flask:
             return render_template("404.html"), 404
         html, meta = render_page(md_path)
         _log_access(request.path, 200)
-        return render_template("page.html", content=html, title=slug.replace("-", " ").title(), meta=meta)
+        return render_template("page.html", content=html, title=meta.get("title", _slug_title(slug)), meta=meta)
 
     @app.route("/search")
     def search():
