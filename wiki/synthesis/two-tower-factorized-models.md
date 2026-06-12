@@ -108,3 +108,4 @@ The common thread: all face the same scaling problem — retrieve relevant candi
 - [[wiki/synthesis/reddit-ads.md]] — Reddit's multi-tower relevance model in the delivery funnel
 - [[wiki/concepts/web-scale-learning.md]] — the paradigm that makes data-driven retrieval viable
 - [[wiki/concepts/contextual-relevance-advertising.md]] — multi-tower embedding approach for ad relevance
+- [[wiki/concepts/matryoshka-representation-learning.md]] — training technique for making the tower embedding dimension k a tunable, adaptive serving-time parameter rather than a fixed architectural choice

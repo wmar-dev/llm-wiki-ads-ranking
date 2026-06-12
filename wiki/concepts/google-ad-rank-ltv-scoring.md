@@ -76,3 +76,4 @@ Advertisers can use **Smart Bidding** where ML sets bids at query time based on 
 - [[wiki/concepts/generalized-second-price-auction.md]]
 - [[wiki/synthesis/second-price-auction.md]]
 - [[wiki/concepts/randomized-gsp-rgsp.md]] — dedicated page on the rGSP randomization mechanism, revenue impact, and DOJ trial findings
+- [[wiki/concepts/ordinal-regression-loss.md]] — if pCQ/pLQ quality components are represented as discrete ordered tiers, ordinal regression losses (CORAL/CORN) are a candidate training objective for them

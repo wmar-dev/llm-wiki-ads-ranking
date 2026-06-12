@@ -1,0 +1,41 @@
+digraph matryoshka {
+  rankdir=LR;
+  node [shape=box, style=rounded, fontsize=11];
+
+  x [label="Input x"];
+  enc [label="Encoder F"];
+  emb [label="Full embedding\nF(x), d=2048", style="rounded,filled", fillcolor=lightgrey];
+
+  x -> enc -> emb;
+
+  subgraph cluster_prefixes {
+    label="Nested prefixes (Matryoshka)";
+    style=dashed;
+    p8 [label="prefix[1:8]"];
+    p16 [label="prefix[1:16]"];
+    p64 [label="prefix[1:64]"];
+    p2048 [label="prefix[1:2048]\n(full vector)"];
+  }
+
+  emb -> p8;
+  emb -> p16;
+  emb -> p64;
+  emb -> p2048;
+
+  h8 [label="Head W(8)", shape=ellipse];
+  h16 [label="Head W(16)", shape=ellipse];
+  h64 [label="Head W(64)", shape=ellipse];
+  h2048 [label="Head W(2048)", shape=ellipse];
+
+  p8 -> h8;
+  p16 -> h16;
+  p64 -> h64;
+  p2048 -> h2048;
+
+  loss [label="Sum over m in M\n= L_MRL", shape=diamond, style=filled, fillcolor=lightyellow];
+
+  h8 -> loss;
+  h16 -> loss;
+  h64 -> loss;
+  h2048 -> loss;
+}

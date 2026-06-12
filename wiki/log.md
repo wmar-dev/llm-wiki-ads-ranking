@@ -268,3 +268,23 @@ Ingested Gawlikowski et al.'s "A Survey of Uncertainty in Deep Neural Networks" 
 ## [2026-06-12] query | What does code for a simple ads auction system look like in python? | pages-read: 3 | sources-ingested: 0
 
 Full coverage from existing pages — no new sources ingested. Wrote wiki/synthesis/simple-ads-auction-python.md: runnable Python building from a single-item Vickrey second-price auction, to a multi-slot GSP auction (bid x quality ranking, minimum-to-hold-position pricing), to an Ad-Rank-style LTV auction (eligibility filter LTV > 0, second-price-in-LTV-space payment), plus a comparison table and pipeline diagram. Cross-linked from wiki/synthesis/second-price-auction.md, wiki/concepts/generalized-second-price-auction.md, and wiki/synthesis/what-is-ad-rank.md. The `cost_per_unit` constant standing in for Ad Rank's undocumented f() cost function is flagged as an inference, not a claim about production internals — the existing open question on f()'s definition remains unresolved.
+
+## [2026-06-12] ingest | Ordinal regression / ordinal loss sources
+
+Ingested 3 sources for the "what is ordinal loss?" query: CORAL (Cao, Mirjalili & Raschka, arXiv:1901.07884, peer_reviewed), Frank & Hall's "A Simple Approach to Ordinal Classification" (ECML 2001, peer_reviewed), and a Towards Data Science PyTorch tutorial on cumulative-encoding + MSE (blog_post). Created 3 source summaries and 1 concept page (wiki/concepts/ordinal-regression-loss.md) covering 5 formulation families: cumulative-link/proportional-odds, Frank & Hall binary decomposition, CORAL, CORN, and cumulative-encoding+MSE. Cross-linked from wiki/concepts/google-ad-rank-ltv-scoring.md with an `Inference:`-labeled connection to Ad Rank's pCQ/pLQ quality tiers as a candidate ordinal target.
+
+## [2026-06-12] query | What is ordinal loss? | pages-read: 0 | sources-ingested: 3
+
+Total gap — no existing wiki pages on ordinal regression/loss. Wrote wiki/synthesis/what-is-ordinal-loss.md: a comparison table of the 5 ordinal-loss formulations, CORAL-CNN's age-estimation results (zero rank inconsistencies vs. the OR-CNN baseline), and where ordinal targets show up in ad ranking (graded LTR relevance, Ad Rank pCQ/pLQ tiers, star ratings).
+
+## [2026-06-12] ingest | Matryoshka Representation Learning sources
+
+Ingested 2 sources for the "what is Matryoshka representation learning?" query: the original MRL paper (Kusupati et al., NeurIPS 2022, arXiv:2205.13147, peer_reviewed) and a Hugging Face engineering blog post on Matryoshka embedding models (other). Created 2 source summaries and 1 concept page (wiki/concepts/matryoshka-representation-learning.md) covering the nested multi-granularity training objective, an MRL-vs-alternatives comparison table, and accuracy-vs-compute results (up to 14x size/speed gains). Cross-linked from wiki/synthesis/two-tower-factorized-models.md (embedding dimension k as a tunable serving-time parameter). Left 2 open questions on the concept page: whether the paper's 14x tradeoff curves transfer to two-tower embedding sizes (k=64-256), and how MRL interacts with in-batch negative sampling/temperature tuning.
+
+## [2026-06-12] query | What is Matryoshka representation learning? | pages-read: 0 | sources-ingested: 2
+
+Total gap — no existing wiki pages on Matryoshka representation learning. Wrote wiki/synthesis/what-is-matryoshka-representation-learning.md, including a rendered Graphviz diagram of the nested-prefix training objective: the nested training objective formula, accuracy-vs-compute results, an MRL-vs-alternatives table, and applications to two-tower retrieval / vector search infrastructure. Neither of the concept page's 2 open questions is resolved by this synthesis (same 2 sources, no new two-tower-specific data) — both remain open.
+
+## [2026-06-12] query | What are the different ML losses used in ad systems? | pages-read: 15 | sources-ingested: 0
+
+Full coverage — synthesized from 15 existing wiki pages (no new web research), delegated to a background agent. Wrote wiki/synthesis/ml-losses-in-ad-systems.md: a 12-row comparison table organizing loss functions into 9 families (pointwise CTR/CVR cross-entropy, multi-task/entire-space, delayed-feedback aggregation, bandit ridge regression, uncertainty/calibration, ordinal/tiered-score, two-tower contrastive, Matryoshka multi-granularity, and Semantic ID quantization/seq2seq). One residual open question: pairwise/listwise learning-to-rank losses (RankNet, LambdaMART/LambdaRank, listwise softmax) are not covered by any existing wiki page.
