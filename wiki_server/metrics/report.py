@@ -1,9 +1,6 @@
-import glob
-import json
-import os
 from dataclasses import dataclass, field
 
-from wiki_server import config
+from wiki_server.db import get_db
 
 
 @dataclass
@@ -18,32 +15,10 @@ class MetricsReport:
 
 
 def generate_report() -> MetricsReport:
-    log_base = str(config.ACCESS_LOG)
-    # Glob all segments: access.log, access.log.001, access.log.002, ...
-    pattern = f"{log_base}*"
-    log_files = sorted(glob.glob(pattern))
+    with get_db() as conn:
+        rows = conn.execute(
+            "SELECT path, count FROM page_views ORDER BY count DESC, path ASC"
+        ).fetchall()
 
-    counts: dict[str, int] = {}
-    for log_file in log_files:
-        try:
-            with open(log_file, encoding="utf-8") as f:
-                for line in f:
-                    line = line.strip()
-                    if not line:
-                        continue
-                    try:
-                        entry = json.loads(line)
-                    except json.JSONDecodeError:
-                        continue
-                    if entry.get("status") == 200:
-                        path = entry.get("path", "")
-                        if path:
-                            counts[path] = counts.get(path, 0) + 1
-        except FileNotFoundError:
-            continue
-
-    pages = [
-        PageStat(path=path, count=count)
-        for path, count in sorted(counts.items(), key=lambda x: -x[1])
-    ]
+    pages = [PageStat(path=row["path"], count=row["count"]) for row in rows]
     return MetricsReport(pages=pages)

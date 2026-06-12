@@ -2,10 +2,13 @@
 raw/pdf/
 
 # Generated artifacts
-search.db
+wiki.db
 access.log
 access.log.*
 wiki/assets/*.svg
+
+# Local config
+.env
 
 # Python
 __pycache__/

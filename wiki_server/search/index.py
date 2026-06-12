@@ -4,7 +4,7 @@ import time
 from pathlib import Path
 
 from wiki_server import config
-from wiki_server.search import get_db, init_db
+from wiki_server.db import get_db, init_db
 
 
 def _extract_title(text: str) -> str:

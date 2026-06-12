@@ -66,7 +66,7 @@ production ranking systems at Google, Meta, Reddit, TikTok, and Pinterest.
 ## Maintenance
 
 ```sh
-make index             # rebuild search.db after bulk edits made outside the skills
+make index             # rebuild search index in wiki.db after bulk edits made outside the skills
 make validate-mermaid  # validate all Mermaid diagrams in wiki/
 make test              # run pytest
 ```

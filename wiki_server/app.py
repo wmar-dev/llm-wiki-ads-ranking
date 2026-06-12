@@ -11,6 +11,7 @@ from markdown_it import MarkdownIt
 from mdit_py_plugins.dollarmath import dollarmath_plugin
 
 from wiki_server import config
+from wiki_server.db import get_db
 
 _md = (
     MarkdownIt("commonmark")
@@ -86,6 +87,14 @@ def _log_access(path: str, status: int) -> None:
     # Rotate if over threshold
     if os.path.getsize(log) > config.ACCESS_LOG_MAX_BYTES:
         _rotate_log()
+
+    if status == 200:
+        with get_db() as conn:
+            conn.execute(
+                """INSERT INTO page_views(path, count) VALUES (?, 1)
+                   ON CONFLICT(path) DO UPDATE SET count = count + 1""",
+                (path,),
+            )
 
 
 def _rotate_log() -> None:

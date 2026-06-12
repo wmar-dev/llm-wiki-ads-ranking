@@ -17,7 +17,7 @@ make dev        # Flask at http://localhost:8000 with debug mode + auto-reload
 **Maintenance** (only needed after bulk edits made outside the skills):
 
 ```sh
-make index             # rebuild search.db
+make index             # rebuild search index in wiki.db
 make render-dot        # re-render all Graphviz DOT diagrams in wiki/diagrams/ to SVG
 make validate-mermaid  # validate all Mermaid diagrams in wiki/
 ```
@@ -25,9 +25,10 @@ make validate-mermaid  # validate all Mermaid diagrams in wiki/
 **Notes**:
 
 - `wiki/index.md` and `wiki/log.md` are auto-created by `/wiki-ingest` on first run if missing.
-- `search.db` and `access.log*` are gitignored and regenerated automatically.
+- `wiki.db` and `access.log*` are gitignored and regenerated automatically.
 - Search uses SQLite FTS5 native `bm25()` — no external search service needed.
-- Log rotates at 10 MB; all segments remain queryable from `/metrics`.
+- Access log rotates at 10 MB. `/metrics` reads aggregated visit counts from the
+  `page_views` table in `wiki.db`, updated incrementally on each request.
 - Wiki pages support diagrams as Graphviz DOT (`wiki/diagrams/<slug>.dot`, rendered to
   `wiki/assets/<slug>.svg` via `scripts/render_dot.py` — preferred), Mermaid (fenced
   ` ```mermaid ` blocks — fallback), GFM tables, and linked matplotlib chart scripts

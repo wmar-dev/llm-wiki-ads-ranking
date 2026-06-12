@@ -8,6 +8,6 @@ services:
     volumes:
       - ./wiki:/app/wiki
       - ./raw:/app/raw
-      - ./search.db:/app/search.db
+      - ./wiki.db:/app/wiki.db
       - ./access.log:/app/access.log
     restart: unless-stopped
