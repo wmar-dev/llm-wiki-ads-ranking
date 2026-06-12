@@ -38,6 +38,12 @@ def _parse_frontmatter(text: str) -> tuple[str, dict]:
     return text, {}
 
 
+def _page_title(md_path: Path) -> str:
+    text = md_path.read_text(encoding="utf-8")
+    _, meta = _parse_frontmatter(text)
+    return meta.get("title") or md_path.stem.replace("-", " ").title()
+
+
 def _meta_html(meta: dict) -> str:
     parts = []
     if meta.get("created"):
@@ -118,7 +124,7 @@ def create_app() -> Flask:
             return render_template("page.html", content="<p>Section not found.</p>", title=section.title()), 404
         entries = sorted(dir_path.iterdir())
         links = "".join(
-            f'<li><a href="/wiki/{section}/{f.name}">{f.stem.replace("-", " ").title()}</a></li>\n'
+            f'<li><a href="/wiki/{section}/{f.name}">{_page_title(f)}</a></li>\n'
             for f in entries if f.suffix == ".md"
         )
         count = sum(1 for f in entries if f.suffix == ".md")
