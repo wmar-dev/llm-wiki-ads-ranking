@@ -1,0 +1,18 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11, shape=box, style=rounded];
+    edge [fontsize=10, arrowhead=normal];
+
+    Context [label="Observe context\nx_t,a per arm"];
+    Predict [label="Predict payoff\ntheta_hat_a = A_a^-1 b_a\np_hat = theta_hat_a^T x_t,a"];
+    Bonus [label="Exploration bonus\nalpha * sqrt(x_t,a^T A_a^-1 x_t,a)"];
+    Select [label="Select arm\na_t = argmax (p_hat + bonus)"];
+    Reward [label="Observe reward r_t\n(e.g. click / no-click)"];
+    Update [label="Update arm a_t\nA_a += x x^T\nb_a += r_t * x"];
+
+    Context -> Predict;
+    Predict -> Select;
+    Bonus -> Select;
+    Select -> Reward -> Update;
+    Update -> Context [label="next round", style=dashed, constraint=false];
+}

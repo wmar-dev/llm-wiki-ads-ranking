@@ -52,6 +52,7 @@ A bidding profile is **locally envy-free** if no advertiser prefers to swap posi
 
 ## Related Pages
 
+- [[wiki/synthesis/simple-ads-auction-python.md]] — Python implementation of GSP's bid x quality ranking and minimum-to-hold-position pricing
 - [[wiki/synthesis/second-price-auction.md]]
 - [[wiki/sources/edelman-ostrovsky-schwarz-gsp-auction.md]]
 - [[wiki/sources/google-ad-rank-briefing.md]]

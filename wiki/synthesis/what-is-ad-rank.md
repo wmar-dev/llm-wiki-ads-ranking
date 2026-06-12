@@ -197,6 +197,7 @@ underlying auction-theoretic role each plays.
 
 ## Related Pages
 
+- [[wiki/synthesis/simple-ads-auction-python.md]] — Python implementation of the LTV formula, eligibility filter, and second-price-in-LTV-space payment rule
 - [[wiki/concepts/google-ad-rank-ltv-scoring.md]] — detailed LTV formula and component definitions
 - [[wiki/concepts/randomized-gsp-rgsp.md]] — rGSP randomization mechanism and DOJ findings
 - [[wiki/synthesis/rgsp.md]] — rGSP synthesis with "From GSP to rGSP" walkthrough

@@ -1,0 +1,3 @@
+- what is LinUCB and how does it work?  
+- what are ways of predicting uncertainity in ML models and ads systems?
+- What does code for a simple ads auction system look like in python?

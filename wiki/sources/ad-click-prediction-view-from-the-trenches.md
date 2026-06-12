@@ -81,6 +81,7 @@ This paper presents case studies from Google's deployed CTR prediction system fo
 
 ## Related Pages
 
+- [[wiki/synthesis/predicting-uncertainty-in-ads-ml-models.md]] — the per-coordinate uncertainty score and isotonic calibration in the broader taxonomy of UQ methods
 - [[wiki/concepts/web-scale-learning.md]] — scale thesis; this paper provides concrete engineering evidence
 - [[wiki/sources/google-ad-rank-briefing.md]] — Google's ad ranking system context
 - [[wiki/sources/overlapping-experiment-infrastructure.md]] — Google's experimentation platform

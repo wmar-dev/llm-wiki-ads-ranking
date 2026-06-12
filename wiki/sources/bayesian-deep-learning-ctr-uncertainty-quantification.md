@@ -63,6 +63,7 @@ whether one can be derived from, or substitute for, the other.
 
 ## Related Pages
 
+- [[wiki/synthesis/predicting-uncertainty-in-ads-ml-models.md]] — MC dropout in the broader taxonomy of UQ methods used in ads/ML systems
 - [[wiki/sources/ad-click-prediction-view-from-the-trenches.md]]
 - [[wiki/synthesis/confidence-interval-methods.md]]
 - [[wiki/synthesis/model-structures-for-pcvr.md]]

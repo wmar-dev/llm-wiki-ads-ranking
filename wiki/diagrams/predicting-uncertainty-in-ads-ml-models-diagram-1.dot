@@ -1,0 +1,30 @@
+digraph G {
+    rankdir=TB;
+    node [fontsize=11, shape=box, style=rounded];
+    edge [fontsize=10, arrowhead=normal, style=dashed];
+
+    subgraph cluster_general {
+        label="General ML uncertainty methods";
+        style=dashed;
+        fontsize=12;
+        BNN [label="Bayesian NN /\nMC dropout\n(variational inference)"];
+        Ensembles [label="Deep ensembles\n(spread across models)"];
+        Deterministic [label="Single deterministic\n(internal/external)"];
+        Calibration [label="Calibration\n(temp/Platt/isotonic)"];
+    }
+
+    subgraph cluster_ads {
+        label="Ads-system specializations";
+        style=dashed;
+        fontsize=12;
+        FTRL [label="FTRL uncertainty score\nu(x) = alpha * eta . x"];
+        CTRDropout [label="MC dropout for\ndeep CTR models"];
+        LinUCBBound [label="LinUCB confidence bound\n(ridge-regression posterior)"];
+        Isotonic [label="Isotonic regression\nCTR calibration"];
+    }
+
+    Deterministic -> FTRL;
+    BNN -> CTRDropout;
+    BNN -> LinUCBBound;
+    Calibration -> Isotonic;
+}

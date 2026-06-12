@@ -171,6 +171,7 @@ mention of UCB, Thompson Sampling, confidence bounds, or regret
 
 ## Related Pages
 
+- [[wiki/synthesis/what-is-linucb.md]] — how LinUCB-style contextual bandits work (ridge regression, confidence bounds)
 - [[wiki/concepts/multi-armed-bandit-algorithms.md]] — bandit algorithm fundamentals (UCB1, Thompson Sampling, contextual bandits, regret)
 - [[wiki/sources/fatigue-aware-ad-creative-selection.md]] — contextual bandit for ad creative selection under ad fatigue *(peer_reviewed)*
 - [[wiki/sources/dynamic-ad-allocation-bandits-with-budgets.md]] — budgeted UCB1 for ad allocation *(peer_reviewed)*

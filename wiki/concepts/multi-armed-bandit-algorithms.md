@@ -66,6 +66,7 @@ deployments that need to report a final effect estimate.
 
 ## Related Pages
 
+- [[wiki/synthesis/what-is-linucb.md]] — deep dive on LinUCB's ridge-regression confidence bounds, disjoint/hybrid models, and offline evaluation
 - [[wiki/synthesis/bandit-algorithms-in-ad-systems.md]] — how these algorithms map onto ad-system applications
 - [[wiki/sources/fatigue-aware-ad-creative-selection.md]] — contextual bandit for ad creative selection *(peer_reviewed)*
 - [[wiki/sources/dynamic-ad-allocation-bandits-with-budgets.md]] — budgeted UCB1 for ad allocation *(peer_reviewed)*

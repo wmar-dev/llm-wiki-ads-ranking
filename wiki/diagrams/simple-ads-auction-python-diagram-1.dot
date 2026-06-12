@@ -1,0 +1,13 @@
+digraph G {
+    rankdir=LR;
+    node [fontsize=11, shape=box, style=rounded];
+    edge [fontsize=10, arrowhead=normal];
+
+    Bids [label="Advertiser bids\n(bid_cpc, pCTR, ...)"];
+    Score [label="Compute score\nscore = bid x pCTR\n(Ad Rank: LTV = eCPM - costs)"];
+    Eligible [label="Filter eligible\n(score > reserve)"];
+    Rank [label="Rank slots by score\n(highest first)"];
+    Price [label="GSP price\nprice = next_score / own_pCTR"];
+
+    Bids -> Score -> Eligible -> Rank -> Price;
+}
