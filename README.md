@@ -41,6 +41,19 @@ shell commands required:
 | `/wiki-lint` | Health-check the wiki (orphans, broken links, missing frontmatter, stale/contested pages, Mermaid syntax) |
 | `/answer-open-questions` | Research and resolve `Open question:` gaps left across wiki pages |
 
+### Research queue
+
+`PROMPT.md` at the repo root holds a running list of questions to research next —
+one per bullet. Run:
+
+```text
+/wiki-query @PROMPT.md
+```
+
+to answer every queued question in one session: each becomes a cited synthesis page
+under `wiki/synthesis/`. Once done, replace `PROMPT.md` with a fresh batch of
+questions for the next session.
+
 ## Wiki structure
 
 ```text
