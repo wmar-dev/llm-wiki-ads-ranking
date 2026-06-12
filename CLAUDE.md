@@ -3,8 +3,8 @@
 
 ```sh
 make install    # uv sync + playwright install chromium
-make serve      # Flask at http://localhost:5000
-make dev        # Flask at http://localhost:5000 with debug mode + auto-reload
+make serve      # Flask at http://localhost:8000
+make dev        # Flask at http://localhost:8000 with debug mode + auto-reload
 ```
 
 **Grow the wiki** — use Claude skills, not shell commands:

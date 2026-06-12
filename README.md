@@ -25,7 +25,7 @@ search (SQLite FTS5 / BM25), Mermaid diagrams, GFM tables, and matplotlib charts
 
 ```sh
 make install    # uv sync + playwright install chromium
-make serve      # Flask at http://localhost:5000
+make serve      # Flask at http://localhost:8000
 make dev        # Flask with debug mode + auto-reload
 ```
 
