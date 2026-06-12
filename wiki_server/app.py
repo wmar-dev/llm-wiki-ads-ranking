@@ -7,6 +7,7 @@ from pathlib import Path
 
 import yaml
 from flask import Flask, abort, jsonify, render_template, request, send_file
+from flask_caching import Cache
 from markdown_it import MarkdownIt
 from mdit_py_plugins.dollarmath import dollarmath_plugin
 
@@ -19,6 +20,15 @@ _md = (
     .enable("table")
     .use(dollarmath_plugin, allow_digits=False)
 )
+
+cache = Cache()
+
+_SECTION_DIRS = {
+    "synthesis": config.WIKI_DIR / "synthesis",
+    "concepts": config.WIKI_DIR / "concepts",
+    "entities": config.WIKI_DIR / "entities",
+    "sources": config.WIKI_DIR / "sources",
+}
 
 _WIKI_LINK_RE = re.compile(r"\[\[wiki/([^\]]+)\]\]")
 
@@ -79,6 +89,23 @@ def render_page(md_path: Path) -> tuple[str, dict]:
     return html, meta
 
 
+@cache.memoize()
+def _render_page_cached(path_str: str, mtime: float) -> tuple[str, dict]:
+    return render_page(Path(path_str))
+
+
+@cache.memoize()
+def _section_html_cached(section: str, listing_key: tuple) -> str:
+    dir_path = _SECTION_DIRS[section]
+    entries = sorted(dir_path.iterdir())
+    links = "".join(
+        f'<li><a href="/wiki/{section}/{f.name}">{_page_title(f)}</a></li>\n'
+        for f in entries if f.suffix == ".md"
+    )
+    count = sum(1 for f in entries if f.suffix == ".md")
+    return f"<h1>{section.title()}</h1>\n<p>{count} page(s)</p>\n<ul>\n{links}</ul>"
+
+
 def _log_access(path: str, status: int) -> None:
     entry = json.dumps({"ts": int(time.time()), "path": path, "status": status}) + "\n"
     log = config.ACCESS_LOG
@@ -108,6 +135,8 @@ def _rotate_log() -> None:
 
 def create_app() -> Flask:
     app = Flask(__name__, template_folder="templates", static_folder="static")
+    app.config.from_mapping(CACHE_TYPE="SimpleCache", CACHE_DEFAULT_TIMEOUT=300)
+    cache.init_app(app)
 
     @app.route("/")
     def index():
@@ -119,29 +148,19 @@ def create_app() -> Flask:
         _log_access("/", 200)
         return render_template("page.html", content=html, title="Wiki Index", meta={})
 
-    _section_dirs = {
-        "synthesis": config.WIKI_DIR / "synthesis",
-        "concepts": config.WIKI_DIR / "concepts",
-        "entities": config.WIKI_DIR / "entities",
-        "sources": config.WIKI_DIR / "sources",
-    }
-
     @app.route("/wiki/synthesis/")
     @app.route("/wiki/concepts/")
     @app.route("/wiki/entities/")
     @app.route("/wiki/sources/")
     def wiki_section():
         section = request.path.split("/")[-2]
-        dir_path = _section_dirs.get(section)
+        dir_path = _SECTION_DIRS.get(section)
         if not dir_path or not dir_path.exists():
             return render_template("page.html", content="<p>Section not found.</p>", title=section.title()), 404
-        entries = sorted(dir_path.iterdir())
-        links = "".join(
-            f'<li><a href="/wiki/{section}/{f.name}">{_page_title(f)}</a></li>\n'
-            for f in entries if f.suffix == ".md"
+        listing_key = tuple(
+            sorted((f.name, f.stat().st_mtime) for f in dir_path.iterdir() if f.suffix == ".md")
         )
-        count = sum(1 for f in entries if f.suffix == ".md")
-        html = f"<h1>{section.title()}</h1>\n<p>{count} page(s)</p>\n<ul>\n{links}</ul>"
+        html = _section_html_cached(section, listing_key)
         _log_access(f"/wiki/{section}/", 200)
         return render_template("page.html", content=html, title=f"{section.title()} — LLM Wiki", meta={})
 
@@ -152,7 +171,7 @@ def create_app() -> Flask:
         if not md_path.exists():
             _log_access(request.path, 404)
             return render_template("404.html"), 404
-        html, meta = render_page(md_path)
+        html, meta = _render_page_cached(str(md_path), md_path.stat().st_mtime)
         _log_access(request.path, 200)
         return render_template("page.html", content=html, title=meta.get("title", _slug_title(slug)), meta=meta)
 

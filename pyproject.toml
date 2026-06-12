@@ -4,6 +4,7 @@ version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
     "flask>=3.0",
+    "flask-caching>=2.3",
     "markdown-it-py>=3.0",
     "mdit-py-plugins>=0.4",
     "playwright>=1.40",
