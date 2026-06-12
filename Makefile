@@ -4,10 +4,10 @@ install:
 	uv sync --all-extras && uv run playwright install chromium
 
 serve:
-	uv run flask --app wiki_server.app run --host 127.0.0.1 --port 5000
+	uv run flask --app wiki_server.app run --host 127.0.0.1 --port 8000
 
 dev:
-	uv run flask --app wiki_server.app run --host 127.0.0.1 --port 5000 --debug
+	uv run flask --app wiki_server.app run --host 127.0.0.1 --port 8000 --debug
 
 test:
 	uv run pytest tests/ -v
